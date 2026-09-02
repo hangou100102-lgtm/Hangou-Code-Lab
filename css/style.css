@@ -114,8 +114,8 @@ img {
 
 /* 导航栏最左侧的头像 logo */
 .brand-logo {
-  width: 30px;
-  height: 30px;
+  width: 22px;
+  height: 22px;
   flex-shrink: 0;
   border-radius: 50%;
   object-fit: cover;
