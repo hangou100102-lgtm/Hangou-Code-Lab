@@ -95,6 +95,9 @@ img {
 }
 
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--font-serif);
   font-size: 1.3rem;
   font-weight: 700;
@@ -107,6 +110,17 @@ img {
 
 .brand:hover {
   text-decoration: none;
+}
+
+/* 导航栏最左侧的头像 logo */
+.brand-logo {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  background: var(--surface);
 }
 
 .brand span {
