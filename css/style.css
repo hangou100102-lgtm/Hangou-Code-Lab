@@ -25,6 +25,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* 移动端安全网：禁止页面级横向滚动 */
+  overflow-x: hidden;
 }
 
 ::selection {
@@ -39,6 +41,7 @@ body {
   color: var(--text);
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 a {
@@ -54,6 +57,23 @@ a:hover {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 20px;
+}
+
+/* 防止图片/内联图形撑破窄屏 */
+img,
+svg {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+/* 长内容自动换行，避免横向溢出 */
+.article-body,
+.post-excerpt {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 /* ============ 顶部导航 ============ */
@@ -80,6 +100,9 @@ a:hover {
   font-weight: 700;
   color: var(--text);
   letter-spacing: 1px;
+  /* 品牌名单行显示，避免窄屏换行撑乱导航高度 */
+  white-space: nowrap;
+  min-width: 0;
 }
 
 .brand:hover {
@@ -420,5 +443,85 @@ a:hover {
 
   .post-main {
     padding: 40px 0 56px;
+  }
+}
+
+/* ============ 小屏手机 ============ */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .brand {
+    font-size: 0.98rem;
+  }
+
+  .hero {
+    padding: 44px 0 24px;
+  }
+
+  .hero h1 {
+    font-size: 1.62rem;
+    letter-spacing: 0.2px;
+  }
+
+  .hero p {
+    font-size: 0.98rem;
+  }
+
+  .post-item {
+    padding: 18px 16px;
+  }
+
+  .post-item h2 {
+    font-size: 1.22rem;
+  }
+
+  .post-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .article-body {
+    font-size: 1rem;
+  }
+
+  .article-body h2 {
+    font-size: 1.3rem;
+    margin: 36px 0 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .nav {
+    height: 54px;
+  }
+
+  .brand {
+    font-size: 0.9rem;
+    letter-spacing: 0.2px;
+  }
+
+  .nav-links {
+    gap: 10px;
+    font-size: 0.85rem;
+  }
+
+  .social-links {
+    gap: 5px;
+    padding-left: 10px;
+  }
+
+  .social-link {
+    width: 26px;
+    height: 26px;
+  }
+
+  .social-link svg {
+    width: 15px;
+    height: 15px;
+  }
+
+  .post-meta {
+    font-size: 0.8rem;
   }
 }
