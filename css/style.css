@@ -448,8 +448,9 @@ img {
 
 /* ============ 小屏手机 ============ */
 @media (max-width: 480px) {
+  /* 正文与屏幕边缘保持舒适间距，不要贴边 */
   .container {
-    padding: 0 16px;
+    padding: 0 20px;
   }
 
   .brand {
@@ -470,7 +471,7 @@ img {
   }
 
   .post-item {
-    padding: 18px 16px;
+    padding: 18px 20px;
   }
 
   .post-item h2 {
