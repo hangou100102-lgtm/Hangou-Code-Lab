@@ -403,8 +403,8 @@ img {
 /* ============ 响应式 ============ */
 @media (max-width: 640px) {
   .brand {
-    font-size: 1.02rem;
-    letter-spacing: 0.5px;
+    font-size: 0.96rem;
+    letter-spacing: 0.4px;
   }
 
   .nav-links {
@@ -426,11 +426,18 @@ img {
   }
 
   .hero {
-    padding: 56px 0 28px;
+    padding: 48px 0 26px;
   }
 
   .hero h1 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
+    line-height: 1.38;
+    letter-spacing: 0.2px;
+    margin-bottom: 14px;
+  }
+
+  .hero p {
+    font-size: 1rem;
   }
 
   .post-item {
@@ -438,11 +445,17 @@ img {
   }
 
   .post-header h1 {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
   }
 
   .post-main {
     padding: 40px 0 56px;
+  }
+
+  .site-footer {
+    padding: 22px 0 30px;
+    font-size: 0.78rem;
+    line-height: 1.8;
   }
 }
 
@@ -454,16 +467,17 @@ img {
   }
 
   .brand {
-    font-size: 0.98rem;
+    font-size: 0.92rem;
+    letter-spacing: 0.3px;
   }
 
   .hero {
-    padding: 44px 0 24px;
+    padding: 38px 0 22px;
   }
 
   .hero h1 {
-    font-size: 1.62rem;
-    letter-spacing: 0.2px;
+    font-size: 1.5rem;
+    letter-spacing: 0.1px;
   }
 
   .hero p {
@@ -475,11 +489,12 @@ img {
   }
 
   .post-item h2 {
-    font-size: 1.22rem;
+    font-size: 1.2rem;
   }
 
   .post-header h1 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    line-height: 1.4;
   }
 
   .article-body {
@@ -498,8 +513,8 @@ img {
   }
 
   .brand {
-    font-size: 0.9rem;
-    letter-spacing: 0.2px;
+    font-size: 0.86rem;
+    letter-spacing: 0.1px;
   }
 
   .nav-links {
