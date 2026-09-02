@@ -176,8 +176,12 @@ img {
 }
 
 /* ============ 首页 ============ */
+/* 注意：.hero/.post-main 同时带 .container 类，
+   左右内边距统一由 .container 提供，这里只设上下，
+   避免 padding 简写把左右清成 0 导致文字贴边 */
 .hero {
-  padding: 88px 0 48px;
+  padding-top: 88px;
+  padding-bottom: 48px;
 }
 
 .hero h1 {
@@ -269,7 +273,8 @@ img {
 
 /* ============ 文章页 ============ */
 .post-main {
-  padding: 64px 0 72px;
+  padding-top: 64px;
+  padding-bottom: 72px;
 }
 
 .post-header {
@@ -426,7 +431,8 @@ img {
   }
 
   .hero {
-    padding: 48px 0 26px;
+    padding-top: 48px;
+    padding-bottom: 26px;
   }
 
   .hero h1 {
@@ -449,7 +455,8 @@ img {
   }
 
   .post-main {
-    padding: 40px 0 56px;
+    padding-top: 40px;
+    padding-bottom: 56px;
   }
 
   .site-footer {
@@ -472,7 +479,8 @@ img {
   }
 
   .hero {
-    padding: 38px 0 22px;
+    padding-top: 38px;
+    padding-bottom: 22px;
   }
 
   .hero h1 {
