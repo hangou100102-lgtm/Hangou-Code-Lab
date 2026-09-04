@@ -3,21 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hangou Code Lab · 记录学习、代码与生活</title>
-  <meta name="description" content="Hangou Code Lab：个人博客，记录技术学习与生活随笔。" />
+  <title>关于我 · Hangou Code Lab</title>
+  <meta name="description" content="我是憨狗哈（hangou），B站我的世界 UP 主，Ci OS 作品的作者。这里是我的自我介绍。" />
   <script>(function(){try{if(localStorage.getItem('hcl-theme')==='light'){document.documentElement.setAttribute('data-theme','light')}}catch(e){}})();</script>
-  <link rel="stylesheet" href="css/style.css?v=15" />
-  <link rel="icon" type="image/png" href="images/avatar.png?v=2" />
+  <link rel="stylesheet" href="../../css/style.css?v=15" />
+  <link rel="icon" type="image/png" href="../../images/avatar.png?v=2" />
   <meta name="theme-color" content="#0e0f12" />
 </head>
 <body>
   <header class="site-header">
     <nav class="nav container" aria-label="主导航">
       <a class="brand" href="/">
-        <img class="brand-logo" src="images/avatar.png" alt="Hangou 头像" />
+        <img class="brand-logo" src="../../images/avatar.png" alt="Hangou 头像" />
         Hangou&nbsp;<span>Code Lab</span>
       </a>
       <div class="nav-right">
+        <div class="nav-links">
+          <a href="/">首页</a>
+        </div>
         <button type="button" class="theme-toggle" id="themeToggle" aria-label="切换主题" aria-pressed="false" title="切换主题">
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -26,58 +29,46 @@
     </nav>
   </header>
 
-  <main>
-    <section class="hero container">
-      <h1>你好，这里是<span class="highlight">Hangou Code Lab</span></h1>
-      <p>Hi，我是 Hangou。这里记录着我读过的、写下的，以及正在琢磨的事——很高兴你路过。</p>
-    </section>
+  <main class="post-main container">
+    <article>
+      <header class="post-header">
+        <h1>关于我</h1>
+        <div class="post-meta">
+          <span class="date">2026-09-04</span>
+          <span class="tag">关于</span>
+        </div>
+      </header>
 
-    <section class="search-wrap container">
-      <input type="search" id="searchInput" class="search-input" placeholder="搜索文章标题、标签或摘要…" autocomplete="off" aria-label="搜索文章" />
-    </section>
+      <div class="article-body">
+        <p>大家好，我是<strong>憨狗哈</strong>，也可以叫我<strong>憨狗</strong>，或者 <strong>hangou</strong>。欢迎来到我的博客。</p>
 
-    <section class="post-list container" aria-label="文章列表">
-      <p class="no-result" id="noResult" hidden>没有找到相关文章，换个关键词试试？</p>
-      <article class="post-item">
-        <a class="post-thumb-link" href="posts/about/" tabindex="-1" aria-hidden="true">
-          <img class="post-thumb" src="images/placeholder.svg" alt="" loading="lazy" width="152" height="96" />
-        </a>
-        <div class="post-body">
-          <h2><a href="posts/about/">关于我</a></h2>
-          <div class="post-meta">
-            <span class="date">2026-09-04</span>
-            <span class="tag">关于</span>
-          </div>
-          <p class="post-excerpt">网名憨狗哈，B站我的世界 UP 主，也是 Ci OS 的作者——很高兴认识你。</p>
-        </div>
-      </article>
-      <article class="post-item">
-        <a class="post-thumb-link" href="posts/draft/" tabindex="-1" aria-hidden="true">
-          <img class="post-thumb" src="images/placeholder.svg" alt="" loading="lazy" width="152" height="96" />
-        </a>
-        <div class="post-body">
-          <h2><a href="posts/draft/">这是我的第一个文章</a></h2>
-          <div class="post-meta">
-            <span class="date">2026-09-04</span>
-            <span class="tag">草稿</span>
-          </div>
-          <p class="post-excerpt">下面的是ai写的</p>
-        </div>
-      </article>
-      <article class="post-item">
-        <a class="post-thumb-link" href="posts/first-post/" tabindex="-1" aria-hidden="true">
-          <img class="post-thumb" src="images/placeholder.svg" alt="" loading="lazy" width="152" height="96" />
-        </a>
-        <div class="post-body">
-          <h2><a href="posts/first-post/">你好，世界：这里的第一篇</a></h2>
-          <div class="post-meta">
-            <span class="date">2026-08-15</span>
-            <span class="tag">随笔</span>
-          </div>
-          <p class="post-excerpt">第一篇开篇：这个博客会有什么样的内容，以及我为什么要开始写作。</p>
-        </div>
-      </article>
-    </section>
+        <blockquote>
+          一个在方块世界里搭东西、也在屏幕前琢磨动效的普通玩家。
+        </blockquote>
+
+        <h2>我在做什么</h2>
+        <p>我在哔哩哔哩上是一名 UP 主，主要做<strong>《我的世界》</strong>（Minecraft）相关的视频。</p>
+        <p>同时，我也是一位资深的<strong>创游世界</strong>玩家——不过现在有些淡游了，更多是在慢慢沉淀和整理以前做过的内容。</p>
+
+        <h2>关于 Ci OS</h2>
+        <p>之前，我出过一系列「创游世界」的开发进度视频，作品名叫 <strong>Ci OS</strong>。</p>
+        <p>Ci OS 主要还原了<strong>小米澎湃 OS</strong>（HyperOS）和 <strong>iOS</strong> 的桌面动画，以及其他系统动效，算是我花了挺多心思的一个作品。</p>
+        <p>作品链接：<a href="https://s.hortorinteractive.com/K4ZK47" target="_blank" rel="noopener">https://s.hortorinteractive.com/K4ZK47</a></p>
+
+        <h2>联系方式</h2>
+        <p>想找我聊聊天、合作或者只是打个招呼，都可以通过这些邮箱联系我：</p>
+        <ul>
+          <li><a href="mailto:2644624556@qq.com">2644624556@qq.com</a></li>
+          <li><a href="mailto:jinhui100102@163.com">jinhui100102@163.com</a></li>
+          <li><a href="mailto:hangou100102@gmail.com">hangou100102@gmail.com</a></li>
+        </ul>
+
+        <h3>写在最后</h3>
+        <p>谢谢你来认识我。这里会继续记录我读过的、写下的、正在琢磨的事，希望下次再见。</p>
+      </div>
+
+      <a class="post-back" href="/">← 返回首页</a>
+    </article>
   </main>
 
   <footer class="site-footer">
@@ -96,7 +87,6 @@
       <p>© 2026 Hangou · Hangou Code Lab · 用一杯咖啡的时间，写下此刻的光。</p>
     </div>
   </footer>
-  <script src="js/search.js"></script>
-  <script src="js/theme.js"></script>
+  <script src="../../js/theme.js"></script>
 </body>
 </html>
