@@ -5,6 +5,12 @@
   box-sizing: border-box;
 }
 
+/* 安全底线：任何图片不得超过容器宽度（防止大图在移动端撑爆布局） */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* ============ 主题变量（默认深色） ============ */
 :root {
   color-scheme: dark;
