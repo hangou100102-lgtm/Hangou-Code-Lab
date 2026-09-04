@@ -545,4 +545,13 @@ a:hover {
   .post-main {
     padding: 40px 0 56px;
   }
+
+  /* 放在最后，避免被上面各块的 padding 简写覆盖 */
+  .hero,
+  .post-list,
+  .post-main,
+  .site-footer .container {
+    padding-left: max(22px, 6vw);
+    padding-right: max(22px, 6vw);
+  }
 }
