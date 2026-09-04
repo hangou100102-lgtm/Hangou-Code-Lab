@@ -138,40 +138,6 @@ img {
   gap: 20px;
 }
 
-.social-links {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding-left: 20px;
-  border-left: 1px solid var(--border);
-}
-
-.social-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 30px;
-  border: 1px solid var(--border);
-  background: var(--bg-soft);
-  color: var(--text-secondary);
-  transition: border-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
-}
-
-.social-link svg {
-  display: block;
-  width: 16px;
-  height: 16px;
-}
-
-.social-link:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  text-decoration: none;
-  box-shadow: 2px 2px 0 rgba(45, 212, 191, 0.35);
-  transform: translate(-1px, -1px);
-}
-
 .nav-links a {
   color: var(--text-secondary);
   font-size: 0.92rem;
@@ -401,6 +367,48 @@ img {
   font-size: 0.85rem;
 }
 
+/* ============ 页脚社交长按钮 ============ */
+.footer-social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 230px;
+  height: 54px;
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color 0.2s, color 0.2s, background 0.2s,
+    transform 0.2s, box-shadow 0.2s;
+}
+
+.social-btn svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+}
+
+.social-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--surface-hover);
+  text-decoration: none;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 rgba(45, 212, 191, 0.15);
+}
+
 /* ============ 滚动条 ============ */
 ::-webkit-scrollbar {
   width: 10px;
@@ -432,16 +440,6 @@ img {
 
   .nav-right {
     gap: 12px;
-  }
-
-  .social-links {
-    gap: 6px;
-    padding-left: 12px;
-  }
-
-  .social-link {
-    width: 28px;
-    height: 28px;
   }
 
   .hero {
@@ -527,6 +525,18 @@ img {
     font-size: 1.3rem;
     margin: 36px 0 14px;
   }
+
+  /* 小屏手机：社交按钮上下堆叠并撑满宽度 */
+  .footer-social {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .social-btn {
+    width: 100%;
+    height: 52px;
+  }
 }
 
 @media (max-width: 380px) {
@@ -542,21 +552,6 @@ img {
   .nav-links {
     gap: 10px;
     font-size: 0.85rem;
-  }
-
-  .social-links {
-    gap: 5px;
-    padding-left: 10px;
-  }
-
-  .social-link {
-    width: 26px;
-    height: 26px;
-  }
-
-  .social-link svg {
-    width: 15px;
-    height: 15px;
   }
 
   .post-meta {
