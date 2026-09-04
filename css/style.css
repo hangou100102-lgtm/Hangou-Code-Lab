@@ -389,7 +389,8 @@ img {
   color: var(--text);
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  /* 直角矩形风格，与站点其它卡片保持一致 */
+  border-radius: 0;
   transition: border-color 0.2s, color 0.2s, background 0.2s,
     transform 0.2s, box-shadow 0.2s;
 }
