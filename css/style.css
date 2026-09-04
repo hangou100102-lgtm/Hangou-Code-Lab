@@ -141,9 +141,6 @@ a:hover {
   align-items: center;
   justify-content: space-between;
   height: 60px;
-  max-width: none;
-  margin: 0;
-  padding: 0 48px;
 }
 
 .brand {
@@ -243,8 +240,12 @@ a:hover {
 }
 
 /* ============ 首页 ============ */
+/* 注意：.hero/.search-wrap/.post-list/.post-main 等同时带 .container 类，
+   左右内边距应由 .container 统一提供，这里只设上下，
+   避免 padding 简写把左右清成 0，导致正文/标题与下方内容错位贴边 */
 .hero {
-  padding: 88px 0 48px;
+  padding-top: 88px;
+  padding-bottom: 48px;
 }
 
 .hero h1 {
@@ -268,6 +269,47 @@ a:hover {
   color: var(--text-secondary);
   font-size: 1.04rem;
   max-width: 560px;
+}
+
+/* ============ 文章搜索 ============ */
+.search-wrap {
+  padding-bottom: 28px;
+}
+
+.search-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 16px;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.search-input::placeholder {
+  color: var(--text-secondary);
+}
+
+.search-input:focus {
+  border-color: var(--accent);
+  box-shadow: 3px 3px 0 var(--accent-glow);
+}
+
+.no-result {
+  padding: 24px 0;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+/* [hidden] 需要盖过 display 规则 */
+.post-item[hidden] {
+  display: none;
 }
 
 /* ============ 文章列表 ============ */
@@ -336,7 +378,8 @@ a:hover {
 
 /* ============ 文章页 ============ */
 .post-main {
-  padding: 64px 0 72px;
+  padding-top: 64px;
+  padding-bottom: 72px;
 }
 
 .post-header {
@@ -525,10 +568,6 @@ a:hover {
 
 /* ============ 响应式 ============ */
 @media (max-width: 640px) {
-  .nav {
-    padding: 0 16px;
-  }
-
   .brand {
     font-size: 1.02rem;
     letter-spacing: 0.5px;
@@ -575,6 +614,7 @@ a:hover {
 
   /* 放在最后，避免被上面各块的 padding 简写覆盖 */
   .hero,
+  .search-wrap,
   .post-list,
   .post-main,
   .site-footer .container {

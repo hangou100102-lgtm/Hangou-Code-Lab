@@ -6,7 +6,7 @@
   <title>Hangou Code Lab · 记录学习、代码与生活</title>
   <meta name="description" content="Hangou Code Lab：个人博客，记录技术学习与生活随笔。" />
   <script>(function(){try{if(localStorage.getItem('hcl-theme')==='light'){document.documentElement.setAttribute('data-theme','light')}}catch(e){}})();</script>
-  <link rel="stylesheet" href="css/style.css?v=13" />
+  <link rel="stylesheet" href="css/style.css?v=15" />
   <link rel="icon" type="image/png" href="images/avatar.png?v=2" />
   <meta name="theme-color" content="#0e0f12" />
 </head>
@@ -32,7 +32,12 @@
       <p>Hi，我是 Hangou。这里记录着我读过的、写下的，以及正在琢磨的事——很高兴你路过。</p>
     </section>
 
+    <section class="search-wrap container">
+      <input type="search" id="searchInput" class="search-input" placeholder="搜索文章标题、标签或摘要…" autocomplete="off" aria-label="搜索文章" />
+    </section>
+
     <section class="post-list container" aria-label="文章列表">
+      <p class="no-result" id="noResult" hidden>没有找到相关文章，换个关键词试试？</p>
       <article class="post-item">
         <h2><a href="posts/draft/">这是我的第一个文章</a></h2>
         <div class="post-meta">
@@ -68,6 +73,7 @@
       <p>© 2026 Hangou · Hangou Code Lab · 用一杯咖啡的时间，写下此刻的光。</p>
     </div>
   </footer>
+  <script src="js/search.js"></script>
   <script src="js/theme.js"></script>
 </body>
 </html>
