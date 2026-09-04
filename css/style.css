@@ -66,13 +66,33 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+/* 移除移动端默认点击高亮（蓝/灰底），需覆盖到所有元素 */
+* {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* 保留键盘操作可见性，替换手机端系统默认的点击蓝底 */
+/* 非键盘触发的 UA 蓝色聚焦外框去掉，键盘聚焦仍保留可见样式 */
+:focus {
+  outline: none;
+}
+
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+/* 导航与按钮等交互控件长按/点击时不触发文字选中高亮 */
+.brand,
+.nav a,
+.nav button,
+.social-btn,
+.social-link,
+.theme-toggle {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
 }
 
 ::selection {
