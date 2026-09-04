@@ -5,6 +5,7 @@
   box-sizing: border-box;
 }
 
+/* ============ 主题变量（默认深色） ============ */
 :root {
   color-scheme: dark;
 
@@ -13,20 +14,56 @@
   --surface: #171a20;
   --surface-hover: #1d2129;
   --text: #e8e6e1;
+  --text-soft: #d6d4ce;
   --text-secondary: #8d9199;
   --border: #262a32;
   --accent: #2dd4bf;
   --accent-soft: rgba(45, 212, 191, 0.12);
   --accent-glow: rgba(45, 212, 191, 0.25);
+  --accent-shadow: rgba(45, 212, 191, 0.35);
+  --accent-line: rgba(45, 212, 191, 0.28);
+  --accent-border: rgba(45, 212, 191, 0.55);
+  --grad-end: #9df3e6;
+  --code-text: #8ff0e2;
+  --pre-bg: #0a0b0d;
+  --pre-text: #d6d4ce;
+  --header-bg: rgba(14, 15, 18, 0.78);
+  --scroll-thumb: #2c303a;
+  --scroll-thumb-hover: #3a3f4b;
+
   --max-width: 720px;
   --font-serif: Georgia, "Songti SC", "SimSun", "Times New Roman", serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 }
 
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #fafaf8;
+  --bg-soft: #f0f1ed;
+  --surface: #ffffff;
+  --surface-hover: #f4f5f1;
+  --text: #24251f;
+  --text-soft: #43453e;
+  --text-secondary: #70736b;
+  --border: #dfe1d9;
+  --accent: #0d9488;
+  --accent-soft: rgba(13, 148, 136, 0.1);
+  --accent-glow: rgba(13, 148, 136, 0.18);
+  --accent-shadow: rgba(13, 148, 136, 0.3);
+  --accent-line: rgba(13, 148, 136, 0.28);
+  --accent-border: rgba(13, 148, 136, 0.45);
+  --grad-end: #14b8a6;
+  --code-text: #0f766e;
+  --pre-bg: #111311;
+  --pre-text: #d8dedb;
+  --header-bg: rgba(250, 250, 248, 0.82);
+  --scroll-thumb: #c6c9c0;
+  --scroll-thumb-hover: #afb3a9;
+}
+
 html {
   scroll-behavior: smooth;
-  /* 移动端安全网：禁止页面级横向滚动 */
-  overflow-x: hidden;
 }
 
 ::selection {
@@ -41,7 +78,7 @@ body {
   color: var(--text);
   line-height: 1.75;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  transition: background 0.25s, color 0.25s;
 }
 
 a {
@@ -59,29 +96,12 @@ a:hover {
   padding: 0 20px;
 }
 
-/* 防止图片/内联图形撑破窄屏 */
-img,
-svg {
-  max-width: 100%;
-}
-
-img {
-  height: auto;
-}
-
-/* 长内容自动换行，避免横向溢出 */
-.article-body,
-.post-excerpt {
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-}
-
 /* ============ 顶部导航 ============ */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(14, 15, 18, 0.78);
+  background: var(--header-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
@@ -92,35 +112,21 @@ img {
   align-items: center;
   justify-content: space-between;
   height: 60px;
+  max-width: none;
+  margin: 0;
+  padding: 0 48px;
 }
 
 .brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
   font-family: var(--font-serif);
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--text);
   letter-spacing: 1px;
-  /* 品牌名单行显示，避免窄屏换行撑乱导航高度 */
-  white-space: nowrap;
-  min-width: 0;
 }
 
 .brand:hover {
   text-decoration: none;
-}
-
-/* 导航栏最左侧的头像 logo */
-.brand-logo {
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid var(--border);
-  background: var(--surface);
 }
 
 .brand span {
@@ -155,13 +161,61 @@ img {
   color: var(--accent);
 }
 
+/* ============ 社交 / 主题按钮（直角小方块） ============ */
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 20px;
+  border-left: 1px solid var(--border);
+}
+
+.social-link,
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s, background 0.2s;
+}
+
+.social-link svg,
+.theme-toggle svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.social-link:hover,
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+  box-shadow: 2px 2px 0 var(--accent-shadow);
+  transform: translate(-1px, -1px);
+}
+
+/* 图标：深色下显示太阳（点它切浅色），浅色下显示月亮（点它切深色） */
+.theme-toggle .icon-moon {
+  display: none;
+}
+
+:root[data-theme="light"] .theme-toggle .icon-sun {
+  display: none;
+}
+
+:root[data-theme="light"] .theme-toggle .icon-moon {
+  display: block;
+}
+
 /* ============ 首页 ============ */
-/* 注意：.hero/.post-main 同时带 .container 类，
-   左右内边距统一由 .container 提供，这里只设上下，
-   避免 padding 简写把左右清成 0 导致文字贴边 */
 .hero {
-  padding-top: 88px;
-  padding-bottom: 48px;
+  padding: 88px 0 48px;
 }
 
 .hero h1 {
@@ -174,7 +228,7 @@ img {
 }
 
 .hero h1 .highlight {
-  background: linear-gradient(120deg, var(--accent), #9df3e6);
+  background: linear-gradient(120deg, var(--accent), var(--grad-end));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -202,10 +256,10 @@ img {
 }
 
 .post-item:hover {
-  border-color: rgba(45, 212, 191, 0.55);
+  border-color: var(--accent-border);
   background: var(--surface-hover);
   transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 rgba(45, 212, 191, 0.25);
+  box-shadow: 4px 4px 0 var(--accent-glow);
 }
 
 .post-item h2 {
@@ -240,7 +294,7 @@ img {
   display: inline-block;
   padding: 2px 11px;
   background: var(--accent-soft);
-  border: 1px solid rgba(45, 212, 191, 0.28);
+  border: 1px solid var(--accent-line);
   color: var(--accent);
   font-size: 0.76rem;
   margin-right: 6px;
@@ -253,8 +307,7 @@ img {
 
 /* ============ 文章页 ============ */
 .post-main {
-  padding-top: 64px;
-  padding-bottom: 72px;
+  padding: 64px 0 72px;
 }
 
 .post-header {
@@ -272,7 +325,7 @@ img {
 
 .article-body {
   font-size: 1.04rem;
-  color: #d6d4ce;
+  color: var(--text-soft);
 }
 
 .article-body h2 {
@@ -281,6 +334,7 @@ img {
   margin: 48px 0 16px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--border);
+  color: var(--text);
 }
 
 .article-body h3 {
@@ -322,15 +376,15 @@ img {
   background: var(--surface);
   border: 1px solid var(--border);
   padding: 2px 7px;
-  color: #8ff0e2;
+  color: var(--code-text);
 }
 
 .article-body pre {
   margin: 28px 0;
   padding: 20px 22px;
-  background: #0a0b0d;
+  background: var(--pre-bg);
   border: 1px solid var(--border);
-  color: #d6d4ce;
+  color: var(--pre-text);
   overflow-x: auto;
   font-size: 0.9rem;
   line-height: 1.7;
@@ -367,49 +421,6 @@ img {
   font-size: 0.85rem;
 }
 
-/* ============ 页脚社交长按钮 ============ */
-.footer-social {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 30px;
-  flex-wrap: wrap;
-}
-
-.social-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 230px;
-  height: 54px;
-  font-size: 1.02rem;
-  font-weight: 600;
-  color: var(--text);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  /* 直角矩形风格，与站点其它卡片保持一致 */
-  border-radius: 0;
-  transition: border-color 0.2s, color 0.2s, background 0.2s,
-    transform 0.2s, box-shadow 0.2s;
-}
-
-.social-btn svg {
-  display: block;
-  width: 22px;
-  height: 22px;
-}
-
-.social-btn:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-  background: var(--surface-hover);
-  text-decoration: none;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 0 rgba(45, 212, 191, 0.15);
-}
-
 /* ============ 滚动条 ============ */
 ::-webkit-scrollbar {
   width: 10px;
@@ -421,18 +432,76 @@ img {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2c303a;
+  background: var(--scroll-thumb);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3a3f4b;
+  background: var(--scroll-thumb-hover);
+}
+
+/* ============ 头像 Logo / 页脚社交区 ============ */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-logo {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+}
+
+.footer-label {
+  margin-bottom: 14px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  transition: border-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s, background 0.2s;
+}
+
+.social-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.social-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  text-decoration: none;
+  box-shadow: 2px 2px 0 var(--accent-shadow);
+  transform: translate(-1px, -1px);
 }
 
 /* ============ 响应式 ============ */
 @media (max-width: 640px) {
+  .nav {
+    padding: 0 16px;
+  }
+
   .brand {
-    font-size: 0.96rem;
-    letter-spacing: 0.4px;
+    font-size: 1.02rem;
+    letter-spacing: 0.5px;
   }
 
   .nav-links {
@@ -443,20 +512,23 @@ img {
     gap: 12px;
   }
 
+  .social-links {
+    gap: 6px;
+    padding-left: 12px;
+  }
+
+  .social-link,
+  .theme-toggle {
+    width: 28px;
+    height: 28px;
+  }
+
   .hero {
-    padding-top: 48px;
-    padding-bottom: 26px;
+    padding: 56px 0 28px;
   }
 
   .hero h1 {
-    font-size: 1.6rem;
-    line-height: 1.38;
-    letter-spacing: 0.2px;
-    margin-bottom: 14px;
-  }
-
-  .hero p {
-    font-size: 1rem;
+    font-size: 1.8rem;
   }
 
   .post-item {
@@ -464,98 +536,10 @@ img {
   }
 
   .post-header h1 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 
   .post-main {
-    padding-top: 40px;
-    padding-bottom: 56px;
-  }
-
-  .site-footer {
-    padding: 22px 0 30px;
-    font-size: 0.78rem;
-    line-height: 1.8;
-  }
-}
-
-/* ============ 小屏手机 ============ */
-@media (max-width: 480px) {
-  /* 正文与屏幕边缘保持舒适间距，不要贴边 */
-  .container {
-    padding: 0 20px;
-  }
-
-  .brand {
-    font-size: 0.92rem;
-    letter-spacing: 0.3px;
-  }
-
-  .hero {
-    padding-top: 38px;
-    padding-bottom: 22px;
-  }
-
-  .hero h1 {
-    font-size: 1.5rem;
-    letter-spacing: 0.1px;
-  }
-
-  .hero p {
-    font-size: 0.98rem;
-  }
-
-  .post-item {
-    padding: 18px 20px;
-  }
-
-  .post-item h2 {
-    font-size: 1.2rem;
-  }
-
-  .post-header h1 {
-    font-size: 1.4rem;
-    line-height: 1.4;
-  }
-
-  .article-body {
-    font-size: 1rem;
-  }
-
-  .article-body h2 {
-    font-size: 1.3rem;
-    margin: 36px 0 14px;
-  }
-
-  /* 小屏手机：社交按钮上下堆叠并撑满宽度 */
-  .footer-social {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
-  }
-
-  .social-btn {
-    width: 100%;
-    height: 52px;
-  }
-}
-
-@media (max-width: 380px) {
-  .nav {
-    height: 54px;
-  }
-
-  .brand {
-    font-size: 0.86rem;
-    letter-spacing: 0.1px;
-  }
-
-  .nav-links {
-    gap: 10px;
-    font-size: 0.85rem;
-  }
-
-  .post-meta {
-    font-size: 0.8rem;
+    padding: 40px 0 56px;
   }
 }

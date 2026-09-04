@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hangou Code Lab · 记录学习、代码与生活</title>
   <meta name="description" content="Hangou Code Lab：个人博客，记录技术学习与生活随笔。" />
-  <link rel="stylesheet" href="css/style.css?v=2" />
+  <script>(function(){try{if(localStorage.getItem('hcl-theme')==='light'){document.documentElement.setAttribute('data-theme','light')}}catch(e){}})();</script>
+  <link rel="stylesheet" href="css/style.css?v=4" />
   <link rel="icon" type="image/png" href="images/avatar.png?v=2" />
   <meta name="theme-color" content="#0e0f12" />
 </head>
@@ -16,6 +17,12 @@
         <img class="brand-logo" src="images/avatar.png" alt="Hangou 头像" />
         Hangou&nbsp;<span>Code Lab</span>
       </a>
+      <div class="nav-right">
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="切换主题" aria-pressed="false" title="切换主题">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
     </nav>
   </header>
 
@@ -39,6 +46,7 @@
 
   <footer class="site-footer">
     <div class="container">
+      <div class="footer-label">欢迎在这些地方找到我：</div>
       <div class="footer-social">
         <a class="social-btn" href="https://space.bilibili.com/1937945301" target="_blank" rel="noopener" aria-label="B站主页" title="B站主页">
           <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M17.813 4.653h.854c1.51.054 2.769.578 3.773 1.574 1.004.995 1.524 2.249 1.56 3.76v7.36c-.036 1.51-.556 2.769-1.56 3.773s-2.262 1.524-3.773 1.56H5.333c-1.51-.036-2.769-.556-3.773-1.56S.036 18.858 0 17.347v-7.36c.036-1.511.556-2.765 1.56-3.76 1.004-.996 2.262-1.52 3.773-1.574h.774l-1.174-1.12a1.234 1.234 0 0 1-.373-.906c0-.356.124-.658.373-.907l.027-.027c.267-.249.573-.373.92-.373.347 0 .653.124.92.373L9.653 4.44c.071.071.134.142.187.213h4.267a.836.836 0 0 1 .16-.213l2.853-2.747c.267-.249.573-.373.92-.373.347 0 .662.151.929.4.267.249.391.551.391.907 0 .355-.124.657-.373.906zM5.333 7.24c-.746.018-1.373.276-1.88.773-.506.498-.769 1.13-.786 1.894v7.52c.017.764.28 1.395.786 1.893.507.498 1.134.756 1.88.773h13.334c.746-.017 1.373-.275 1.88-.773.506-.498.769-1.129.786-1.893v-7.52c-.017-.765-.28-1.396-.786-1.894-.507-.497-1.134-.755-1.88-.773zM8 11.107c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c0-.373.129-.689.386-.947.258-.257.574-.386.947-.386zm8 0c.373 0 .684.124.933.373.25.249.383.569.4.96v1.173c-.017.391-.15.711-.4.96-.249.25-.56.374-.933.374s-.684-.125-.933-.374c-.25-.249-.383-.569-.4-.96V12.44c.017-.391.15-.711.4-.96.249-.249.56-.373.933-.373Z"/></svg>
@@ -52,5 +60,6 @@
       <p>© 2026 Hangou · Hangou Code Lab · 用一杯咖啡的时间，写下此刻的光。</p>
     </div>
   </footer>
+  <script src="js/theme.js"></script>
 </body>
 </html>
