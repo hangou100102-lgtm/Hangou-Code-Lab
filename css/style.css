@@ -319,6 +319,9 @@ a:hover {
 
 .post-item {
   display: flex;
+  /* 预览图始终在左侧，内容在右侧，任何宽度都不上下堆叠 */
+  flex-direction: row;
+  flex-wrap: nowrap;
   align-items: flex-start;
   gap: 22px;
   padding: 26px 28px;
@@ -654,18 +657,19 @@ a:hover {
   }
 }
 
-/* ============ 小屏手机：预览图通栏置顶 ============ */
+/* ============ 小屏手机：保持“左侧图片 + 右侧内容” ============ */
 @media (max-width: 480px) {
   .post-item {
-    flex-direction: column;
-    gap: 14px;
-    padding: 18px 20px;
+    /* 图片始终在左，内容在右，不上下堆叠 */
+    flex-direction: row;
+    gap: 12px;
+    padding: 16px 18px;
   }
 
   .post-thumb-link {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
+    flex: 0 0 auto;
+    width: 100px;
+    height: 75px;
   }
 
   .post-thumb {
@@ -673,6 +677,18 @@ a:hover {
   }
 
   .post-body h2 {
-    font-size: 1.2rem;
+    font-size: 1.12rem;
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+
+  .post-body .post-meta {
+    font-size: 0.78rem;
+    margin-bottom: 6px;
+  }
+
+  .post-body .post-excerpt {
+    font-size: 0.88rem;
+    line-height: 1.55;
   }
 }
