@@ -372,6 +372,13 @@ a:hover {
   font-variant-numeric: tabular-nums;
 }
 
+/* 标签组：作为一个整体排列/换行，避免单个标签被拆散 */
+.post-meta .tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  vertical-align: middle;
+}
+
 .tag {
   display: inline-block;
   padding: 2px 11px;
@@ -716,6 +723,13 @@ a:hover {
   .post-body .post-meta {
     font-size: 0.78rem;
     margin-bottom: 6px;
+  }
+
+  /* 小屏下标签更紧凑，避免拥挤 */
+  .post-body .tag {
+    padding: 1px 9px;
+    font-size: 0.72rem;
+    margin-right: 5px;
   }
 
   .post-body .post-excerpt {
