@@ -66,6 +66,13 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 保留键盘操作可见性，替换手机端系统默认的点击蓝底 */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 ::selection {
