@@ -28,7 +28,7 @@
   --code-text: #8ff0e2;
   --pre-bg: #0a0b0d;
   --pre-text: #d6d4ce;
-  --header-bg: rgba(14, 15, 18, 0.78);
+  --header-bg: rgba(14, 15, 18, 0.58);
   --scroll-thumb: #2c303a;
   --scroll-thumb-hover: #3a3f4b;
 
@@ -59,7 +59,7 @@
   --code-text: #0b6e66;
   --pre-bg: #111311;
   --pre-text: #d9dfdc;
-  --header-bg: rgba(246, 247, 244, 0.85);
+  --header-bg: rgba(246, 247, 244, 0.62);
   --scroll-thumb: #b7bbaf;
   --scroll-thumb-hover: #9fa49a;
 }
@@ -104,8 +104,8 @@ a:hover {
   top: 0;
   z-index: 10;
   background: var(--header-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(20px) saturate(1.6);
+  -webkit-backdrop-filter: blur(20px) saturate(1.6);
   border-bottom: 1px solid var(--border);
 }
 
