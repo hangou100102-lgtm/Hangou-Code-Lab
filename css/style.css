@@ -817,17 +817,19 @@ a:hover {
   align-items: center;
   gap: 8px;
   padding: 9px 26px;
-  border: 1px solid var(--accent-line);
-  background: var(--accent-soft);
-  color: var(--accent);
+  /* 固定深色系配色：浮窗遮罩恒为深色，不随站点主题变化 */
+  border: 1px solid rgba(45, 212, 191, 0.55);
+  background: rgba(45, 212, 191, 0.15);
+  color: #8ff0e2;
   font-size: 0.92rem;
   font-weight: 600;
   cursor: pointer;
 }
 
 .lb-download:hover {
-  border-color: var(--accent);
-  background: var(--accent-glow);
+  border-color: #2dd4bf;
+  background: rgba(45, 212, 191, 0.3);
+  color: #ffffff;
   text-decoration: none;
 }
 
