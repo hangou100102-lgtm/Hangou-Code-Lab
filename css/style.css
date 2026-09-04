@@ -376,6 +376,19 @@ a:hover {
   margin-right: 6px;
 }
 
+/* 状态标签（最新 / 置顶）：与普通标签同风格，仅更换颜色 */
+.tag.tag-new {
+  background: rgba(244, 63, 94, 0.12);
+  border-color: rgba(244, 63, 94, 0.35);
+  color: #f43f5e;
+}
+
+.tag.tag-pin {
+  background: rgba(245, 158, 11, 0.14);
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #f59e0b;
+}
+
 .post-excerpt {
   color: var(--text-secondary);
   font-size: 0.96rem;
@@ -452,6 +465,18 @@ a:hover {
 
 .article-body p {
   margin: 18px 0;
+}
+
+/* 文章内插图：全宽、直角矩形、按 16:9 裁剪 */
+.article-body .article-cover {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  margin: 24px 0;
+  border: 1px solid var(--border);
+  border-radius: 0;
 }
 
 .article-body ul,
