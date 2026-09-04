@@ -1,4 +1,6 @@
-/* 首页文章即时过滤搜索 */
+/* 首页文章即时模糊搜索：
+   1. 支持多关键词（空格 / 中英文标点分隔），需全部命中；
+   2. 每个关键词先做连续子串匹配，不中再按“字符顺序容错”模糊匹配（允许中间漏字/隔字）； */
 (function () {
   'use strict';
 
@@ -8,12 +10,47 @@
   var items = Array.prototype.slice.call(document.querySelectorAll('.post-item'));
   var noResult = document.getElementById('noResult');
 
+  /* 把查询拆成关键词：去掉标点与空白，按任意分隔切分 */
+  function tokenize(s) {
+    return s.toLowerCase()
+      .split(/[\s,，。.、;；:：!！?？'"“”‘’()（）\[\]{}<>《》\-_/\\|·]+/)
+      .filter(Boolean);
+  }
+
+  /* 连续子串匹配 */
+  function hasSubstring(text, tok) {
+    return text.indexOf(tok) !== -1;
+  }
+
+  /* 容错模糊匹配：tok 的每个字符按顺序在 text 中出现即可（允许中间有其他字） */
+  function fuzzyMatch(text, tok) {
+    var i = 0;
+    var n = tok.length;
+    for (var j = 0; j < text.length && i < n; j++) {
+      if (text.charAt(j) === tok.charAt(i)) { i++; }
+    }
+    return i === n;
+  }
+
+  /* 短关键词（1 个字符）用子串即可，避免模糊匹配把所有含该字的文章都搜出来 */
+  function matchToken(text, tok) {
+    if (tok.length <= 1) { return hasSubstring(text, tok); }
+    return hasSubstring(text, tok) || fuzzyMatch(text, tok);
+  }
+
   function run() {
-    var q = input.value.trim().toLowerCase();
+    var toks = tokenize(input.value);
     var visible = 0;
 
     items.forEach(function (item) {
-      var hit = q === '' || item.textContent.toLowerCase().indexOf(q) > -1;
+      var hit = toks.length === 0;
+      if (toks.length > 0) {
+        var text = item.textContent.toLowerCase();
+        hit = true;
+        for (var k = 0; k < toks.length; k++) {
+          if (!matchToken(text, toks[k])) { hit = false; break; }
+        }
+      }
       item.hidden = !hit;
       if (hit) { visible += 1; }
     });
@@ -23,5 +60,11 @@
     }
   }
 
-  input.addEventListener('input', run);
+  /* 中文输入法组合输入期间不实时过滤，避免误清空 */
+  var composing = false;
+  input.addEventListener('compositionstart', function () { composing = true; });
+  input.addEventListener('compositionend', function () { composing = false; run(); });
+  input.addEventListener('input', function () {
+    if (!composing) { run(); }
+  });
 })();

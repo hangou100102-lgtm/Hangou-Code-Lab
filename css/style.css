@@ -738,3 +738,118 @@ a:hover {
     line-height: 1.55;
   }
 }
+
+/* ============ 文章图片浮窗预览 ============ */
+/* 正文图片可点击放大（浮窗） */
+.article-body img {
+  cursor: zoom-in;
+}
+
+.lb {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px 60px;
+  /* 背景压暗 + 毛玻璃模糊 */
+  background: rgba(8, 9, 11, 0.6);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s ease, visibility 0.28s ease;
+}
+
+.lb.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lb-figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 96vw;
+}
+
+.lb-img {
+  display: block;
+  max-width: 96vw;
+  max-height: 76vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  background: #000;
+  border: 1px solid var(--border);
+  /* 直角矩形风格 */
+  border-radius: 0;
+  /* 打开时轻微放大浮现 */
+  opacity: 0;
+  transform: scale(0.95) translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.lb.open .lb-img {
+  opacity: 1;
+  transform: none;
+}
+
+.lb-bar {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  /* 下载栏稍晚淡入 */
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease 0.08s, transform 0.3s ease 0.08s;
+}
+
+.lb.open .lb-bar {
+  opacity: 1;
+  transform: none;
+}
+
+.lb-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 26px;
+  border: 1px solid var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lb-download:hover {
+  border-color: var(--accent);
+  background: var(--accent-glow);
+  text-decoration: none;
+}
+
+.lb-close {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lb-close:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+body.lb-lock {
+  overflow: hidden;
+}
