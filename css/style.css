@@ -155,24 +155,6 @@ body {
   to { transform: rotate(360deg); }
 }
 
-/* 主题切换过渡：使用 View Transitions API 截取切换前/后整页各一张图，
-   整页交叉淡入淡出。导航栏毛玻璃也被一并截进图里，绝对同步、文字不逐帧重绘 */
-::view-transition-old(root) {
-  animation: theme-fade-out 0.28s ease both;
-}
-::view-transition-new(root) {
-  animation: theme-fade-in 0.28s ease both;
-}
-
-@keyframes theme-fade-out {
-  from { opacity: 1; }
-  to { opacity: 0; }
-}
-@keyframes theme-fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -188,7 +170,7 @@ body {
   }
 }
 
-/* 不支持 View Transitions 时的回退：导航栏转实底，遮罩暗场过渡 */
+/* 主题切换遮罩：覆盖整页后再切换变量，保证导航与正文同步 */
 .theme-fade-layer {
   position: fixed;
   inset: 0;
@@ -196,14 +178,19 @@ body {
   pointer-events: none;
   background: transparent;
   opacity: 0;
-  transition: opacity 0.18s ease;
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity;
 }
 
-html.theme-dipping .site-header {
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  background: var(--bg);
+/* 主题切换期间只保留全屏遮罩动画，避免按钮各自渐变造成不同步。 */
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: none !important;
+}
+
+html.theme-switching .theme-fade-layer {
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 a {

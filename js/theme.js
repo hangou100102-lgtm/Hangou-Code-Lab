@@ -1,6 +1,4 @@
-/* 深色 / 浅色主题切换：
-   优先用 View Transitions API（整页截图交叉淡入淡出，导航栏与正文绝对同步）；
-   不支持的浏览器回退到"遮罩暗场"过渡。 */
+/* 深色 / 浅色主题切换：统一使用全屏遮罩，避免不同浏览器渲染不同步。 */
 (function () {
   'use strict';
 
@@ -47,49 +45,27 @@
     return layer;
   }
 
-  function fallbackSwitch(next) {
+  function switchTheme(next) {
     var l = ensureLayer();
-    l.style.backgroundColor = getComputedStyle(document.body).backgroundColor;
+    var currentBackground = getComputedStyle(document.body).backgroundColor;
+    l.style.backgroundColor = currentBackground;
     l.style.transition = 'none';
-    l.style.opacity = '0';
-    l.getBoundingClientRect();
-    l.style.transition = '';
     l.style.opacity = '1';
+    l.getBoundingClientRect();
 
-    root.classList.add('theme-dipping');
+    root.classList.add('theme-switching');
+    apply(next);
+    l.style.transition = '';
+    l.style.opacity = '0';
 
     setTimeout(function () {
-      apply(next);
-      ensureLayer().style.opacity = '0';
-      setTimeout(function () {
-        root.classList.remove('theme-dipping');
-        var l2 = ensureLayer();
-        l2.style.backgroundColor = 'transparent';
-        l2.style.opacity = '0';
-        busy = false;
-      }, 240);
-    }, 200);
-  }
-
-  function viewTransitionSwitch(next) {
-    var done = false;
-    var finish = function () {
-      if (!done) { done = true; busy = false; }
-    };
-
-    /* 标准用法：在 update 回调里直接 apply，浏览器自动截取旧/新两张图 */
-    var vt = document.startViewTransition(function () {
-      apply(next);
-    });
-
-    if (vt && vt.finished) {
-      vt.finished.then(finish).catch(finish);
-    } else {
-      finish();
-    }
-
-    /* 兜底：最多 600ms 后解除锁定 */
-    setTimeout(finish, 600);
+      root.classList.remove('theme-switching');
+      if (l.parentNode) {
+        l.parentNode.removeChild(l);
+      }
+      layer = null;
+      busy = false;
+    }, 320);
   }
 
   btn.addEventListener('click', function () {
@@ -101,10 +77,6 @@
       localStorage.setItem(STORAGE_KEY, next);
     } catch (e) { /* 忽略隐私模式下的写入失败 */ }
 
-    if (typeof document.startViewTransition === 'function') {
-      viewTransitionSwitch(next);
-    } else {
-      fallbackSwitch(next);
-    }
+    switchTheme(next);
   });
 })();
