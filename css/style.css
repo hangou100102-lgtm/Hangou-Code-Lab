@@ -894,6 +894,63 @@ body.nav-open {
   margin: 0;
 }
 
+/* 邮箱列表：每个邮箱框成独立卡片，整体与正文文字左对齐 */
+.article-body .mail-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.mail-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  margin: 10px 0;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.mail-item:hover {
+  border-color: var(--accent-border);
+  box-shadow: 3px 3px 0 var(--accent-glow);
+  transform: translate(-2px, -2px);
+}
+
+.mail-item .tag {
+  margin-right: 0;
+  flex: 0 0 auto;
+}
+
+.mail-item a {
+  word-break: break-all;
+}
+
+/* 关于页：文末发布/修改日期，低调元信息行 */
+.article-dates {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 36px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 关于页：发布/修改日期与右侧标签横向对齐 */
+.post-meta.post-meta-dates {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 14px;
+}
+
+.post-meta.post-meta-dates .date {
+  margin-right: 0;
+}
+
 .article-body code {
   font-family: var(--font-mono);
   font-size: 0.88em;
