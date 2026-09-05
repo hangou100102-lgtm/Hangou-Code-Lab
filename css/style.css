@@ -301,6 +301,11 @@ a:hover {
   grid-column: 1 / -1;
 }
 
+/* [hidden] 需要盖过 display 规则（与 .post-item[hidden] 同理） */
+.friend-item[hidden] {
+  display: none;
+}
+
 .friend-item {
   display: flex;
   flex-direction: column;

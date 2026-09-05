@@ -1,52 +1,69 @@
-/* 友链即时模糊搜索：按名称、简介和网址筛选友链卡片。 */
+/* 友链页即时模糊搜索（与首页文章搜索 js/search.js 逻辑一致）：
+   1. 支持多关键词（空格 / 中英文标点分隔），需全部命中；
+   2. 每个关键词先做连续子串匹配，不中再按“字符顺序容错”模糊匹配（允许中间漏字/隔字）； */
 (function () {
   'use strict';
 
   var input = document.getElementById('friendSearchInput');
-  var list = document.querySelector('.friend-list');
+  if (!input) { return; }
+
+  var items = Array.prototype.slice.call(document.querySelectorAll('.friend-item'));
   var noResult = document.getElementById('friendNoResult');
 
-  if (!input || !list) { return; }
-
-  var items = Array.prototype.slice.call(list.querySelectorAll('.friend-item'));
-
-  function tokenize(value) {
-    return value.toLowerCase()
-      .split(/[\s,，。.、;；:：!！?？'"“”‘’()（）\[\]{}<>《》\-_\/\\|·]+/)
+  /* 把查询拆成关键词：去掉标点与空白，按任意分隔切分 */
+  function tokenize(s) {
+    return s.toLowerCase()
+      .split(/[\s,，。.、;；:：!！?？'"“”‘’()（）\[\]{}<>《》\-_/\\|·]+/)
       .filter(Boolean);
   }
 
-  function matches(text, token) {
-    if (text.indexOf(token) !== -1) { return true; }
-    if (token.length <= 1) { return false; }
+  /* 连续子串匹配 */
+  function hasSubstring(text, tok) {
+    return text.indexOf(tok) !== -1;
+  }
 
-    var position = 0;
-    for (var i = 0; i < text.length && position < token.length; i++) {
-      if (text.charAt(i) === token.charAt(position)) { position += 1; }
+  /* 容错模糊匹配：tok 的每个字符按顺序在 text 中出现即可（允许中间有其他字） */
+  function fuzzyMatch(text, tok) {
+    var i = 0;
+    var n = tok.length;
+    for (var j = 0; j < text.length && i < n; j++) {
+      if (text.charAt(j) === tok.charAt(i)) { i++; }
     }
-    return position === token.length;
+    return i === n;
+  }
+
+  /* 短关键词（1 个字符）用子串即可，避免模糊匹配把所有友链都搜出来 */
+  function matchToken(text, tok) {
+    if (tok.length <= 1) { return hasSubstring(text, tok); }
+    return hasSubstring(text, tok) || fuzzyMatch(text, tok);
   }
 
   function run() {
-    var tokens = tokenize(input.value);
+    var toks = tokenize(input.value);
     var visible = 0;
 
     items.forEach(function (item) {
-      var text = item.textContent.toLowerCase();
-      var hit = tokens.every(function (token) { return matches(text, token); });
+      var hit = toks.length === 0;
+      if (toks.length > 0) {
+        var text = (item._fullText || item.textContent).toLowerCase();
+        hit = true;
+        for (var k = 0; k < toks.length; k++) {
+          if (!matchToken(text, toks[k])) { hit = false; break; }
+        }
+      }
       item.hidden = !hit;
       if (hit) { visible += 1; }
     });
 
-    if (noResult) { noResult.hidden = visible > 0; }
+    if (noResult) {
+      noResult.hidden = visible > 0;
+    }
   }
 
+  /* 中文输入法组合输入期间不实时过滤，避免误清空 */
   var composing = false;
   input.addEventListener('compositionstart', function () { composing = true; });
-  input.addEventListener('compositionend', function () {
-    composing = false;
-    run();
-  });
+  input.addEventListener('compositionend', function () { composing = false; run(); });
   input.addEventListener('input', function () {
     if (!composing) { run(); }
   });
