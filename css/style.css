@@ -116,6 +116,45 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* 首屏加载遮罩 */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  color: var(--text-secondary);
+  opacity: 1;
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.28s step-end;
+}
+
+.page-loader.is-loaded {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.page-loader-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+}
+
+.page-loader-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: page-loader-spin 0.72s linear infinite;
+}
+
+@keyframes page-loader-spin {
+  to { transform: rotate(360deg); }
+}
+
 /* 主题切换过渡：使用 View Transitions API 截取切换前/后整页各一张图，
    整页交叉淡入淡出。导航栏毛玻璃也被一并截进图里，绝对同步、文字不逐帧重绘 */
 ::view-transition-old(root) {
