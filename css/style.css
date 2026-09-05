@@ -917,6 +917,62 @@ body.nav-open {
   color: inherit;
 }
 
+/* ============ 赞助页 ============ */
+.sponsor-box,
+.sponsor-list {
+  margin-top: 36px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.sponsor-box h2,
+.sponsor-list h2 {
+  margin-bottom: 10px;
+  color: var(--text);
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+}
+
+.sponsor-box p {
+  margin: 0 0 18px;
+  color: var(--text-secondary);
+}
+
+.sponsor-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 18px;
+  border: 1px solid var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.sponsor-action:hover {
+  border-color: var(--accent);
+  box-shadow: 2px 2px 0 var(--accent-shadow);
+  color: var(--accent);
+  text-decoration: none;
+  transform: translate(-1px, -1px);
+}
+
+.sponsor-list {
+  margin-top: 20px;
+}
+
+.sponsor-empty {
+  padding: 18px;
+  border: 1px dashed var(--border);
+  background: var(--bg-soft);
+  color: var(--text-secondary);
+  text-align: center;
+  font-size: 0.92rem;
+}
+
 /* ============ 页脚 ============ */
 .site-footer {
   border-top: 1px solid var(--border);
