@@ -45,7 +45,7 @@
     items.forEach(function (item) {
       var hit = toks.length === 0;
       if (toks.length > 0) {
-        var text = item.textContent.toLowerCase();
+        var text = (item._fullText || item.textContent).toLowerCase();
         hit = true;
         for (var k = 0; k < toks.length; k++) {
           if (!matchToken(text, toks[k])) { hit = false; break; }
