@@ -6,6 +6,7 @@
 
   var STORAGE_KEY = 'hcl-theme';
   var root = document.documentElement;
+  var themeColor = document.querySelector('meta[name="theme-color"]');
 
   function getStored() {
     try {
@@ -20,6 +21,9 @@
       root.setAttribute('data-theme', 'light');
     } else {
       root.removeAttribute('data-theme');
+    }
+    if (themeColor) {
+      themeColor.setAttribute('content', theme === 'light' ? '#f6f7f4' : '#0e0f12');
     }
     var btn = document.getElementById('themeToggle');
     if (btn) {
@@ -98,12 +102,7 @@
     } catch (e) { /* 忽略隐私模式下的写入失败 */ }
 
     if (typeof document.startViewTransition === 'function') {
-      root.classList.add('theme-switching');
       viewTransitionSwitch(next);
-      /* 过渡结束后移除标记类 */
-      setTimeout(function () {
-        root.classList.remove('theme-switching');
-      }, 700);
     } else {
       fallbackSwitch(next);
     }
