@@ -446,7 +446,7 @@ a:hover {
   -webkit-backdrop-filter: blur(6px);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .nav-drawer-backdrop.show {
@@ -466,7 +466,7 @@ a:hover {
   padding: 20px;
   overflow-y: auto;
   transform: translateX(100%);
-  transition: transform 0.28s ease;
+  transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: -10px 0 34px rgba(0, 0, 0, 0.35);
 }
 
