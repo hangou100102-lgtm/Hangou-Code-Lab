@@ -6,7 +6,7 @@
   <title>友情链接 · Hangou Code Lab</title>
   <meta name="description" content="Hangou Code Lab 的友情链接列表。" />
   <script>(function(){try{if(localStorage.getItem('hcl-theme')==='light'){document.documentElement.setAttribute('data-theme','light')}}catch(e){}})();</script>
-  <link rel="stylesheet" href="../css/style.css?v=36" />
+  <link rel="stylesheet" href="../css/style.css?v=39" />
   <link rel="icon" type="image/png" href="../images/avatar.png?v=2" />
   <meta name="theme-color" content="#0e0f12" />
 </head>
@@ -80,8 +80,24 @@
         <p>这里是一些我常逛、也值得推荐的站点。想交换友链的话，可以通过<a href="/posts/about/">关于我</a>页面的邮箱联系我。</p>
       </div>
 
+      <div class="friend-search-wrap">
+        <input type="search" id="friendSearchInput" class="search-input" placeholder="搜索友链名称、简介或网址…" autocomplete="off" aria-label="搜索友链" />
+      </div>
+
       <div class="friend-list">
-        <div class="friend-empty">友链列表整理中，欢迎来交换友链～</div>
+        <p class="no-result" id="friendNoResult" hidden>没有找到匹配的友链，换个关键词试试？</p>
+        <a class="friend-item" href="https://blog.520pro.top/" target="_blank" rel="noopener">
+          <img class="friend-avatar" src="https://github.com/ERX399.png" alt="咡如夏的头像" loading="lazy" width="48" height="48" />
+          <div class="friend-name">咡如夏 · ERX399</div>
+          <div class="friend-desc">夏若倾心 · 来自中国，维护 12 个公开仓库</div>
+          <div class="friend-url">blog.520pro.top</div>
+        </a>
+        <a class="friend-item" href="https://thinkreally114.github.io/website/" target="_blank" rel="noopener">
+          <img class="friend-avatar" src="https://github.com/ThinkReally114.png" alt="Thinkreally 的头像" loading="lazy" width="48" height="48" />
+          <div class="friend-name">Thinkreally · ThinkReally114</div>
+          <div class="friend-desc">hi · 维护 7 个公开仓库</div>
+          <div class="friend-url">thinkreally114.github.io/website</div>
+        </a>
       </div>
 
     </article>
@@ -109,6 +125,7 @@
   </footer>
   <script src="../js/theme.js?v=9"></script>
   <script src="../js/menu.js?v=1"></script>
+  <script src="../js/friends-search.js?v=1"></script>
   <script src="../js/loading.js?v=1"></script>
 </body>
 </html>
