@@ -655,6 +655,109 @@ body.nav-open {
   max-width: 560px;
 }
 
+/* ============ 欢迎主页 ============ */
+.home-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 110px;
+  padding-bottom: 40px;
+}
+
+.home-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 26px;
+  padding: 14px 38px;
+  border: 1px solid var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.home-cta:hover {
+  border-color: var(--accent);
+  box-shadow: 3px 3px 0 var(--accent-shadow);
+  color: var(--accent);
+  text-decoration: none;
+  transform: translate(-2px, -2px);
+}
+
+.home-cta .side-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.home-social {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-bottom: 40px;
+}
+
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 16px;
+  padding-bottom: 64px;
+}
+
+.home-card {
+  display: block;
+  padding: 18px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s, background 0.25s;
+}
+
+.home-card:hover {
+  border-color: var(--accent-border);
+  background: var(--surface-hover);
+  box-shadow: 3px 3px 0 var(--accent-glow);
+  transform: translate(-2px, -2px);
+  text-decoration: none;
+}
+
+.home-card h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.02rem;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.home-card .side-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--accent);
+}
+
+.home-card p {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 640px) {
+  .home-hero {
+    padding-top: 80px;
+  }
+
+  .home-cta {
+    padding: 12px 30px;
+    font-size: 1rem;
+  }
+}
+
 /* ============ 文章搜索 ============ */
 .search-wrap {
   padding-bottom: 28px;
