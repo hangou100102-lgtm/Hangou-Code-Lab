@@ -21,7 +21,7 @@
       root.removeAttribute('data-theme');
     }
     if (themeColor) {
-      themeColor.setAttribute('content', theme === 'light' ? '#f6f7f4' : '#0e0f12');
+      themeColor.setAttribute('content', theme === 'light' ? '#f4f6fa' : '#0d0e11');
     }
     var btn = document.getElementById('themeToggle');
     if (btn) {

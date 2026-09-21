@@ -6,9 +6,9 @@
   <title>文章 · Hangou Code Lab</title>
   <meta name="description" content="Hangou Code Lab 的全部文章列表，支持关键词模糊搜索。" />
   <script>(function(){try{if(localStorage.getItem('hcl-theme')==='light'){document.documentElement.setAttribute('data-theme','light')}}catch(e){}})();</script>
-  <link rel="stylesheet" href="../css/style.css?v=48" />
+  <link rel="stylesheet" href="../css/style.css?v=102" />
   <link rel="icon" type="image/png" href="../images/avatar.png?v=2" />
-  <meta name="theme-color" content="#0e0f12" />
+  <meta name="theme-color" content="#0d0e11" />
 </head>
 <body>
   <div class="page-loader" id="pageLoader" role="status" aria-live="polite">
@@ -24,10 +24,19 @@
         <div class="nav-links">
           <a href="../">首页</a>
           <a href="./" aria-current="page">文章</a>
-          <a href="../posts/about/">关于我</a>
           <a href="../archive/">归档</a>
           <a href="../friends/">友链</a>
-          <a class="nav-sponsor" href="../sponsor/">赞助</a>
+          <div class="nav-more">
+            <button type="button" class="nav-more-toggle" aria-expanded="false" aria-haspopup="true">
+              更多
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <div class="nav-more-menu">
+              <a href="../posts/about/">关于我</a>
+              <a href="../changelog/">更新日志</a>
+              <a href="../sponsor/">赞助</a>
+            </div>
+          </div>
         </div>
         <button type="button" class="theme-toggle" id="themeToggle" aria-label="切换主题" aria-pressed="false" title="切换主题">
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
@@ -50,6 +59,7 @@
         <a href="./"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>文章</a>
         <a href="../posts/about/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>关于我</a>
         <a href="../archive/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18v13H3z"/><path d="M3 7l2-3h14l2 3"/><path d="M9 12h6"/></svg>归档</a>
+        <a href="../changelog/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>更新日志</a>
       </nav>
     </div>
     <div class="side-card">
