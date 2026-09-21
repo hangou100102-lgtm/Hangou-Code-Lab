@@ -6,14 +6,12 @@
   <title>赞助 · Hangou Code Lab</title>
   <meta name="description" content="支持 Hangou Code Lab 的持续创作。" />
   <script>(function(){try{if(localStorage.getItem('hcl-theme')==='light'){document.documentElement.setAttribute('data-theme','light')}}catch(e){}})();</script>
-  <link rel="stylesheet" href="../css/style.css?v=102" />
+  <script>(function(){try{var d=sessionStorage.getItem('hcl-nav-dir');sessionStorage.removeItem('hcl-nav-dir');var s=sessionStorage.getItem('hcl-nav-seen');sessionStorage.setItem('hcl-nav-seen','1');if(d!=='forward'&&s){document.documentElement.classList.add('nav-back')}}catch(e){}})();</script>
+  <link rel="stylesheet" href="../css/style.css?v=109" />
   <link rel="icon" type="image/png" href="../images/avatar.png?v=2" />
   <meta name="theme-color" content="#0d0e11" />
 </head>
 <body>
-  <div class="page-loader" id="pageLoader" role="status" aria-live="polite">
-    <div class="page-loader-content"><span class="page-loader-spinner" aria-hidden="true"></span><span>加载中</span></div>
-  </div>
   <header class="site-header">
     <nav class="nav container" aria-label="主导航">
       <a class="brand" href="/">
@@ -118,8 +116,21 @@
       <p>© 2026 Hangou · Hangou Code Lab · 用一杯咖啡的时间，写下此刻的光。</p>
     </div>
   </footer>
+
+  <div class="cookie-modal" id="cookieTip" role="dialog" aria-modal="true" aria-label="Cookie 与本地存储确认" hidden>
+    <div class="cookie-modal-card">
+      <h2>本站如何使用 Cookie</h2>
+      <p>本站不设追踪型 Cookie，仅用浏览器本地存储记住主题偏好、翻页方向和本提示的确认状态，数据不出你的设备。详见<a href="../privacy/">隐私政策</a>。</p>
+      <div class="cookie-modal-actions">
+        <button type="button" class="cookie-tip-btn cookie-tip-cancel" id="cookieTipCancel">取消</button>
+        <button type="button" class="cookie-tip-btn" id="cookieTipBtn">知道了</button>
+      </div>
+    </div>
+  </div>
+
   <script src="../js/theme.js?v=9"></script>
+  <script src="../js/cookie-tip.js?v=3"></script>
   <script src="../js/menu.js?v=1"></script>
-  <script src="../js/loading.js?v=1"></script>
+  <script src="../js/transition.js?v=6"></script>
 </body>
 </html>

@@ -29,16 +29,19 @@ Myblog/
 │   └── index.html             # 文章归档页
 ├── friends/
 │   └── index.html             # 友链页
+├── privacy/
+│   └── index.html             # 隐私政策页
 ├── posts/
 │   └── about/
 │       └── index.html         # 关于我文章页
 ├── css/
 │   └── style.css              # 全局样式、主题变量和响应式规则
 ├── js/
-│   ├── loading.js             # 首屏加载遮罩
+│   ├── transition.js          # 站内跳转的翻页过渡动画
 │   ├── menu.js                # 移动端导航抽屉与焦点管理
 │   ├── search.js              # 首页文章搜索
 │   ├── theme.js               # 深浅主题切换与偏好持久化
+│   ├── cookie-tip.js          # 居中 Cookie 确认弹窗，确认后不再出现
 │   └── lightbox.js             # 文章图片预览与下载
 ├── images/
 │   ├── avatar.png             # 头像和 favicon
