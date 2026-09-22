@@ -824,10 +824,14 @@ html::before {
   display: block;
 }
 
-/* 移动端导航抽屉（悬浮圆角面板） */
+/* 移动端导航抽屉 */
+/* 顶栏高 64px（见 .nav）。面板上边接顶栏下沿、右和下跌到屏幕边缘（贴边），
+   既不压住导航栏，也不留悬空的外边距 ——
+   抽屉展开时右上角的按钮正好变成关闭图标，必须留在外面可点，
+   两者是同一层里的相邻两块，而不是面板浮在顶栏之上。 */
 .nav-drawer-backdrop {
   position: fixed;
-  inset: 0;
+  inset: 64px 0 0 0;
   z-index: 40;
   background: rgba(8, 9, 11, 0.42);
   backdrop-filter: blur(8px);
@@ -844,9 +848,9 @@ html::before {
 
 .nav-drawer {
   position: fixed;
-  top: 10px;
-  right: 10px;
-  bottom: 10px;
+  top: 64px;
+  right: 0;
+  bottom: 0;
   z-index: 41;
   width: min(300px, 84vw);
   background: var(--surface);
