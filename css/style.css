@@ -689,6 +689,11 @@ html::before {
   display: flex;
   align-items: center;
   gap: 16px;
+  /* 末尾按钮（主题 / 菜单）是 36px 方形点击区，17px 图标居中后
+     左右各留约 10px 空档，视觉上会比左边贴边的头像多缩进一截。
+     用等量负边距把这块空档挪出留白区，让图标的可视边缘
+     和左侧头像落在同一条留白线上（两侧视觉边距一致）。 */
+  margin-right: -10px;
 }
 
 .nav-links a {
