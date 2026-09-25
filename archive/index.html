@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>归档 · Hangou Code Lab</title>
   <meta name="description" content="Hangou Code Lab 的文章归档。" />
-  <script>(function(){try{if(localStorage.getItem('hcl-theme')==='light'){document.documentElement.setAttribute('data-theme','light')}}catch(e){}})();</script>
+  <script>(function(){try{var t=localStorage.getItem('hcl-theme');if(t==='light'||(t==='system'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)){document.documentElement.setAttribute('data-theme','light')}}catch(e){}})();</script>
   <script>(function(){try{var d=sessionStorage.getItem('hcl-nav-dir');sessionStorage.removeItem('hcl-nav-dir');var s=sessionStorage.getItem('hcl-nav-seen');sessionStorage.setItem('hcl-nav-seen','1');if(d!=='forward'&&s){document.documentElement.classList.add('nav-back')}}catch(e){}})();</script>
-  <link rel="stylesheet" href="../css/style.css?v=116" />
+  <link rel="stylesheet" href="../css/style.css?v=118" />
   <link rel="icon" type="image/png" href="../images/avatar.png?v=2" />
   <meta name="theme-color" content="#0d0e11" />
 </head>
@@ -33,6 +33,7 @@
               <a href="../posts/about/">关于我</a>
               <a href="../changelog/">更新日志</a>
               <a href="../sponsor/">赞助</a>
+              <a href="../settings/">设置</a>
             </div>
           </div>
         </div>
@@ -58,6 +59,7 @@
         <a href="../posts/about/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>关于我</a>
         <a href="../archive/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18v13H3z"/><path d="M3 7l2-3h14l2 3"/><path d="M9 12h6"/></svg>归档</a>
         <a href="../changelog/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>更新日志</a>
+        <a href="../settings/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7"/><path d="M4 10V3"/><path d="M12 21v-9"/><path d="M12 8V3"/><path d="M20 21v-5"/><path d="M20 12V3"/><path d="M1 14h6"/><path d="M9 8h6"/><path d="M17 16h6"/></svg>设置</a>
       </nav>
     </div>
     <div class="side-card">
@@ -77,7 +79,7 @@
 
   <main class="post-main container">
     <article>
-      <header class="post-header">
+      <header class="post-header" data-i18n-scope>
         <h1>归档</h1>
         <div class="post-meta">
           <span class="tags">
@@ -86,12 +88,22 @@
         </div>
       </header>
 
-      <div class="archive-group">
+      <div class="archive-group" data-lang-variant="zh">
         <h2>2026</h2>
         <ul class="archive-list">
           <li>
             <span class="date">2026-09-04</span>
             <a href="/posts/about/">关于我</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="archive-group" data-lang-variant="en" lang="en">
+        <h2>2026</h2>
+        <ul class="archive-list">
+          <li>
+            <span class="date">2026-09-04</span>
+            <a href="/posts/about/">About me</a>
           </li>
         </ul>
       </div>
@@ -131,7 +143,9 @@
     </div>
   </div>
 
-  <script src="../js/theme.js?v=9"></script>
+  <script src="../js/theme.js?v=11"></script>
+  <script src="../js/i18n.js?v=6"></script>
+  <script src="../js/article-lang.js?v=1"></script>
   <script src="../js/cookie-tip.js?v=3"></script>
   <script src="../js/menu.js?v=1"></script>
   <script src="../js/transition.js?v=6"></script>

@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>更新日志 · Hangou Code Lab</title>
   <meta name="description" content="Hangou Code Lab 的网站更新日志。" />
-  <script>(function(){try{if(localStorage.getItem('hcl-theme')==='light'){document.documentElement.setAttribute('data-theme','light')}}catch(e){}})();</script>
+  <script>(function(){try{var t=localStorage.getItem('hcl-theme');if(t==='light'||(t==='system'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)){document.documentElement.setAttribute('data-theme','light')}}catch(e){}})();</script>
   <script>(function(){try{var d=sessionStorage.getItem('hcl-nav-dir');sessionStorage.removeItem('hcl-nav-dir');var s=sessionStorage.getItem('hcl-nav-seen');sessionStorage.setItem('hcl-nav-seen','1');if(d!=='forward'&&s){document.documentElement.classList.add('nav-back')}}catch(e){}})();</script>
-  <link rel="stylesheet" href="../css/style.css?v=116" />
+  <link rel="stylesheet" href="../css/style.css?v=118" />
   <link rel="icon" type="image/png" href="../images/avatar.png?v=2" />
   <meta name="theme-color" content="#0d0e11" />
 </head>
@@ -33,6 +33,7 @@
               <a href="../posts/about/">关于我</a>
               <a href="../changelog/">更新日志</a>
               <a href="../sponsor/">赞助</a>
+              <a href="../settings/">设置</a>
             </div>
           </div>
         </div>
@@ -58,6 +59,7 @@
         <a href="../posts/about/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>关于我</a>
         <a href="../archive/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18v13H3z"/><path d="M3 7l2-3h14l2 3"/><path d="M9 12h6"/></svg>归档</a>
         <a href="../changelog/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>更新日志</a>
+        <a href="../settings/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7"/><path d="M4 10V3"/><path d="M12 21v-9"/><path d="M12 8V3"/><path d="M20 21v-5"/><path d="M20 12V3"/><path d="M1 14h6"/><path d="M9 8h6"/><path d="M17 16h6"/></svg>设置</a>
       </nav>
     </div>
     <div class="side-card">
@@ -77,7 +79,7 @@
 
   <main class="post-main container">
     <article>
-      <header class="post-header">
+      <header class="post-header" data-i18n-scope>
         <h1>更新日志</h1>
         <div class="post-meta">
           <span class="tags">
@@ -86,9 +88,25 @@
         </div>
       </header>
 
-      <div class="archive-group">
+      <div class="archive-group" data-lang-variant="zh">
         <h2>2026 年 9 月</h2>
         <ul class="archive-list">
+          <li>
+            <span class="date">2026-09-26</span>
+            <span>外观新增「跟随系统」选项：设置页「主题」下可选深色 / 浅色 / 跟随系统，选择跟随系统后随系统外观自动切换</span>
+          </li>
+          <li>
+            <span class="date">2026-09-26</span>
+            <span>全文翻译扩大到全站：设置页「语言」下可开启，界面语言为 English 时站内各处的文字都显示英文版本（AI 辅助翻译，可能出现偏差）</span>
+          </li>
+          <li>
+            <span class="date">2026-09-26</span>
+            <span>新增设置页：界面语言可选中文 / English，外观可选深色 / 浅色，Cookie 提示可选每次询问或不再提示，偏好保存在本机浏览器</span>
+          </li>
+          <li>
+            <span class="date">2026-09-26</span>
+            <span>隐私政策更新：补充界面语言偏好（hcl-lang）的说明，并标注各项本地偏好的调整入口</span>
+          </li>
           <li>
             <span class="date">2026-09-25</span>
             <span>顶栏左右留白对齐：修正右侧主题图标因按钮点击区留白导致的视觉内缩，让图标边缘与左侧头像落在同一条留白线上</span>
@@ -176,6 +194,112 @@
         </ul>
       </div>
 
+      <div class="archive-group" data-lang-variant="en" lang="en">
+        <h2>September 2026</h2>
+        <ul class="archive-list">
+          <li>
+            <span class="date">2026-09-26</span>
+            <span>Added a "System" appearance option: the Theme group on the Settings page now offers dark / light / system, and the system option follows your OS appearance automatically</span>
+          </li>
+          <li>
+            <span class="date">2026-09-26</span>
+            <span>Full-text translation now covers the whole site: enable it under "Language" on the Settings page, and when the interface language is English the text across the site is shown in an English version (AI-assisted; may contain inaccuracies)</span>
+          </li>
+          <li>
+            <span class="date">2026-09-26</span>
+            <span>Added a Settings page: interface language in Chinese / English, appearance in dark / light, cookie notice either every visit or skipped, with preferences saved in your local browser</span>
+          </li>
+          <li>
+            <span class="date">2026-09-26</span>
+            <span>Privacy policy update: added notes on the interface-language preference (hcl-lang) and pointed out where each local preference can be changed</span>
+          </li>
+          <li>
+            <span class="date">2026-09-25</span>
+            <span>Header padding alignment: fixed the visual inset of the theme icon on the right caused by its button hit-area padding, so the icon edge lines up with the avatar on the left</span>
+          </li>
+          <li>
+            <span class="date">2026-09-25</span>
+            <span>Navigation redesign: brand pinned left, entries centred, only the theme toggle on the right, with the outer margins staying flush to both sides as the window resizes</span>
+          </li>
+          <li>
+            <span class="date">2026-09-25</span>
+            <span>Added giscus comments to post pages, storing comments in GitHub Discussions — sign in with GitHub to post</span>
+          </li>
+          <li>
+            <span class="date">2026-09-25</span>
+            <span>Streamlined the home page: removed the entry cards and buttons, leaving just a one-line intro and recent posts, with the other entries moved into the nav bar</span>
+          </li>
+          <li>
+            <span class="date">2026-09-21</span>
+            <span>Added a "Changelog" page</span>
+          </li>
+          <li>
+            <span class="date">2026-09-21</span>
+            <span>Site visual refresh: the whole site switched to square corners, dropping rounded corners and gradients</span>
+          </li>
+          <li>
+            <span class="date">2026-09-19</span>
+            <span>Updated GitHub friend-link details, keeping each friend's original destination URL</span>
+          </li>
+          <li>
+            <span class="date">2026-09-06</span>
+            <span>The home page became a welcome page, and the post list moved to its own page</span>
+          </li>
+          <li>
+            <span class="date">2026-09-06</span>
+            <span>Added email addresses to the About page and improved how dates are displayed</span>
+          </li>
+          <li>
+            <span class="date">2026-09-05</span>
+            <span>Added a standalone sponsor page and sponsor list</span>
+          </li>
+          <li>
+            <span class="date">2026-09-05</span>
+            <span>Added fuzzy search to the friends page</span>
+          </li>
+          <li>
+            <span class="date">2026-09-05</span>
+            <span>Added side-drawer navigation and an archive page</span>
+          </li>
+          <li>
+            <span class="date">2026-09-05</span>
+            <span>Theme switching became a full-page transition, with a new loading overlay</span>
+          </li>
+          <li>
+            <span class="date">2026-09-04</span>
+            <span>Added fuzzy search to the home page</span>
+          </li>
+          <li>
+            <span class="date">2026-09-04</span>
+            <span>Post images support a floating preview (frosted glass, zoom animation, download)</span>
+          </li>
+          <li>
+            <span class="date">2026-09-04</span>
+            <span>Added an "About me" page, and post-list cards gained preview images</span>
+          </li>
+          <li>
+            <span class="date">2026-09-04</span>
+            <span>Added a dark/light theme toggle button, and the nav became a full-width bar</span>
+          </li>
+          <li>
+            <span class="date">2026-09-04</span>
+            <span>Added Bilibili / GitHub / Afdian links to the footer</span>
+          </li>
+          <li>
+            <span class="date">2026-09-03</span>
+            <span>Posts moved to directory-style URLs, and internal links dropped the .html suffix</span>
+          </li>
+          <li>
+            <span class="date">2026-09-03</span>
+            <span>Used the avatar as the site logo and favicon</span>
+          </li>
+          <li>
+            <span class="date">2026-09-03</span>
+            <span>Switched the custom domain to blog.hangou.top</span>
+          </li>
+        </ul>
+      </div>
+
     </article>
   </main>
 
@@ -211,7 +335,9 @@
     </div>
   </div>
 
-  <script src="../js/theme.js?v=9"></script>
+  <script src="../js/theme.js?v=11"></script>
+  <script src="../js/i18n.js?v=6"></script>
+  <script src="../js/article-lang.js?v=1"></script>
   <script src="../js/cookie-tip.js?v=3"></script>
   <script src="../js/menu.js?v=1"></script>
   <script src="../js/transition.js?v=6"></script>

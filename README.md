@@ -109,7 +109,7 @@ npx serve .
 - `:root`：深色模式，默认主题
 - `:root[data-theme="light"]`：浅色模式
 
-修改 `--accent`、`--bg`、`--surface` 等变量即可调整整体配色。主题偏好保存在浏览器的 `localStorage` 中，键名为 `hcl-theme`。
+修改 `--accent`、`--bg`、`--surface` 等变量即可调整整体配色。主题偏好保存在浏览器的 `localStorage` 中，键名为 `hcl-theme`，取值为 `dark` / `light` / `system`（`system` 表示跟随系统外观）。
 
 ## 修改导航和赞助链接
 

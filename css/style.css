@@ -1777,3 +1777,92 @@ body.lb-lock {
 .lb-close {
   corner-shape: var(--corner);
 }
+
+/* 设置页 */
+.setting-group {
+  margin-bottom: 36px;
+}
+
+.setting-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+
+.setting-hint {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0 0 14px;
+}
+
+.segmented {
+  display: inline-flex;
+  border: 1px solid var(--border);
+}
+
+.segment {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  border-right: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 0.92rem;
+  padding: 10px 22px;
+  cursor: pointer;
+  transition: background 0.18s var(--ease), color 0.18s var(--ease);
+}
+
+.segment:last-child {
+  border-right: 0;
+}
+
+.segment:hover {
+  background: var(--surface-hover);
+  color: var(--text);
+}
+
+.segment.is-active {
+  background: var(--accent-soft);
+  color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--accent-border);
+}
+
+.setting-note {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* 设置页：分组内的小标题（如「语言」下的「全文翻译」） */
+.setting-subtitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 26px 0 6px;
+}
+
+/* 全文翻译：正文默认显示中文原文，开启且界面语言为英文时切换为英文版本 */
+[data-lang-variant='en'] {
+  display: none;
+}
+
+html[data-article-lang='en'] [data-lang-variant='zh'] {
+  display: none;
+}
+
+html[data-article-lang='en'] [data-lang-variant='en'] {
+  display: block;
+}
+
+/* 英文版本的免责提示 */
+.translate-note {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin: 0 0 26px;
+  padding: 10px 16px;
+  border-left: 2px solid var(--accent);
+  background: var(--accent-soft);
+}

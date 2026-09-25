@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>文章 · Hangou Code Lab</title>
   <meta name="description" content="Hangou Code Lab 的全部文章列表，支持关键词模糊搜索。" />
-  <script>(function(){try{if(localStorage.getItem('hcl-theme')==='light'){document.documentElement.setAttribute('data-theme','light')}}catch(e){}})();</script>
+  <script>(function(){try{var t=localStorage.getItem('hcl-theme');if(t==='light'||(t==='system'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)){document.documentElement.setAttribute('data-theme','light')}}catch(e){}})();</script>
   <script>(function(){try{var d=sessionStorage.getItem('hcl-nav-dir');sessionStorage.removeItem('hcl-nav-dir');var s=sessionStorage.getItem('hcl-nav-seen');sessionStorage.setItem('hcl-nav-seen','1');if(d!=='forward'&&s){document.documentElement.classList.add('nav-back')}}catch(e){}})();</script>
-  <link rel="stylesheet" href="../css/style.css?v=116" />
+  <link rel="stylesheet" href="../css/style.css?v=118" />
   <link rel="icon" type="image/png" href="../images/avatar.png?v=2" />
   <meta name="theme-color" content="#0d0e11" />
 </head>
@@ -33,6 +33,7 @@
               <a href="../posts/about/">关于我</a>
               <a href="../changelog/">更新日志</a>
               <a href="../sponsor/">赞助</a>
+              <a href="../settings/">设置</a>
             </div>
           </div>
         </div>
@@ -58,6 +59,7 @@
         <a href="../posts/about/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>关于我</a>
         <a href="../archive/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18v13H3z"/><path d="M3 7l2-3h14l2 3"/><path d="M9 12h6"/></svg>归档</a>
         <a href="../changelog/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>更新日志</a>
+        <a href="../settings/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7"/><path d="M4 10V3"/><path d="M12 21v-9"/><path d="M12 8V3"/><path d="M20 21v-5"/><path d="M20 12V3"/><path d="M1 14h6"/><path d="M9 8h6"/><path d="M17 16h6"/></svg>设置</a>
       </nav>
     </div>
     <div class="side-card">
@@ -76,33 +78,54 @@
   </aside>
 
   <main>
-    <section class="hero container">
-      <h1>文<span class="highlight">章</span></h1>
+    <section class="hero container" data-i18n-scope>
+      <h1 data-i18n="page.articles">文<span class="highlight">章</span></h1>
       <p>这里收录站内全部文章，支持标题、标签与摘要关键词搜索。</p>
     </section>
 
-    <section class="search-wrap container">
+    <section class="search-wrap container" data-i18n-scope>
       <input type="search" id="searchInput" class="search-input" placeholder="搜索文章标题、标签或摘要…" autocomplete="off" aria-label="搜索文章" />
     </section>
 
-    <section class="post-list container" aria-label="文章列表">
-      <p class="no-result" id="noResult" hidden>没有找到相关文章，换个关键词试试？</p>
-      <article class="post-item">
-        <a class="post-thumb-link" href="../posts/about/" tabindex="-1" aria-hidden="true">
-          <img class="post-thumb" src="../images/Image_1764458904822.jpg" alt="关于我 配图" loading="lazy" width="152" height="96" />
-        </a>
-        <div class="post-body">
-          <h2><a href="../posts/about/">关于我</a></h2>
-          <div class="post-meta">
-            <span class="date">2026-09-04</span>
-            <span class="tags">
-              <span class="tag tag-pin">置顶</span>
-              <span class="tag">关于</span>
-            </span>
+    <section class="post-list container" aria-label="文章列表" data-i18n-scope>
+      <p class="no-result" id="noResult" hidden data-i18n-scope>没有找到相关文章，换个关键词试试？</p>
+      <div data-lang-variant="zh">
+        <article class="post-item">
+          <a class="post-thumb-link" href="../posts/about/" tabindex="-1" aria-hidden="true">
+            <img class="post-thumb" src="../images/Image_1764458904822.jpg" alt="关于我 配图" loading="lazy" width="152" height="96" />
+          </a>
+          <div class="post-body">
+            <h2><a href="../posts/about/">关于我</a></h2>
+            <div class="post-meta">
+              <span class="date">2026-09-04</span>
+              <span class="tags">
+                <span class="tag tag-pin">置顶</span>
+                <span class="tag">关于</span>
+              </span>
+            </div>
+            <p class="post-excerpt">网名憨狗哈，B站我的世界 UP 主，也是 Ci OS 的作者——很高兴认识你。</p>
           </div>
-          <p class="post-excerpt">网名憨狗哈，B站我的世界 UP 主，也是 Ci OS 的作者——很高兴认识你。</p>
-        </div>
-      </article>
+        </article>
+      </div>
+
+      <div data-lang-variant="en" lang="en">
+        <article class="post-item">
+          <a class="post-thumb-link" href="../posts/about/" tabindex="-1" aria-hidden="true">
+            <img class="post-thumb" src="../images/Image_1764458904822.jpg" alt="Illustration for About me" loading="lazy" width="152" height="96" />
+          </a>
+          <div class="post-body">
+            <h2><a href="../posts/about/">About me</a></h2>
+            <div class="post-meta">
+              <span class="date">2026-09-04</span>
+              <span class="tags">
+                <span class="tag tag-pin">Pinned</span>
+                <span class="tag">About</span>
+              </span>
+            </div>
+            <p class="post-excerpt">You can call me Hangou. I'm a Minecraft creator on Bilibili and the author of Ci OS — nice to meet you.</p>
+          </div>
+        </article>
+      </div>
     </section>
   </main>
 
@@ -139,10 +162,12 @@
   </div>
 
   <script>
-    /* 文章列表摘要小字：超过 20 个字截断加省略号（保留原文供搜索使用） */
+    /* 文章列表摘要小字：超过 20 个字截断加省略号（保留原文供搜索使用）
+       同一段中文换成英文后字符数会翻倍，因此英文版本放宽到 80 个字符 */
     (function () {
       'use strict';
       var LIMIT = 20;
+      var EN_LIMIT = 80;
       var items = document.querySelectorAll('.post-item');
       for (var i = 0; i < items.length; i++) {
         var it = items[i];
@@ -150,15 +175,18 @@
         if (!ex) { continue; }
         it._fullText = it.textContent;   /* 截断前先备份完整文本 */
         var t = ex.textContent.trim();
-        if (t.length > LIMIT) {
-          ex.textContent = t.slice(0, LIMIT) + '…';
+        var limit = (ex.closest('[data-lang-variant="en"]')) ? EN_LIMIT : LIMIT;
+        if (t.length > limit) {
+          ex.textContent = t.slice(0, limit) + '…';
           ex.title = t;                  /* 悬停可看全文 */
         }
       }
     })();
   </script>
   <script src="../js/search.js?v=3"></script>
-  <script src="../js/theme.js?v=9"></script>
+  <script src="../js/theme.js?v=11"></script>
+  <script src="../js/i18n.js?v=6"></script>
+  <script src="../js/article-lang.js?v=1"></script>
   <script src="../js/cookie-tip.js?v=3"></script>
   <script src="../js/menu.js?v=1"></script>
   <script src="../js/transition.js?v=6"></script>

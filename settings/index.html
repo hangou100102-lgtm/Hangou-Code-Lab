@@ -3,37 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>关于我 · Hangou Code Lab</title>
-  <meta name="description" content="我是憨狗哈（hangou），B站我的世界 UP 主，Ci OS 作品的作者。这里是我的自我介绍。" />
+  <title>设置 · Hangou Code Lab</title>
+  <meta name="description" content="Hangou Code Lab 的设置页：切换界面语言（中文 / English）与深色 / 浅色 / 跟随系统主题。" />
   <script>(function(){try{var t=localStorage.getItem('hcl-theme');if(t==='light'||(t==='system'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: light)').matches)){document.documentElement.setAttribute('data-theme','light')}}catch(e){}})();</script>
   <script>(function(){try{var d=sessionStorage.getItem('hcl-nav-dir');sessionStorage.removeItem('hcl-nav-dir');var s=sessionStorage.getItem('hcl-nav-seen');sessionStorage.setItem('hcl-nav-seen','1');if(d!=='forward'&&s){document.documentElement.classList.add('nav-back')}}catch(e){}})();</script>
-  <link rel="stylesheet" href="../../css/style.css?v=118" />
-  <link rel="icon" type="image/png" href="../../images/avatar.png?v=2" />
+  <link rel="stylesheet" href="../css/style.css?v=118" />
+  <link rel="icon" type="image/png" href="../images/avatar.png?v=2" />
   <meta name="theme-color" content="#0d0e11" />
 </head>
 <body>
   <header class="site-header">
     <nav class="nav container" aria-label="主导航">
       <a class="brand" href="/">
-        <img class="brand-logo" src="../../images/avatar.png" alt="Hangou 头像" />
+        <img class="brand-logo" src="../images/avatar.png" alt="Hangou 头像" />
         Hangou
       </a>
       <div class="nav-right">
         <div class="nav-links">
-          <a href="/">首页</a>
-          <a href="../">文章</a>
-          <a href="../../archive/">归档</a>
-          <a href="../../friends/">友链</a>
+          <a href="../">首页</a>
+          <a href="../posts/">文章</a>
+          <a href="../archive/">归档</a>
+          <a href="../friends/">友链</a>
           <div class="nav-more">
             <button type="button" class="nav-more-toggle" aria-expanded="false" aria-haspopup="true">
               更多
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </button>
             <div class="nav-more-menu">
-              <a href="../about/">关于我</a>
-              <a href="../../changelog/">更新日志</a>
-              <a href="../../sponsor/">赞助</a>
-              <a href="../../settings/">设置</a>
+              <a href="../posts/about/">关于我</a>
+              <a href="../changelog/">更新日志</a>
+              <a href="../sponsor/">赞助</a>
+              <a href="../settings/">设置</a>
             </div>
           </div>
         </div>
@@ -55,135 +55,77 @@
       <h2 class="side-title">博客</h2>
       <nav class="side-nav">
         <a href="/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>首页</a>
-        <a href="../"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>文章</a>
-        <a href="../about/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>关于我</a>
-        <a href="../../archive/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18v13H3z"/><path d="M3 7l2-3h14l2 3"/><path d="M9 12h6"/></svg>归档</a>
-        <a href="../../changelog/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>更新日志</a>
-        <a href="../../settings/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7"/><path d="M4 10V3"/><path d="M12 21v-9"/><path d="M12 8V3"/><path d="M20 21v-5"/><path d="M20 12V3"/><path d="M1 14h6"/><path d="M9 8h6"/><path d="M17 16h6"/></svg>设置</a>
+        <a href="../posts/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>文章</a>
+        <a href="../posts/about/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg>关于我</a>
+        <a href="../archive/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h18v13H3z"/><path d="M3 7l2-3h14l2 3"/><path d="M9 12h6"/></svg>归档</a>
+        <a href="../changelog/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>更新日志</a>
+        <a href="../settings/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7"/><path d="M4 10V3"/><path d="M12 21v-9"/><path d="M12 8V3"/><path d="M20 21v-5"/><path d="M20 12V3"/><path d="M1 14h6"/><path d="M9 8h6"/><path d="M17 16h6"/></svg>设置</a>
       </nav>
     </div>
     <div class="side-card">
       <h2 class="side-title">友链</h2>
       <nav class="side-nav">
-        <a href="../../friends/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1-1"/></svg>友链列表</a>
+        <a href="../friends/"><svg class="side-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l2-2a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7.5-.5l-2 2a5 5 0 0 0 7 7l1-1"/></svg>友链列表</a>
       </nav>
     </div>
     <div class="side-card">
       <h2 class="side-title">赞助</h2>
-      <a class="side-sponsor" href="../../sponsor/" target="_blank" rel="noopener" aria-label="爱发电赞助" title="爱发电赞助">
+      <a class="side-sponsor" href="../sponsor/" target="_blank" rel="noopener" aria-label="爱发电赞助" title="爱发电赞助">
         <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M9 14.234a.567.567 0 1 0 0 1.134.567.567 0 0 0 0-1.134m5.351 1.705a.567.567 0 1 0 0 1.135.567.567 0 0 0 0-1.135m8.401 1.436c-.189.095-.461.1-.713.013-.169-.06-.352-.116-.534-.172-.339-.104-.904-.276-1.011-.407a.533.533 0 1 0-.853.643c.059.08.139.146.22.209-.816 1.131-4.398 3.382-9.464 2.273-2.283-.5-3.819-1.413-4.444-2.639-.451-.885-.348-1.797-.133-2.293.62-1.29 5.097-4.261 7.955-5.943a.537.537 0 0 0 .188-.733c-.149-.254-.49-.356-.73-.189-.231.135-1.015.601-2.015 1.236-.338-.227-.923-.508-1.86-.6-1.486-.148-4.92-.805-6.029-1.275C2.535 7.162.731 6.27 1.131 5.267c.092-.234.527-.613 1.47-.974a8.5 8.5 0 0 1 1.995-.492l-.212.103c-.642.312-1.343.662-1.813 1.075-.034-.022-.07-.044-.094-.069a.527.527 0 0 0-.754-.017.533.533 0 0 0-.017.756c.19.2.471.35.829.465l.039.014c1.245.383 3.458.336 6.578.211 1.345-.052 2.615-.102 3.674-.082 3.512.07 6.152 1.469 8.07 4.279 1.178 1.725.753 3.426.079 4.903a1.4 1.4 0 0 1-.231-.222.54.54 0 0 0-.75-.085.535.535 0 0 0-.086.751c.109.137.665.778 1.355.724l.037-.002c.021-.003.042.001.064-.003.472-.086.768-.063 1.045.111.367.232.547.37.511.485-.021.073-.076.125-.168.177M8.19 11.418l-.315.231a1.6 1.6 0 0 1-.243-.32c.123-.038.33.007.558.089m14.733 4.356a1.9 1.9 0 0 0-.81-.27c.632-1.544 1.034-3.565-.336-5.572-2.096-3.072-5.101-4.668-8.93-4.744-1.091-.022-2.377.029-3.737.083-1.58.063-3.683.145-5.112.027.285-.155.588-.304.851-.431 1.006-.49 1.797-.872 1.535-1.548-.137-.396-.547-.603-1.219-.618C3.748 2.669.688 3.489.138 4.872c-.31.779-.361 2.282 2.775 3.61 1.29.548 4.934 1.216 6.341 1.355.397.039.701.119.931.205a75 75 0 0 0-.986.664c-.577-.329-1.521-.718-2.226-.237a.94.94 0 0 0-.435.768c-.01.385.224.763.486 1.066-1.038.83-1.877 1.634-2.175 2.253-.332.762-.467 2.008.153 3.224.786 1.544 2.524 2.62 5.166 3.199 3.454.755 6.437.075 8.411-.966 1.099-.579 1.878-1.27 2.257-1.887l.356.113c.169.051.338.103.496.159.522.181 1.1.157 1.545-.068l.025-.013c.336-.177.577-.46.683-.803.285-.922-.528-1.432-1.018-1.74"/></svg>
         <span>爱发电</span>
       </a>
     </div>
   </aside>
 
-  <main class="post-main container">
+  <main class="post-main container" data-i18n-scope>
     <article>
-      <header class="post-header" data-i18n-scope>
-        <h1>关于我</h1>
+      <header class="post-header">
+        <h1>设置</h1>
         <div class="post-meta">
           <span class="tags">
-            <span class="tag tag-pin">置顶</span>
-            <span class="tag">关于</span>
+            <span class="tag">设置</span>
           </span>
         </div>
       </header>
 
-      <div class="article-body" data-lang-variant="zh">
-        <p>大家好，我是<strong>憨狗哈</strong>，也可以叫我<strong>憨狗</strong>，或者 <strong>hangou</strong>。欢迎来到我的博客。</p>
+      <section class="setting-group">
+        <h2 class="setting-title">语言</h2>
+        <p class="setting-hint">切换界面语言。站内文字以中文撰写，可开启下方的全文翻译。</p>
+        <div class="segmented" role="group" aria-label="语言">
+          <button type="button" class="segment" data-lang-option="zh" aria-pressed="true">简体中文</button>
+          <button type="button" class="segment" data-lang-option="en" aria-pressed="false">English</button>
+        </div>
 
-        <img class="article-cover" src="../../images/Image_1764458904822.jpg" alt="关于我的配图" loading="lazy" />
+        <h3 class="setting-subtitle">全文翻译</h3>
+        <p class="setting-hint">开启后，界面语言为 English 时，站内各处的文字都会显示英文版本；英文内容由 AI 辅助翻译，可能出现偏差，不保证 100% 正确。</p>
+        <div class="segmented" role="group" aria-label="全文翻译">
+          <button type="button" class="segment" data-translate-option="off" aria-pressed="true">关闭</button>
+          <button type="button" class="segment" data-translate-option="on" aria-pressed="false">开启</button>
+        </div>
+        <p class="setting-note" data-translate-status></p>
+      </section>
 
-        <blockquote>
-          一个在方块世界里搭东西、也在屏幕前琢磨动效的普通玩家。
-        </blockquote>
+      <section class="setting-group">
+        <h2 class="setting-title">主题</h2>
+        <p class="setting-hint">选择深色、浅色或跟随系统外观，与顶栏的切换按钮保持一致。</p>
+        <div class="segmented" role="group" aria-label="主题">
+          <button type="button" class="segment" data-theme-option="dark" aria-pressed="true">深色</button>
+          <button type="button" class="segment" data-theme-option="light" aria-pressed="false">浅色</button>
+          <button type="button" class="segment" data-theme-option="system" aria-pressed="false">跟随系统</button>
+        </div>
+      </section>
 
-        <h2>我在做什么</h2>
-        <p>我在哔哩哔哩上是一名 UP 主，主要做<strong>《我的世界》</strong>（Minecraft）相关的视频。</p>
-        <p>同时，我也是一位资深的<strong>创游世界</strong>玩家——不过现在有些淡游了，更多是在慢慢沉淀和整理以前做过的内容。</p>
+      <section class="setting-group">
+        <h2 class="setting-title">Cookie 提示</h2>
+        <p class="setting-hint">本站不设追踪型 Cookie，只在本机记住你的选择。</p>
+        <div class="segmented" role="group" aria-label="Cookie 提示">
+          <button type="button" class="segment" data-cookie-option="ask" aria-pressed="false">每次询问</button>
+          <button type="button" class="segment" data-cookie-option="skip" aria-pressed="false">不再提示</button>
+        </div>
+      </section>
 
-        <h2>关于 Ci OS</h2>
-        <p>之前，我出过一系列「创游世界」的开发进度视频，作品名叫 <strong>Ci OS</strong>。</p>
-        <p>Ci OS 主要还原了<strong>小米澎湃 OS</strong>（HyperOS）和 <strong>iOS</strong> 的桌面动画，以及其他系统动效，算是我花了挺多心思的一个作品。</p>
-        <p>作品链接：<a href="https://s.hortorinteractive.com/K4ZK47" target="_blank" rel="noopener">https://s.hortorinteractive.com/K4ZK47</a></p>
-
-        <h2>联系方式</h2>
-        <p>想找我聊聊天、合作或者只是打个招呼，都可以通过这些邮箱联系我：</p>
-        <ul class="mail-list">
-          <li class="mail-item"><span class="tag tag-pin">常用</span><a href="mailto:2644624556@qq.com">2644624556@qq.com</a></li>
-          <li class="mail-item"><span class="tag tag-pin">常用</span><a href="mailto:jinhui100102@163.com">jinhui100102@163.com</a></li>
-          <li class="mail-item"><span class="tag tag-pin">常用</span><a href="mailto:hangou100102@gmail.com">hangou100102@gmail.com</a></li>
-          <li class="mail-item"><a href="mailto:hangou0102@outlook.com">hangou0102@outlook.com</a></li>
-          <li class="mail-item"><a href="mailto:xiaohangou100102@gmail.com">xiaohangou100102@gmail.com</a></li>
-          <li class="mail-item"><a href="mailto:hangolike@gmail.com">hangolike@gmail.com</a></li>
-        </ul>
-
-        <h3>写在最后</h3>
-        <p>谢谢你来认识我。这里会继续记录我读过的、写下的、正在琢磨的事，希望下次再见。</p>
-      </div>
-
-      <div class="article-body" data-lang-variant="en" lang="en">
-        <p>Hi, I'm <strong>Hangou</strong> (also written <strong>憨狗</strong> in Chinese). Welcome to my blog.</p>
-
-        <img class="article-cover" src="../../images/Image_1764458904822.jpg" alt="A photo of me" loading="lazy" />
-
-        <blockquote>
-          An ordinary player who builds things in a blocky world and tinkers with motion design in front of a screen.
-        </blockquote>
-
-        <h2>What I do</h2>
-        <p>I'm a creator on Bilibili, where I mainly make videos about <strong>Minecraft</strong>.</p>
-        <p>I'm also a long-time player of <strong>Chuangyou Shijie</strong> (创游世界) — though I'm less active there now, and spend more time slowly going back over and organising the things I made before.</p>
-
-        <h2>About Ci OS</h2>
-        <p>Earlier I released a series of development-progress videos for Chuangyou Shijie, for a project called <strong>Ci OS</strong>.</p>
-        <p>Ci OS mostly recreates the launcher animations of <strong>Xiaomi HyperOS</strong> and <strong>iOS</strong>, along with some other system motion effects. It's one of the projects I put the most effort into.</p>
-        <p>Project link: <a href="https://s.hortorinteractive.com/K4ZK47" target="_blank" rel="noopener">https://s.hortorinteractive.com/K4ZK47</a></p>
-
-        <h2>Get in touch</h2>
-        <p>If you'd like to chat, work together, or just say hi, you can reach me at any of these addresses:</p>
-        <ul class="mail-list">
-          <li class="mail-item"><span class="tag tag-pin">Primary</span><a href="mailto:2644624556@qq.com">2644624556@qq.com</a></li>
-          <li class="mail-item"><span class="tag tag-pin">Primary</span><a href="mailto:jinhui100102@163.com">jinhui100102@163.com</a></li>
-          <li class="mail-item"><span class="tag tag-pin">Primary</span><a href="mailto:hangou100102@gmail.com">hangou100102@gmail.com</a></li>
-          <li class="mail-item"><a href="mailto:hangou0102@outlook.com">hangou0102@outlook.com</a></li>
-          <li class="mail-item"><a href="mailto:xiaohangou100102@gmail.com">xiaohangou100102@gmail.com</a></li>
-          <li class="mail-item"><a href="mailto:hangolike@gmail.com">hangolike@gmail.com</a></li>
-        </ul>
-
-        <h3>A last word</h3>
-        <p>Thank you for taking the time to get to know me. This is where I'll keep noting down what I read, what I write, and what I'm still mulling over. See you next time.</p>
-      </div>
-
-      <div data-lang-variant="zh">
-        <p class="article-dates">
-          <span>发布 2026-09-04</span>
-          <span aria-hidden="true">·</span>
-          <span>修改 2026-09-06</span>
-        </p>
-      </div>
-
-      <div data-lang-variant="en" lang="en">
-        <p class="article-dates">
-          <span>Published 2026-09-04</span>
-          <span aria-hidden="true">·</span>
-          <span>Updated 2026-09-06</span>
-        </p>
-      </div>
-
+      <p class="setting-note">设置保存在本机浏览器，不会上传。</p>
     </article>
-
-    <section class="post-comments" aria-label="评论" data-i18n-scope>
-      <div data-lang-variant="zh">
-        <h2 class="comments-title">评论</h2>
-        <p class="comments-note">评论由 GitHub Discussions 提供，需登录 GitHub 账号才能发言。</p>
-      </div>
-      <div data-lang-variant="en" lang="en">
-        <h2 class="comments-title">Comments</h2>
-        <p class="comments-note">Comments are powered by GitHub Discussions. You'll need to sign in with a GitHub account to post.</p>
-      </div>
-      <div class="giscus" id="giscusHost"></div>
-    </section>
   </main>
 
   <footer class="site-footer">
@@ -210,7 +152,7 @@
   <div class="cookie-modal" id="cookieTip" role="dialog" aria-modal="true" aria-label="Cookie 与本地存储确认" hidden>
     <div class="cookie-modal-card">
       <h2>本站如何使用 Cookie</h2>
-      <p>本站不设追踪型 Cookie，仅用浏览器本地存储记住主题偏好、翻页方向和本提示的确认状态，数据不出你的设备。详见<a href="../../privacy/">隐私政策</a>。</p>
+      <p>本站不设追踪型 Cookie，仅用浏览器本地存储记住主题偏好、翻页方向和本提示的确认状态，数据不出你的设备。详见<a href="../privacy/">隐私政策</a>。</p>
       <div class="cookie-modal-actions">
         <button type="button" class="cookie-tip-btn cookie-tip-cancel" id="cookieTipCancel">取消</button>
         <button type="button" class="cookie-tip-btn" id="cookieTipBtn">知道了</button>
@@ -218,13 +160,12 @@
     </div>
   </div>
 
-  <script src="../../js/lightbox.js?v=2"></script>
-  <script src="../../js/theme.js?v=11"></script>
-  <script src="../../js/comments.js?v=1"></script>
-  <script src="../../js/i18n.js?v=6"></script>
-  <script src="../../js/article-lang.js?v=1"></script>
-  <script src="../../js/cookie-tip.js?v=3"></script>
-  <script src="../../js/menu.js?v=1"></script>
-  <script src="../../js/transition.js?v=6"></script>
+  <script src="../js/theme.js?v=11"></script>
+  <script src="../js/i18n.js?v=6"></script>
+  <script src="../js/article-lang.js?v=1"></script>
+  <script src="../js/settings.js?v=1"></script>
+  <script src="../js/cookie-tip.js?v=3"></script>
+  <script src="../js/menu.js?v=1"></script>
+  <script src="../js/transition.js?v=6"></script>
 </body>
 </html>

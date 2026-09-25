@@ -20,7 +20,8 @@
     '/posts/about/',
     '/changelog/',
     '/sponsor/',
-    '/privacy/'
+    '/privacy/',
+    '/settings/'
   ];
 
   var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;

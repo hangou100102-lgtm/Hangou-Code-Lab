@@ -1,41 +1,71 @@
-/* 深色 / 浅色主题切换：统一使用全屏遮罩，避免不同浏览器渲染不同步。 */
+/* 深色 / 浅色 / 跟随系统主题切换：统一使用全屏遮罩，避免不同浏览器渲染不同步。
+   顶栏按钮与设置页的主题选项共用同一套逻辑。 */
 (function () {
   'use strict';
 
   var STORAGE_KEY = 'hcl-theme';
+  var MODES = ['dark', 'light', 'system'];
   var root = document.documentElement;
   var themeColor = document.querySelector('meta[name="theme-color"]');
+  var media = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
 
-  function getStored() {
+  var busy = false;
+  var layer = null;
+
+  /* 存储里只认 dark / light / system 三种值，其余（含尚未设置）按 dark 处理 */
+  function readMode() {
     try {
-      return localStorage.getItem(STORAGE_KEY) || 'dark';
+      var v = localStorage.getItem(STORAGE_KEY);
+      return MODES.indexOf(v) > -1 ? v : 'dark';
     } catch (e) {
       return 'dark';
     }
   }
 
-  function apply(theme) {
-    if (theme === 'light') {
+  function systemTheme() {
+    return media && media.matches ? 'light' : 'dark';
+  }
+
+  var mode = readMode();
+
+  /* 实际生效的外观：跟随系统时取系统偏好，否则就是设置本身 */
+  function resolve(m) {
+    return m === 'system' ? systemTheme() : m;
+  }
+
+  function current() {
+    return resolve(mode);
+  }
+
+  function syncControls() {
+    var btn = document.getElementById('themeToggle');
+    if (btn) {
+      btn.setAttribute('aria-pressed', current() === 'light' ? 'true' : 'false');
+    }
+    var opts = document.querySelectorAll('[data-theme-option]');
+    for (var i = 0; i < opts.length; i++) {
+      var on = opts[i].getAttribute('data-theme-option') === mode;
+      opts[i].classList.toggle('is-active', on);
+      opts[i].setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+  }
+
+  function paint() {
+    if (current() === 'light') {
       root.setAttribute('data-theme', 'light');
     } else {
       root.removeAttribute('data-theme');
     }
     if (themeColor) {
-      themeColor.setAttribute('content', theme === 'light' ? '#f4f6fa' : '#0d0e11');
+      themeColor.setAttribute('content', current() === 'light' ? '#f4f6fa' : '#0d0e11');
     }
-    var btn = document.getElementById('themeToggle');
-    if (btn) {
-      btn.setAttribute('aria-pressed', theme === 'light' ? 'true' : 'false');
-    }
+    syncControls();
   }
 
-  apply(getStored());
-
-  var btn = document.getElementById('themeToggle');
-  if (!btn) { return; }
-
-  var busy = false;
-  var layer = null;
+  function apply(next) {
+    mode = next;
+    paint();
+  }
 
   function ensureLayer() {
     if (layer) { return layer; }
@@ -68,15 +98,55 @@
     }, 320);
   }
 
-  btn.addEventListener('click', function () {
-    if (busy) { return; }
-    busy = true;
+  /* animate 传 false 时直接换主题，不播遮罩过渡（用于页面初始化） */
+  function setTheme(next, animate) {
+    if (MODES.indexOf(next) === -1) { return; }
+    if (next === mode) { return; }
+    if (busy && animate !== false) { return; }
 
-    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
     try {
       localStorage.setItem(STORAGE_KEY, next);
     } catch (e) { /* 忽略隐私模式下的写入失败 */ }
 
+    /* 换了设置但外观没变（例如浅色 → 跟随系统且系统就是浅色），不必播过渡 */
+    if (animate === false || resolve(next) === current()) {
+      apply(next);
+      return;
+    }
+
+    busy = true;
     switchTheme(next);
-  });
+  }
+
+  /* 系统外观变化时，只有「跟随系统」需要跟着重绘 */
+  function onSystemChange() {
+    if (mode !== 'system' || busy) { return; }
+    paint();
+  }
+
+  if (media) {
+    if (media.addEventListener) {
+      media.addEventListener('change', onSystemChange);
+    } else if (media.addListener) {
+      media.addListener(onSystemChange);
+    }
+  }
+
+  paint();
+
+  var toggle = document.getElementById('themeToggle');
+  if (toggle) {
+    toggle.addEventListener('click', function () {
+      setTheme(current() === 'light' ? 'dark' : 'light');
+    });
+  }
+
+  var opts = document.querySelectorAll('[data-theme-option]');
+  for (var i = 0; i < opts.length; i++) {
+    opts[i].addEventListener('click', function () {
+      setTheme(this.getAttribute('data-theme-option'));
+    });
+  }
+
+  window.HCLTheme = { get: current, getMode: function () { return mode; }, set: setTheme };
 })();
