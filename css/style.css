@@ -639,6 +639,13 @@ html::before {
   align-items: center;
   justify-content: space-between;
   height: 64px;
+  /* 顶栏不吃 .container 的 720px 限制：品牌贴最左，按钮贴最右，
+     两边留白相等；正文仍按 720px 居中，互不影响 */
+  max-width: none;
+  padding-left: max(20px, 4vw);
+  padding-right: max(20px, 4vw);
+  /* 作为 .nav-links 绝对居中的参照盒 */
+  position: relative;
 }
 
 .brand {
@@ -668,6 +675,14 @@ html::before {
   display: flex;
   align-items: center;
   gap: 6px;
+  /* 绝对居中：脱离 .nav-right 的流，让这排入口相对顶栏水平居中。
+     顶栏左右留白相等，所以 50% 落点就是屏幕中线；
+     右侧因此只剩主题 / 菜单按钮。
+     窄屏（<768px）由下面的 display:none 覆盖，改用抽屉导航。 */
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .nav-right {
