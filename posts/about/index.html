@@ -7,7 +7,7 @@
   <meta name="description" content="我是憨狗哈（hangou），B站我的世界 UP 主，Ci OS 作品的作者。这里是我的自我介绍。" />
   <script>(function(){try{if(localStorage.getItem('hcl-theme')==='light'){document.documentElement.setAttribute('data-theme','light')}}catch(e){}})();</script>
   <script>(function(){try{var d=sessionStorage.getItem('hcl-nav-dir');sessionStorage.removeItem('hcl-nav-dir');var s=sessionStorage.getItem('hcl-nav-seen');sessionStorage.setItem('hcl-nav-seen','1');if(d!=='forward'&&s){document.documentElement.classList.add('nav-back')}}catch(e){}})();</script>
-  <link rel="stylesheet" href="../../css/style.css?v=111" />
+  <link rel="stylesheet" href="../../css/style.css?v=113" />
   <link rel="icon" type="image/png" href="../../images/avatar.png?v=2" />
   <meta name="theme-color" content="#0d0e11" />
 </head>
@@ -127,6 +127,12 @@
       </p>
 
     </article>
+
+    <section class="post-comments" aria-label="评论">
+      <h2 class="comments-title">评论</h2>
+      <p class="comments-note">评论由 GitHub Discussions 提供，需登录 GitHub 账号才能发言。</p>
+      <div class="giscus" id="giscusHost"></div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -163,6 +169,7 @@
 
   <script src="../../js/lightbox.js?v=2"></script>
   <script src="../../js/theme.js?v=9"></script>
+  <script src="../../js/comments.js?v=1"></script>
   <script src="../../js/cookie-tip.js?v=3"></script>
   <script src="../../js/menu.js?v=1"></script>
   <script src="../../js/transition.js?v=6"></script>

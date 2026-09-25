@@ -42,6 +42,7 @@ Myblog/
 │   ├── search.js              # 首页文章搜索
 │   ├── theme.js               # 深浅主题切换与偏好持久化
 │   ├── cookie-tip.js          # 居中 Cookie 确认弹窗，确认后不再出现
+│   ├── comments.js            # 文章评论（giscus / GitHub Discussions），跟随站点主题
 │   └── lightbox.js             # 文章图片预览与下载
 ├── images/
 │   ├── avatar.png             # 头像和 favicon

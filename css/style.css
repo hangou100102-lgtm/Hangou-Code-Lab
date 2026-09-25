@@ -966,34 +966,34 @@ body.nav-open {
   align-items: center;
   text-align: center;
   padding-top: 110px;
-  padding-bottom: 40px;
+  padding-bottom: 56px;
 }
 
-.home-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 26px;
-  padding: 14px 39px;
-  border: 1px solid transparent;
-  border-radius: var(--r-btn-lg);
-  background: var(--surface);
-  color: var(--accent);
-  font-size: 1.02rem;
+/* 首屏下方只留最近写的东西，标题行与「全部文章」同一行 */
+.home-posts-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.home-posts-head h2 {
+  font-family: var(--font-display);
+  font-size: 1.06rem;
   font-weight: 600;
-  text-decoration: none;
-  transition: background-color 0.25s var(--ease);
+  color: var(--text);
 }
 
-.home-cta:hover {
-  background-color: var(--surface-active);
+.home-posts-head a {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+.home-posts-head a:hover {
   color: var(--accent);
   text-decoration: none;
-}
-
-.home-cta .side-icon {
-  width: 18px;
-  height: 18px;
 }
 
 .home-social {
@@ -1004,59 +1004,9 @@ body.nav-open {
   padding-bottom: 40px;
 }
 
-.home-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-  gap: 16px;
-  padding-bottom: 64px;
-}
-
-.home-card {
-  display: block;
-  padding: 20px;
-  border: 1px solid transparent;
-  border-radius: var(--r-lg);
-  background: var(--surface);
-  color: inherit;
-  text-decoration: none;
-  transition: background-color 0.25s var(--ease);
-}
-
-.home-card:hover {
-  background-color: var(--surface-active);
-  text-decoration: none;
-}
-
-.home-card h2 {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 1.02rem;
-  font-weight: 600;
-  color: var(--text);
-  margin-bottom: 8px;
-}
-
-.home-card .side-icon {
-  width: 18px;
-  height: 18px;
-  color: var(--accent);
-}
-
-.home-card p {
-  color: var(--text-secondary);
-  font-size: 0.88rem;
-  line-height: 1.55;
-}
-
 @media (max-width: 640px) {
   .home-hero {
     padding-top: 104px;
-  }
-
-  .home-cta {
-    padding: 13px 32px;
-    font-size: 1rem;
   }
 }
 
@@ -1357,6 +1307,33 @@ body.nav-open {
 
 .post-meta.post-meta-dates .date {
   margin-right: 0;
+}
+
+/* ============ 文章评论（giscus / GitHub Discussions） ============ */
+/* 沿用文章末尾日期行那套「细分割线 + 低调文字」的收尾感，
+   评论区自己不带卡片底色，和正文同处一个平面。 */
+.post-comments {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.comments-title {
+  font-family: var(--font-display);
+  font-size: 1.06rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.comments-note {
+  margin: 6px 0 20px;
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+}
+
+/* giscus 自己管 iframe 与内部样式，这里只兜住加载前的空白 */
+#giscusHost {
+  min-height: 160px;
 }
 
 .article-body code {
@@ -1761,8 +1738,6 @@ body.lb-lock {
 .nav-links a,
 .menu-toggle,
 .social-link,
-.home-card,
-.home-cta,
 .search-input,
 .post-item,
 .post-thumb-link,
