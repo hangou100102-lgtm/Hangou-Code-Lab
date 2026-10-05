@@ -8,6 +8,12 @@ interface Entry {
 }
 
 const ENTRIES_ZH: Entry[] = [
+  { date: '2026-10-05', text: '全站内容板块化：各页面内容拆成独立卡片板块，标题保留在页面背景上' },
+  { date: '2026-10-05', text: '首页新增「我的项目 · Ci OS」板块，介绍创游世界伪系统作品的版本与停更历程' },
+  { date: '2026-10-05', text: '首页问候语下新增 B站 / GitHub / 爱发电 社交入口，主页页脚不再重复展示' },
+  { date: '2026-10-05', text: '文章卡片整卡可点击跳转，不再局限于标题与预览图' },
+  { date: '2026-10-05', text: '搜索框改为浅底加描边，与板块背景拉开对比；评论框样式同步对齐站点风格' },
+  { date: '2026-10-05', text: '关于页联系方式精简为三个常用邮箱' },
   { date: '2026-09-26', text: '外观新增「跟随系统」选项：设置页「主题」下可选深色 / 浅色 / 跟随系统，选择跟随系统后随系统外观自动切换' },
   { date: '2026-09-26', text: '全文翻译扩大到全站：设置页「语言」下可开启，界面语言为 English 时站内各处的文字都显示英文版本（AI 辅助翻译，可能出现偏差）' },
   { date: '2026-09-26', text: '新增设置页：界面语言可选中文 / English，外观可选深色 / 浅色，Cookie 提示可选每次询问或不再提示，偏好保存在本机浏览器' },
@@ -36,6 +42,12 @@ const ENTRIES_ZH: Entry[] = [
 ];
 
 const ENTRIES_EN: Entry[] = [
+  { date: '2026-10-05', text: 'Site-wide content panels: each page\'s content is split into separate card panels, while page titles stay on the page background' },
+  { date: '2026-10-05', text: 'Added a "My project · Ci OS" panel to the home page, covering the versions and discontinuation of the fake-OS project on Chuangyou Shijie' },
+  { date: '2026-10-05', text: 'Added Bilibili / GitHub / Afdian social links under the home intro; the home footer no longer repeats them' },
+  { date: '2026-10-05', text: 'Post cards are now clickable as a whole, not just the title and thumbnail' },
+  { date: '2026-10-05', text: 'The search box gained a soft background and border for contrast against the panels; the comment box style was aligned with the site too' },
+  { date: '2026-10-05', text: 'Trimmed the contact addresses on the About page down to three primary emails' },
   { date: '2026-09-26', text: 'Added a "System" appearance option: the Theme group on the Settings page now offers dark / light / system, and the system option follows your OS appearance automatically' },
   { date: '2026-09-26', text: 'Full-text translation now covers the whole site: enable it under "Language" on the Settings page, and when the interface language is English the text across the site is shown in an English version (AI-assisted; may contain inaccuracies)' },
   { date: '2026-09-26', text: 'Added a Settings page: interface language in Chinese / English, appearance in dark / light, cookie notice either every visit or skipped, with preferences saved in your local browser' },
