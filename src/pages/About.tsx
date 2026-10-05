@@ -1,15 +1,13 @@
 import { useT } from '../context/Prefs';
 import { En, TranslateNote, Zh } from '../components/LangVariant';
+import { Panel } from '../components/Panel';
 import { Giscus } from '../components/Giscus';
 
 /* 联系方式：常用邮箱带「常用」标记 */
 const MAILS_ZH = [
   { mail: '2644624556@qq.com', pin: true },
   { mail: 'jinhui100102@163.com', pin: true },
-  { mail: 'hangou100102@gmail.com', pin: true },
-  { mail: 'hangou0102@outlook.com', pin: false },
-  { mail: 'xiaohangou100102@gmail.com', pin: false },
-  { mail: 'hangolike@gmail.com', pin: false }
+  { mail: 'hangou100102@gmail.com', pin: false }
 ];
 
 export default function About() {
@@ -30,129 +28,133 @@ export default function About() {
 
   return (
     <main className="post-main container">
-      <article>
-        <header className="post-header">
-          <h1>{t('关于我')}</h1>
-          <div className="post-meta">
-            <span className="tags">
-              <span className="tag tag-pin">{t('置顶')}</span>
-              <span className="tag">{t('关于')}</span>
-            </span>
-          </div>
-        </header>
+      <Panel className="panel-title" label={t('关于我')}>
+        <h1>{t('关于我')}</h1>
+        <div className="post-meta">
+          <span className="tags">
+            <span className="tag tag-pin">{t('置顶')}</span>
+            <span className="tag">{t('关于')}</span>
+          </span>
+        </div>
+      </Panel>
 
-        <Zh>
-          <div className="article-body">
-            <p>
-              大家好，我是<strong>憨狗哈</strong>，也可以叫我<strong>憨狗</strong>，或者{' '}
-              <strong>hangou</strong>。欢迎来到我的博客。
-            </p>
+      <TranslateNote />
 
-            <img
-              className="article-cover"
-              src={cover}
-              alt="关于我的配图"
-              loading="lazy"
-            />
+      <Panel title={t('我是谁')}>
+        <Zh className="article-body">
+          <p>
+            大家好，我是<strong>憨狗哈</strong>，也可以叫我<strong>憨狗</strong>，或者{' '}
+            <strong>hangou</strong>。欢迎来到我的博客。
+          </p>
 
-            <blockquote>一个在方块世界里搭东西、也在屏幕前琢磨动效的普通玩家。</blockquote>
+          <img className="article-cover" src={cover} alt="关于我的配图" loading="lazy" />
 
-            <h2>我在做什么</h2>
-            <p>
-              我在哔哩哔哩上是一名 UP 主，主要做<strong>《我的世界》</strong>（Minecraft）相关的视频。
-            </p>
-            <p>
-              同时，我也是一位资深的<strong>创游世界</strong>
-              玩家——不过现在有些淡游了，更多是在慢慢沉淀和整理以前做过的内容。
-            </p>
-
-            <h2>关于 Ci OS</h2>
-            <p>
-              之前，我出过一系列「创游世界」的开发进度视频，作品名叫 <strong>Ci OS</strong>。
-            </p>
-            <p>
-              Ci OS 主要还原了<strong>小米澎湃 OS</strong>（HyperOS）和 <strong>iOS</strong>
-              的桌面动画，以及其他系统动效，算是我花了挺多心思的一个作品。
-            </p>
-            <p>
-              作品链接：
-              <a href={projectLink} target="_blank" rel="noopener">
-                {projectLink}
-              </a>
-            </p>
-
-            <h2>联系方式</h2>
-            <p>想找我聊聊天、合作或者只是打个招呼，都可以通过这些邮箱联系我：</p>
-            {mails('常用')}
-
-            <h3>写在最后</h3>
-            <p>谢谢你来认识我。这里会继续记录我读过的、写下的、正在琢磨的事，希望下次再见。</p>
-          </div>
+          <blockquote>一个在方块世界里搭东西、也在屏幕前琢磨动效的普通玩家。</blockquote>
         </Zh>
 
-        <TranslateNote />
+        <En className="article-body">
+          <p>
+            Hi, I'm <strong>Hangou</strong> (also written <strong>憨狗</strong> in Chinese).
+            Welcome to my blog.
+          </p>
 
-        <En>
-          <div className="article-body">
-            <p>
-              Hi, I'm <strong>Hangou</strong> (also written <strong>憨狗</strong> in Chinese).
-              Welcome to my blog.
-            </p>
+          <img className="article-cover" src={cover} alt="A photo of me" loading="lazy" />
 
-            <img
-              className="article-cover"
-              src={cover}
-              alt="A photo of me"
-              loading="lazy"
-            />
-
-            <blockquote>
-              An ordinary player who builds things in a blocky world and tinkers with motion design in
-              front of a screen.
-            </blockquote>
-
-            <h2>What I do</h2>
-            <p>
-              I'm a creator on Bilibili, where I mainly make videos about <strong>Minecraft</strong>.
-            </p>
-            <p>
-              I'm also a long-time player of <strong>Chuangyou Shijie</strong> (创游世界) — though I'm
-              less active there now, and spend more time slowly going back over and organising the
-              things I made before.
-            </p>
-
-            <h2>About Ci OS</h2>
-            <p>
-              Earlier I released a series of development-progress videos for Chuangyou Shijie, for a
-              project called <strong>Ci OS</strong>.
-            </p>
-            <p>
-              Ci OS mostly recreates the launcher animations of <strong>Xiaomi HyperOS</strong> and{' '}
-              <strong>iOS</strong>, along with some other system motion effects. It's one of the
-              projects I put the most effort into.
-            </p>
-            <p>
-              Project link:{' '}
-              <a href={projectLink} target="_blank" rel="noopener">
-                {projectLink}
-              </a>
-            </p>
-
-            <h2>Get in touch</h2>
-            <p>
-              If you'd like to chat, work together, or just say hi, you can reach me at any of these
-              addresses:
-            </p>
-            {mails('Primary')}
-
-            <h3>A last word</h3>
-            <p>
-              Thank you for taking the time to get to know me. This is where I'll keep noting down
-              what I read, what I write, and what I'm still mulling over. See you next time.
-            </p>
-          </div>
+          <blockquote>
+            An ordinary player who builds things in a blocky world and tinkers with motion design in
+            front of a screen.
+          </blockquote>
         </En>
+      </Panel>
 
+      <Panel title={t('我在做什么')}>
+        <Zh className="article-body">
+          <p>
+            我在哔哩哔哩上是一名 UP 主，主要做<strong>《我的世界》</strong>（Minecraft）相关的视频。
+          </p>
+          <p>
+            同时，我也是一位资深的<strong>创游世界</strong>
+            玩家——不过现在有些淡游了，更多是在慢慢沉淀和整理以前做过的内容。
+          </p>
+        </Zh>
+
+        <En className="article-body">
+          <p>
+            I'm a creator on Bilibili, where I mainly make videos about <strong>Minecraft</strong>.
+          </p>
+          <p>
+            I'm also a long-time player of <strong>Chuangyou Shijie</strong> (创游世界) — though I'm
+            less active there now, and spend more time slowly going back over and organising the
+            things I made before.
+          </p>
+        </En>
+      </Panel>
+
+      <Panel title={t('关于 Ci OS')}>
+        <Zh className="article-body">
+          <p>
+            之前，我出过一系列「创游世界」的开发进度视频，作品名叫 <strong>Ci OS</strong>。
+          </p>
+          <p>
+            Ci OS 主要还原了<strong>小米澎湃 OS</strong>（HyperOS）和 <strong>iOS</strong>
+            的桌面动画，以及其他系统动效，算是我花了挺多心思的一个作品。
+          </p>
+          <p>
+            作品链接：
+            <a href={projectLink} target="_blank" rel="noopener">
+              {projectLink}
+            </a>
+          </p>
+        </Zh>
+
+        <En className="article-body">
+          <p>
+            Earlier I released a series of development-progress videos for Chuangyou Shijie, for a
+            project called <strong>Ci OS</strong>.
+          </p>
+          <p>
+            Ci OS mostly recreates the launcher animations of <strong>Xiaomi HyperOS</strong> and{' '}
+            <strong>iOS</strong>, along with some other system motion effects. It's one of the
+            projects I put the most effort into.
+          </p>
+          <p>
+            Project link:{' '}
+            <a href={projectLink} target="_blank" rel="noopener">
+              {projectLink}
+            </a>
+          </p>
+        </En>
+      </Panel>
+
+      <Panel title={t('联系方式')}>
+        <Zh className="article-body">
+          <p>想找我聊聊天、合作或者只是打个招呼，都可以通过这些邮箱联系我：</p>
+          {mails('常用')}
+        </Zh>
+
+        <En className="article-body">
+          <p>
+            If you'd like to chat, work together, or just say hi, you can reach me at any of these
+            addresses:
+          </p>
+          {mails('Primary')}
+        </En>
+      </Panel>
+
+      <Panel title={t('写在最后')}>
+        <Zh className="article-body">
+          <p>谢谢你来认识我。这里会继续记录我读过的、写下的、正在琢磨的事，希望下次再见。</p>
+        </Zh>
+
+        <En className="article-body">
+          <p>
+            Thank you for taking the time to get to know me. This is where I'll keep noting down what
+            I read, what I write, and what I'm still mulling over. See you next time.
+          </p>
+        </En>
+      </Panel>
+
+      <Panel className="panel-article">
         <Zh>
           <p className="article-dates">
             <span>发布 2026-09-04</span>
@@ -168,7 +170,7 @@ export default function About() {
             <span>Updated 2026-09-06</span>
           </p>
         </En>
-      </article>
+      </Panel>
 
       <section className="post-comments" aria-label={t('评论')}>
         <Zh>

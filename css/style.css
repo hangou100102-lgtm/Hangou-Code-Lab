@@ -20,33 +20,33 @@ img {
 :root {
   color-scheme: dark;
 
-  --bg: #0d0e11;
-  --bg-soft: #16181e;
-  --em-bg: #1c1f27;
-  --surface: #191b22;
-  --surface-hover: #21242d;
+  --bg: #0e0e0e;
+  --bg-soft: #171717;
+  --em-bg: #1d1d1d;
+  --surface: #1a1a1a;
+  --surface-hover: #222222;
   /* 选中/悬停底色：深色主题下需要提亮，浅色主题下压暗 */
-  --surface-active: #262a35;
+  --surface-active: #282828;
   /* 顶栏按钮悬停/选中时的毛玻璃底 */
-  --glass-bg-hover: rgba(40, 44, 56, 0.72);
-  --text: #eceff4;
-  --text-soft: #cfd4dd;
-  --text-secondary: #8b93a1;
+  --glass-bg-hover: rgba(42, 42, 42, 0.72);
+  --text: #ededed;
+  --text-soft: #cfcfcf;
+  --text-secondary: #8f8f8f;
   --border: rgba(255, 255, 255, 0.08);
   --border-strong: rgba(255, 255, 255, 0.14);
 
-  /* 强调色：纯灰阶无彩色。深色主题用近白，靠明度差而非色相拉开层次 */
-  --accent: #e8eaee;
-  --accent-soft: rgba(232, 234, 238, 0.1);
-  --accent-soft-active: rgba(232, 234, 238, 0.16);
-  --accent-glow: rgba(232, 234, 238, 0.14);
-  --accent-line: rgba(232, 234, 238, 0.22);
-  --accent-border: rgba(232, 234, 238, 0.38);
+  /* 强调色：纯中性灰，无任何色相。深色主题用近白，靠明度差而非色相拉开层次 */
+  --accent: #ededed;
+  --accent-soft: rgba(237, 237, 237, 0.1);
+  --accent-soft-active: rgba(237, 237, 237, 0.16);
+  --accent-glow: rgba(237, 237, 237, 0.14);
+  --accent-line: rgba(237, 237, 237, 0.22);
+  --accent-border: rgba(237, 237, 237, 0.38);
 
-  --code-text: #c3c9d4;
-  --pre-bg: #101218;
-  --pre-text: #d5dae3;
-  --header-bg: rgba(13, 14, 17, 0.62);
+  --code-text: #c6c6c6;
+  --pre-bg: #121212;
+  --pre-text: #d6d6d6;
+  --header-bg: rgba(14, 14, 14, 0.62);
   /* 浮层阴影：只给顶栏下拉这类真正浮起来的元素用 */
   --shadow-pop: 0 10px 28px rgba(0, 0, 0, 0.42);
   --scroll-thumb: rgba(255, 255, 255, 0.16);
@@ -78,36 +78,36 @@ img {
 :root[data-theme="light"] {
   color-scheme: light;
 
-  --bg: #f4f6fa;
-  --bg-soft: #eceff5;
-  --em-bg: #eef1f7;
+  --bg: #f5f5f5;
+  --bg-soft: #ededed;
+  --em-bg: #f0f0f0;
   --surface: #ffffff;
-  --surface-hover: #f7f9fd;
+  --surface-hover: #fafafa;
   /* 选中/悬停底色：深色主题下需要提亮，浅色主题下压暗 */
-  --surface-active: #e8ecf3;
+  --surface-active: #e9e9e9;
   /* 顶栏按钮悬停/选中时的毛玻璃底 */
-  --glass-bg-hover: rgba(233, 237, 244, 0.85);
-  --text: #16181d;
-  --text-soft: #3a3f49;
-  --text-secondary: #7a828f;
-  --border: rgba(20, 24, 32, 0.08);
-  --border-strong: rgba(20, 24, 32, 0.14);
+  --glass-bg-hover: rgba(236, 236, 236, 0.85);
+  --text: #161616;
+  --text-soft: #3c3c3c;
+  --text-secondary: #7d7d7d;
+  --border: rgba(20, 20, 20, 0.08);
+  --border-strong: rgba(20, 20, 20, 0.14);
 
-  /* 强调色：纯灰阶无彩色。浅色主题用近黑，靠明度差而非色相拉开层次 */
-  --accent: #1c1f26;
-  --accent-soft: rgba(28, 31, 38, 0.07);
-  --accent-soft-active: rgba(28, 31, 38, 0.13);
-  --accent-glow: rgba(28, 31, 38, 0.12);
-  --accent-line: rgba(28, 31, 38, 0.2);
-  --accent-border: rgba(28, 31, 38, 0.36);
+  /* 强调色：纯中性灰，无任何色相。浅色主题用近黑，靠明度差而非色相拉开层次 */
+  --accent: #1d1d1d;
+  --accent-soft: rgba(29, 29, 29, 0.07);
+  --accent-soft-active: rgba(29, 29, 29, 0.13);
+  --accent-glow: rgba(29, 29, 29, 0.12);
+  --accent-line: rgba(29, 29, 29, 0.2);
+  --accent-border: rgba(29, 29, 29, 0.36);
 
-  --code-text: #4a4f58;
-  --pre-bg: #14161c;
-  --pre-text: #d8dde5;
-  --header-bg: rgba(244, 246, 250, 0.66);
-  --shadow-pop: 0 8px 22px rgba(20, 24, 32, 0.14);
-  --scroll-thumb: rgba(20, 24, 32, 0.18);
-  --scroll-thumb-hover: rgba(20, 24, 32, 0.3);
+  --code-text: #4d4d4d;
+  --pre-bg: #141414;
+  --pre-text: #d9d9d9;
+  --header-bg: rgba(245, 245, 245, 0.66);
+  --shadow-pop: 0 8px 22px rgba(20, 20, 20, 0.14);
+  --scroll-thumb: rgba(20, 20, 20, 0.18);
+  --scroll-thumb-hover: rgba(20, 20, 20, 0.3);
 }
 
 html {
@@ -362,6 +362,167 @@ a:hover {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 20px;
+}
+
+/* ============ 板块（页面内容卡片化） ============ */
+/* 页面内容统一拆成一块块独立卡片：与 .side-card 同材质（--surface 底、无描边），
+   但用 .panel-head 提供带底色的标题栏，形成可辨识的「板块」观感。
+   全站圆角为 0，因此这里不设圆角。 */
+.panel {
+  background: var(--surface);
+  border: 1px solid transparent;
+  margin-bottom: 20px;
+}
+
+/* 板块标题栏：标题 + 可选的右侧动作（如「全部文章」） */
+.panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--border);
+}
+
+.panel-head h2,
+.panel-head h3 {
+  font-family: var(--font-display);
+  font-size: 1.06rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.panel-head a {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+.panel-head a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+/* 板块内边距：默认四周统一；带 .panel-head 时上下由标题栏与内容各自负责 */
+.panel-body {
+  padding: 22px;
+}
+
+/* 板块内的列表：去掉最后一项的下边距，避免与卡片底边叠加出多余空隙 */
+.panel-body > :first-child {
+  margin-top: 0;
+}
+
+.panel-body > :last-child {
+  margin-bottom: 0;
+}
+
+/* 板块内直接包裹文章列表时，让卡片之间的间距落在板块内边距之内 */
+.panel-list {
+  padding: 8px;
+}
+
+/* 首屏介绍块：欢迎语独立成板块，居中呈现 */
+.home-main {
+  padding-top: 104px;
+  padding-bottom: 56px;
+}
+
+/* 首页问候语：不做成板块，直接落在页面背景上 */
+.home-hero {
+  background: transparent;
+  border: 0;
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.home-hero .panel-body {
+  padding: 0;
+}
+
+.home-hero h1 {
+  font-family: var(--font-display);
+  font-size: 2.1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.5px;
+  margin-bottom: 14px;
+}
+
+.home-hero p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* 首页问候语下的社交入口 */
+.hero-social {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.hero-social .social-btn {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+@media (max-width: 640px) {
+  .home-main {
+    padding-top: 96px;
+  }
+}
+
+/* 内页通用：标题板块 + 内容板块的纵向排布 */
+.page-main {
+  padding-top: 104px;
+  padding-bottom: 72px;
+}
+
+/* 页头标题：不做成板块，直接落在页面背景上 */
+.page-hero {
+  background: transparent;
+  border: 0;
+}
+
+.page-hero .panel-body {
+  padding: 0 0 4px;
+}
+
+.page-hero h1 {
+  font-family: var(--font-display);
+  font-size: 2.05rem;
+  font-weight: 700;
+  line-height: 1.32;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+
+.page-hero p {
+  color: var(--text-secondary);
+  font-size: 1.02rem;
+  margin: 0;
+}
+
+/* 搜索框与列表之间的间隔 */
+.panel-list-inner {
+  margin-top: 20px;
+}
+
+/* 列表在板块内：无结果提示贴列表顶部 */
+.panel-list-inner .no-result {
+  margin: 12px 0;
+}
+
+@media (max-width: 640px) {
+  .panel-head,
+  .panel-body {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
 }
 
 /* ============ 通用卡片 ============ */
@@ -826,7 +987,7 @@ html::before {
   position: fixed;
   inset: 64px 0 0 0;
   z-index: 40;
-  background: rgba(8, 9, 11, 0.42);
+  background: rgba(8, 8, 8, 0.42);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   opacity: 0;
@@ -953,54 +1114,13 @@ body.nav-open {
 }
 
 /* ============ 欢迎主页 ============ */
-.home-hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding-top: 110px;
-  padding-bottom: 56px;
-}
-
-/* 首屏下方只留最近写的东西，标题行与「全部文章」同一行 */
-.home-posts-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 16px;
-}
-
-.home-posts-head h2 {
-  font-family: var(--font-display);
-  font-size: 1.06rem;
-  font-weight: 600;
-  color: var(--text);
-}
-
-.home-posts-head a {
-  color: var(--text-secondary);
-  font-size: 0.88rem;
-  white-space: nowrap;
-}
-
-.home-posts-head a:hover {
-  color: var(--accent);
-  text-decoration: none;
-}
-
+/* 首页内容已拆为板块（.panel），标题栏复用 .panel-head，此处仅保留社交入口行 */
 .home-social {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
   padding-bottom: 40px;
-}
-
-@media (max-width: 640px) {
-  .home-hero {
-    padding-top: 104px;
-  }
 }
 
 /* ============ 文章搜索 ============ */
@@ -1015,11 +1135,11 @@ body.nav-open {
   font: inherit;
   font-size: 0.95rem;
   color: var(--text);
-  background: var(--surface);
-  border: 1px solid transparent;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
   border-radius: var(--r-pill);
   outline: none;
-  transition: background-color 0.22s var(--ease);
+  transition: background-color 0.22s var(--ease), border-color 0.22s var(--ease);
   -webkit-appearance: none;
   appearance: none;
 }
@@ -1029,7 +1149,8 @@ body.nav-open {
 }
 
 .search-input:focus {
-  background-color: var(--surface-active);
+  background-color: var(--surface);
+  border-color: var(--accent);
 }
 
 .no-result {
@@ -1060,6 +1181,7 @@ body.nav-open {
   background: var(--surface);
   border: 1px solid transparent;
   border-radius: var(--r-lg);
+  cursor: pointer;
   transition: background-color 0.25s var(--ease);
 }
 
@@ -1180,6 +1302,83 @@ body.nav-open {
   line-height: 1.32;
   letter-spacing: -0.5px;
   margin-bottom: 18px;
+}
+
+/* 内容页板块化：标题独立成块，正文与各 section 各自成块 */
+.post-header {
+  margin-bottom: 0;
+}
+
+/* 顶部标题：不做成板块，直接落在页面背景上 */
+.panel-title {
+  background: transparent;
+  border: 0;
+  margin-bottom: 22px;
+}
+
+.panel-title .panel-body {
+  padding: 0;
+}
+
+.panel-title h1 {
+  font-family: var(--font-display);
+  font-size: 2.05rem;
+  font-weight: 700;
+  line-height: 1.32;
+  letter-spacing: -0.5px;
+  margin-bottom: 14px;
+}
+
+.panel-title .post-meta {
+  margin: 0;
+}
+
+/* 板块内的正文：与板块内边距叠加时收掉首尾多余间距 */
+.panel-body.article-body > :first-child {
+  margin-top: 0;
+}
+
+.panel-body.article-body > :last-child {
+  margin-bottom: 0;
+}
+
+/* 正文板块里的首个 h2 不需要过大的上边距 */
+.panel-body.article-body > h2:first-child {
+  margin-top: 0;
+}
+
+/* 标题里的标题与标签：收紧间距 */
+.panel-title .panel-body > :last-child {
+  margin-bottom: 0;
+}
+
+/* 尾部日期板块：低调收尾，与正文板块区分 */
+.panel-article {
+  background: transparent;
+  border: 0;
+}
+
+.panel-article .panel-body {
+  padding: 0;
+}
+
+/* 板块内的邮箱卡片：面板底色已是 --surface，卡片改用 --bg-soft 拉开层级 */
+.panel .mail-item {
+  background: var(--bg-soft);
+}
+
+.panel .mail-item:hover {
+  background: var(--surface-active);
+}
+
+/* 面板内首个元素不留上边距（邮箱列表、搜索框等） */
+.panel-body .mail-list {
+  margin-bottom: 0;
+}
+
+/* 友链网格在板块内：与搜索框的间距由 .panel-list-inner 提供 */
+.panel .friend-list {
+  margin-bottom: 0;
 }
 
 .article-body {
@@ -1364,27 +1563,15 @@ body.nav-open {
 }
 
 /* ============ 赞助页 ============ */
-.sponsor-box,
-.sponsor-list {
-  margin-top: 36px;
-  padding: 26px;
-  border: 1px solid transparent;
-  border-radius: var(--r-lg);
-  background: var(--surface);
-}
-
-.sponsor-box h2,
-.sponsor-list h2 {
-  margin-bottom: 10px;
-  color: var(--text);
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
-.sponsor-box p {
-  margin: 0 0 18px;
+/* 页面内容已拆为板块（.panel），按钮与空状态沿用原样式 */
+.panel-text {
+  margin: 0 0 14px;
   color: var(--text-secondary);
+  font-size: 0.98rem;
+}
+
+.panel-text:last-of-type {
+  margin-bottom: 18px;
 }
 
 .sponsor-action {
@@ -1392,24 +1579,21 @@ body.nav-open {
   align-items: center;
   justify-content: center;
   padding: 10px 23px;
-  border: 1px solid transparent;
+  border: 1px solid var(--accent);
   border-radius: var(--r-btn);
-  background: var(--surface);
-  color: var(--accent);
+  background: var(--accent);
+  color: var(--bg);
   font-size: 0.92rem;
   font-weight: 600;
   text-decoration: none;
-  transition: background-color 0.25s var(--ease);
+  transition: background-color 0.25s var(--ease), opacity 0.25s var(--ease);
 }
 
 .sponsor-action:hover {
-  background-color: var(--surface-active);
-  color: var(--accent);
+  background-color: var(--accent);
+  color: var(--bg);
+  opacity: 0.82;
   text-decoration: none;
-}
-
-.sponsor-list {
-  margin-top: 20px;
 }
 
 .sponsor-empty {
@@ -1616,7 +1800,7 @@ body.nav-open {
   justify-content: center;
   padding: 60px 20px 60px;
   /* 背景压暗 + 毛玻璃模糊 */
-  background: rgba(8, 9, 11, 0.62);
+  background: rgba(8, 8, 8, 0.62);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   opacity: 0;
@@ -1682,7 +1866,7 @@ body.nav-open {
   border: 1px solid transparent;
   border-radius: var(--r-btn);
   background: rgba(255, 255, 255, 0.16);
-  color: #e4e7ec;
+  color: #e6e6e6;
   font-size: 0.92rem;
   font-weight: 600;
   cursor: pointer;
@@ -1742,8 +1926,6 @@ body.lb-lock {
 .mail-item,
 .article-body code,
 .article-body pre,
-.sponsor-box,
-.sponsor-list,
 .sponsor-action,
 .sponsor-empty,
 .social-btn,

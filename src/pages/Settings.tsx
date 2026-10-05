@@ -1,4 +1,5 @@
 import { usePrefs, useT, type Lang, type ThemeMode } from '../context/Prefs';
+import { Panel } from '../components/Panel';
 
 /* 分段控件：与旧站一致，选中项加 is-active 并同步 aria-pressed */
 function Segmented<T extends string>({
@@ -64,78 +65,73 @@ export default function Settings() {
 
   return (
     <main className="post-main container">
-      <article>
-        <header className="post-header">
-          <h1>{t('设置')}</h1>
-          <div className="post-meta">
-            <span className="tags">
-              <span className="tag">{t('设置')}</span>
-            </span>
-          </div>
-        </header>
+      <Panel className="panel-title" label={t('设置')}>
+        <h1>{t('设置')}</h1>
+        <div className="post-meta">
+          <span className="tags">
+            <span className="tag">{t('设置')}</span>
+          </span>
+        </div>
+      </Panel>
 
-        <section className="setting-group">
-          <h2 className="setting-title">{t('语言')}</h2>
-          <p className="setting-hint">{t('切换界面语言。站内文字以中文撰写，可开启下方的全文翻译。')}</p>
-          <Segmented<Lang>
-            label={t('语言')}
-            value={lang}
-            onChange={setLang}
-            options={[
-              { value: 'zh', label: '简体中文' },
-              { value: 'en', label: 'English' }
-            ]}
-          />
+      <Panel title={t('语言')}>
+        <p className="setting-hint">{t('切换界面语言。站内文字以中文撰写，可开启下方的全文翻译。')}</p>
+        <Segmented<Lang>
+          label={t('语言')}
+          value={lang}
+          onChange={setLang}
+          options={[
+            { value: 'zh', label: '简体中文' },
+            { value: 'en', label: 'English' }
+          ]}
+        />
 
-          <h3 className="setting-subtitle">{t('全文翻译')}</h3>
-          <p className="setting-hint">
-            {t(
-              '开启后，界面语言为 English 时，站内各处的文字都会显示英文版本；英文内容由 AI 辅助翻译，可能出现偏差，不保证 100% 正确。'
-            )}
-          </p>
-          <Segmented<'off' | 'on'>
-            label={t('全文翻译')}
-            value={articleTranslate ? 'on' : 'off'}
-            onChange={(v) => setArticleTranslate(v === 'on')}
-            options={[
-              { value: 'off', label: t('关闭') },
-              { value: 'on', label: t('开启') }
-            ]}
-          />
-          <p className="setting-note">{translateStatus}</p>
-        </section>
+        <h3 className="setting-subtitle">{t('全文翻译')}</h3>
+        <p className="setting-hint">
+          {t(
+            '开启后，界面语言为 English 时，站内各处的文字都会显示英文版本；英文内容由 AI 辅助翻译，可能出现偏差，不保证 100% 正确。'
+          )}
+        </p>
+        <Segmented<'off' | 'on'>
+          label={t('全文翻译')}
+          value={articleTranslate ? 'on' : 'off'}
+          onChange={(v) => setArticleTranslate(v === 'on')}
+          options={[
+            { value: 'off', label: t('关闭') },
+            { value: 'on', label: t('开启') }
+          ]}
+        />
+        <p className="setting-note">{translateStatus}</p>
+      </Panel>
 
-        <section className="setting-group">
-          <h2 className="setting-title">{t('主题')}</h2>
-          <p className="setting-hint">{t('选择深色、浅色或跟随系统外观，与顶栏的切换按钮保持一致。')}</p>
-          <Segmented<ThemeMode>
-            label={t('主题')}
-            value={themeMode}
-            onChange={setThemeMode}
-            options={[
-              { value: 'dark', label: t('深色') },
-              { value: 'light', label: t('浅色') },
-              { value: 'system', label: t('跟随系统') }
-            ]}
-          />
-        </section>
+      <Panel title={t('主题')}>
+        <p className="setting-hint">{t('选择深色、浅色或跟随系统外观，与顶栏的切换按钮保持一致。')}</p>
+        <Segmented<ThemeMode>
+          label={t('主题')}
+          value={themeMode}
+          onChange={setThemeMode}
+          options={[
+            { value: 'dark', label: t('深色') },
+            { value: 'light', label: t('浅色') },
+            { value: 'system', label: t('跟随系统') }
+          ]}
+        />
+      </Panel>
 
-        <section className="setting-group">
-          <h2 className="setting-title">{t('Cookie 提示')}</h2>
-          <p className="setting-hint">{t('本站不设追踪型 Cookie，只在本机记住你的选择。')}</p>
-          <Segmented<'ask' | 'skip'>
-            label={t('Cookie 提示')}
-            value={cookieSkip ? 'skip' : 'ask'}
-            onChange={(v) => setCookieSkip(v === 'skip')}
-            options={[
-              { value: 'ask', label: t('每次询问') },
-              { value: 'skip', label: t('不再提示') }
-            ]}
-          />
-        </section>
+      <Panel title={t('Cookie 提示')}>
+        <p className="setting-hint">{t('本站不设追踪型 Cookie，只在本机记住你的选择。')}</p>
+        <Segmented<'ask' | 'skip'>
+          label={t('Cookie 提示')}
+          value={cookieSkip ? 'skip' : 'ask'}
+          onChange={(v) => setCookieSkip(v === 'skip')}
+          options={[
+            { value: 'ask', label: t('每次询问') },
+            { value: 'skip', label: t('不再提示') }
+          ]}
+        />
+      </Panel>
 
-        <p className="setting-note">{t('设置保存在本机浏览器，不会上传。')}</p>
-      </article>
+      <p className="setting-note">{t('设置保存在本机浏览器，不会上传。')}</p>
     </main>
   );
 }

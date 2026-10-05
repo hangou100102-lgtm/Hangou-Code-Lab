@@ -1,6 +1,7 @@
 import { useSiteNav } from '../context/SiteNav';
 import { useT } from '../context/Prefs';
 import { En, TranslateNote, Zh } from '../components/LangVariant';
+import { Panel } from '../components/Panel';
 import { useSearch } from '../hooks/useSearch';
 
 interface Friend {
@@ -55,66 +56,64 @@ export default function Friends() {
 
   return (
     <main className="post-main container">
-      <article>
-        <header className="post-header">
-          <h1>{t('友情链接')}</h1>
-          <div className="post-meta">
-            <span className="tags">
-              <span className="tag">{t('友链')}</span>
-            </span>
-          </div>
-        </header>
-
-        <div className="article-body">
-          <Zh>
-            <p>
-              这里是一些我常逛、也值得推荐的站点。想交换友链的话，可以通过
-              <a
-                href="#/posts/about"
-                onClick={(e) => {
-                  e.preventDefault();
-                  go('/posts/about');
-                }}
-              >
-                关于我
-              </a>
-              页面的邮箱联系我。
-            </p>
-          </Zh>
-          <TranslateNote />
-          <En>
-            <p>
-              Here are some sites I visit often and would recommend. If you'd like to swap links,
-              you can reach me at the email address on my{' '}
-              <a
-                href="#/posts/about"
-                onClick={(e) => {
-                  e.preventDefault();
-                  go('/posts/about');
-                }}
-              >
-                About me
-              </a>{' '}
-              page.
-            </p>
-          </En>
+      <Panel className="panel-title" label={t('友情链接')}>
+        <h1>{t('友情链接')}</h1>
+        <div className="post-meta">
+          <span className="tags">
+            <span className="tag">{t('友链')}</span>
+          </span>
         </div>
+      </Panel>
 
-        <div className="friend-search-wrap">
-          <input
-            type="search"
-            className="search-input"
-            placeholder={t('搜索友链名称、简介或网址…')}
-            autoComplete="off"
-            aria-label={t('搜索友链')}
-            value={search.value}
-            onChange={search.onChange}
-            onCompositionStart={search.onCompositionStart}
-            onCompositionEnd={search.onCompositionEnd}
-          />
-        </div>
+      <Panel title={t('关于友链')}>
+        <Zh className="article-body">
+          <p>
+            这里是一些我常逛、也值得推荐的站点。想交换友链的话，可以通过
+            <a
+              href="#/posts/about"
+              onClick={(e) => {
+                e.preventDefault();
+                go('/posts/about');
+              }}
+            >
+              关于我
+            </a>
+            页面的邮箱联系我。
+          </p>
+        </Zh>
+        <TranslateNote />
+        <En className="article-body">
+          <p>
+            Here are some sites I visit often and would recommend. If you'd like to swap links, you
+            can reach me at the email address on my{' '}
+            <a
+              href="#/posts/about"
+              onClick={(e) => {
+                e.preventDefault();
+                go('/posts/about');
+              }}
+            >
+              About me
+            </a>{' '}
+            page.
+          </p>
+        </En>
+      </Panel>
 
-        <div className="friend-list">
+      <Panel title={t('友链列表')}>
+        <input
+          type="search"
+          className="search-input"
+          placeholder={t('搜索友链名称、简介或网址…')}
+          autoComplete="off"
+          aria-label={t('搜索友链')}
+          value={search.value}
+          onChange={search.onChange}
+          onCompositionStart={search.onCompositionStart}
+          onCompositionEnd={search.onCompositionEnd}
+        />
+
+        <div className="friend-list panel-list-inner">
           <p className="no-result" hidden={search.hasResults}>
             {t('没有找到匹配的友链，换个关键词试试？')}
           </p>
@@ -139,7 +138,7 @@ export default function Friends() {
             </a>
           ))}
         </div>
-      </article>
+      </Panel>
     </main>
   );
 }

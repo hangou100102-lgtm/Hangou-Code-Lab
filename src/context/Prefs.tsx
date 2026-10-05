@@ -102,7 +102,7 @@ export function PrefsProvider({ children }: { children: ReactNode }) {
     }
     const meta = document.querySelector('meta[name="theme-color"]');
     if (meta) {
-      meta.setAttribute('content', light ? '#f4f6fa' : '#0d0e11');
+      meta.setAttribute('content', light ? '#f5f5f5' : '#0e0e0e');
     }
   }, [themeMode]);
 
@@ -122,7 +122,7 @@ export function PrefsProvider({ children }: { children: ReactNode }) {
       }
       const meta = document.querySelector('meta[name="theme-color"]');
       if (meta) {
-        meta.setAttribute('content', light ? '#f4f6fa' : '#0d0e11');
+        meta.setAttribute('content', light ? '#f5f5f5' : '#0e0e0e');
       }
     };
     if (media.addEventListener) {

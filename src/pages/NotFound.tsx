@@ -1,5 +1,6 @@
 import { useSiteNav } from '../context/SiteNav';
 import { En, Zh } from '../components/LangVariant';
+import { Panel } from '../components/Panel';
 
 /* 找不到的路径：给一句提示和回首页的入口 */
 export default function NotFound() {
@@ -12,11 +13,11 @@ export default function NotFound() {
 
   return (
     <main className="post-main container">
-      <article>
-        <header className="post-header">
-          <h1>404</h1>
-        </header>
+      <Panel className="panel-title">
+        <h1>404</h1>
+      </Panel>
 
+      <Panel>
         <Zh>
           <p>没有找到这个页面，可能链接已经失效。可以回到首页看看。</p>
           <p>
@@ -34,7 +35,7 @@ export default function NotFound() {
             </a>
           </p>
         </En>
-      </article>
+      </Panel>
     </main>
   );
 }

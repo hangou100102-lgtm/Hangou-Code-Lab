@@ -1,5 +1,6 @@
 import { useT } from '../context/Prefs';
 import { En, TranslateNote, Zh } from '../components/LangVariant';
+import { Panel } from '../components/Panel';
 
 interface Entry {
   date: string;
@@ -83,26 +84,26 @@ export default function Changelog() {
 
   return (
     <main className="post-main container">
-      <article>
-        <header className="post-header">
-          <h1>{t('更新日志')}</h1>
-          <div className="post-meta">
-            <span className="tags">
-              <span className="tag">{t('更新日志')}</span>
-            </span>
-          </div>
-        </header>
+      <Panel className="panel-title" label={t('更新日志')}>
+        <h1>{t('更新日志')}</h1>
+        <div className="post-meta">
+          <span className="tags">
+            <span className="tag">{t('更新日志')}</span>
+          </span>
+        </div>
+      </Panel>
 
+      <TranslateNote />
+
+      <Panel title={t('更新记录')}>
         <Zh>
           <Group title="2026 年 9 月" entries={ENTRIES_ZH} />
         </Zh>
 
-        <TranslateNote />
-
         <En>
           <Group title="September 2026" entries={ENTRIES_EN} />
         </En>
-      </article>
+      </Panel>
     </main>
   );
 }

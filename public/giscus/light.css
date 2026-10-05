@@ -1,96 +1,96 @@
 /*! giscus 自定义主题 —— 浅色
  * 对齐博客站点（css/style.css）的设计语言：
  *   - 全站直角，border-radius 恒为 0
- *   - 强调色为灰阶无彩色，靠明度差区分
- *   - 按钮/卡片用 --surface 系底色，悬停提亮/压暗，不靠描边
+ *   - 强调色为纯中性灰，无任何色相，靠明度差区分
+ *   - 按钮/卡片用 --surface 系底色，悬停压暗，不靠描边
  *   - 正文次要信息用 --text-secondary
  * giscus 的 data-theme 只认内置主题名或外部 CSS 的完整 URL，因此本文件需部署后可访问。
  * 变量名沿用 giscus 内置 light 主题（Primer）约定，仅重定义取值。
  */
 main {
   /* 站点变量镜像
-     浅色：bg #f4f6fa / surface #ffffff / surface-active #e8ecf3
-           text #16181d / text-secondary #7a828f / border rgba(20,24,32,.08)
-           accent #1c1f26 */
-  --color-fg-default: #16181d;
-  --color-fg-muted: #7a828f;
-  --color-fg-subtle: #7a828f;
+     浅色：bg #f5f5f5 / surface #ffffff / surface-active #e9e9e9
+           text #161616 / text-secondary #7d7d7d / border rgba(20,20,20,.08)
+           accent #1d1d1d */
+  --color-fg-default: #161616;
+  --color-fg-muted: #7d7d7d;
+  --color-fg-subtle: #7d7d7d;
   --color-canvas-default: transparent;
   --color-canvas-overlay: #ffffff;
-  --color-canvas-inset: #f4f6fa;
+  --color-canvas-inset: #f5f5f5;
   --color-canvas-subtle: #ffffff;
-  --color-border-default: rgba(20, 24, 32, 0.08);
-  --color-border-muted: rgba(20, 24, 32, 0.08);
-  --color-neutral-muted: rgba(20, 24, 32, 0.08);
+  --color-border-default: rgba(20, 20, 20, 0.08);
+  --color-border-muted: rgba(20, 20, 20, 0.08);
+  --color-neutral-muted: rgba(20, 20, 20, 0.08);
 
-  --color-accent-fg: #1c1f26;
-  --color-accent-emphasis: #1c1f26;
-  --color-accent-muted: rgba(28, 31, 38, 0.2);
-  --color-accent-subtle: rgba(28, 31, 38, 0.07);
+  --color-accent-fg: #1d1d1d;
+  --color-accent-emphasis: #1d1d1d;
+  --color-accent-muted: rgba(29, 29, 29, 0.2);
+  --color-accent-subtle: rgba(29, 29, 29, 0.07);
 
   /* 按钮：白底 + 悬停压暗，与 .social-btn / .sponsor-action 一致 */
-  --color-btn-text: #16181d;
+  --color-btn-text: #161616;
   --color-btn-bg: #ffffff;
   --color-btn-border: transparent;
   --color-btn-shadow: 0 0 transparent;
   --color-btn-inset-shadow: 0 0 transparent;
-  --color-btn-hover-bg: #e8ecf3;
+  --color-btn-hover-bg: #e9e9e9;
   --color-btn-hover-border: transparent;
-  --color-btn-active-bg: #dfe4ee;
+  --color-btn-active-bg: #e0e0e0;
   --color-btn-active-border: transparent;
-  --color-btn-selected-bg: #e8ecf3;
-  /* 主按钮（发表评论）：灰阶强调色，浅色主题下是近黑底 + 白字 */
+  --color-btn-selected-bg: #e9e9e9;
+  /* 主按钮（发表评论）：纯中性灰强调色，浅色主题下是近黑底 + 白字 */
   --color-btn-primary-text: #ffffff;
-  --color-btn-primary-bg: #1c1f26;
+  --color-btn-primary-bg: #1d1d1d;
   --color-btn-primary-border: transparent;
   --color-btn-primary-shadow: 0 0 transparent;
   --color-btn-primary-inset-shadow: 0 0 transparent;
-  --color-btn-primary-hover-bg: #343945;
+  --color-btn-primary-hover-bg: #363636;
   --color-btn-primary-hover-border: transparent;
-  --color-btn-primary-selected-bg: #16181d;
+  --color-btn-primary-selected-bg: #161616;
   --color-btn-primary-selected-shadow: 0 0 transparent;
   --color-btn-primary-disabled-text: rgba(255, 255, 255, 0.5);
-  --color-btn-primary-disabled-bg: rgba(28, 31, 38, 0.4);
+  --color-btn-primary-disabled-bg: rgba(29, 29, 29, 0.4);
   --color-btn-primary-disabled-border: transparent;
 
-  --color-action-list-item-default-hover-bg: #e8ecf3;
-  --color-segmented-control-bg: #eceff5;
+  --color-action-list-item-default-hover-bg: #e9e9e9;
+  --color-segmented-control-bg: #ededed;
   --color-segmented-control-button-bg: #ffffff;
-  --color-segmented-control-button-selected-border: rgba(20, 24, 32, 0.22);
+  --color-segmented-control-button-selected-border: rgba(20, 20, 20, 0.22);
 
-  /* 语法高亮：去饱和度，与站点 --code-text #4a4f58 的克制观感一致 */
-  --color-prettylights-syntax-comment: #7a828f;
-  --color-prettylights-syntax-constant: #4a4f58;
-  --color-prettylights-syntax-entity: #4a4f58;
-  --color-prettylights-syntax-storage-modifier-import: #16181d;
-  --color-prettylights-syntax-entity-tag: #4a4f58;
-  --color-prettylights-syntax-keyword: #16181d;
-  --color-prettylights-syntax-string: #4a4f58;
-  --color-prettylights-syntax-variable: #4a4f58;
+  /* 语法高亮：去饱和度，与站点 --code-text #4d4d4d 的克制观感一致 */
+  --color-prettylights-syntax-comment: #7d7d7d;
+  --color-prettylights-syntax-constant: #4d4d4d;
+  --color-prettylights-syntax-entity: #4d4d4d;
+  --color-prettylights-syntax-storage-modifier-import: #161616;
+  --color-prettylights-syntax-entity-tag: #4d4d4d;
+  --color-prettylights-syntax-keyword: #161616;
+  --color-prettylights-syntax-string: #4d4d4d;
+  --color-prettylights-syntax-variable: #4d4d4d;
   --color-prettylights-syntax-brackethighlighter-unmatched: #d92d4a;
-  --color-prettylights-syntax-invalid-illegal-text: #16181d;
+  --color-prettylights-syntax-invalid-illegal-text: #161616;
   --color-prettylights-syntax-invalid-illegal-bg: rgba(217, 45, 74, 0.14);
-  --color-prettylights-syntax-carriage-return-text: #16181d;
-  --color-prettylights-syntax-carriage-return-bg: rgba(20, 24, 32, 0.12);
-  --color-prettylights-syntax-string-regexp: #7a828f;
-  --color-prettylights-syntax-markup-list: #4a4f58;
-  --color-prettylights-syntax-markup-heading: #16181d;
-  --color-prettylights-syntax-markup-italic: #4a4f58;
-  --color-prettylights-syntax-markup-bold: #16181d;
-  --color-prettylights-syntax-markup-deleted-text: #16181d;
+  --color-prettylights-syntax-carriage-return-text: #161616;
+  --color-prettylights-syntax-carriage-return-bg: rgba(20, 20, 20, 0.12);
+  --color-prettylights-syntax-string-regexp: #7d7d7d;
+  --color-prettylights-syntax-markup-list: #4d4d4d;
+  --color-prettylights-syntax-markup-heading: #161616;
+  --color-prettylights-syntax-markup-italic: #4d4d4d;
+  --color-prettylights-syntax-markup-bold: #161616;
+  --color-prettylights-syntax-markup-deleted-text: #161616;
   --color-prettylights-syntax-markup-deleted-bg: rgba(217, 45, 74, 0.12);
-  --color-prettylights-syntax-markup-inserted-text: #16181d;
-  --color-prettylights-syntax-markup-inserted-bg: rgba(20, 24, 32, 0.08);
-  --color-prettylights-syntax-markup-changed-text: #4a4f58;
-  --color-prettylights-syntax-markup-changed-bg: rgba(20, 24, 32, 0.08);
-  --color-prettylights-syntax-markup-ignored-text: #7a828f;
-  --color-prettylights-syntax-markup-ignored-bg: rgba(20, 24, 32, 0.06);
-  --color-prettylights-syntax-meta-diff-range: #7a828f;
-  --color-prettylights-syntax-brackethighlighter-angle: #7a828f;
-  --color-prettylights-syntax-sublimelinter-gutter-mark: #7a828f;
-  --color-prettylights-syntax-constant-other-reference-link: #4a4f58;
+  --color-prettylights-syntax-markup-inserted-text: #161616;
+  --color-prettylights-syntax-markup-inserted-bg: rgba(20, 20, 20, 0.08);
+  --color-prettylights-syntax-markup-changed-text: #4d4d4d;
+  --color-prettylights-syntax-markup-changed-bg: rgba(20, 20, 20, 0.08);
+  --color-prettylights-syntax-markup-ignored-text: #7d7d7d;
+  --color-prettylights-syntax-markup-ignored-bg: rgba(20, 20, 20, 0.06);
+  --color-prettylights-syntax-meta-diff-range: #7d7d7d;
+  --color-prettylights-syntax-brackethighlighter-angle: #7d7d7d;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #7d7d7d;
+  --color-prettylights-syntax-constant-other-reference-link: #4d4d4d;
 
-  --color-success-fg: #4a4f58;
+  --color-success-fg: #4d4d4d;
   --color-attention-fg: #b45309;
   --color-attention-muted: rgba(180, 83, 9, 0.24);
   --color-attention-subtle: rgba(180, 83, 9, 0.1);
@@ -98,8 +98,8 @@ main {
   --color-danger-muted: rgba(217, 45, 74, 0.24);
   --color-danger-subtle: rgba(217, 45, 74, 0.1);
   --color-primer-shadow-inset: 0 0 transparent;
-  --color-scale-gray-7: #e8ecf3;
-  --color-scale-blue-8: #dfe4ee;
+  --color-scale-gray-7: #e9e9e9;
+  --color-scale-blue-8: #e0e0e0;
   --color-social-reaction-bg-hover: var(--color-scale-gray-7);
   --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-8);
 
@@ -118,33 +118,34 @@ main *::after {
   border-radius: 0 !important;
 }
 
-/* 评论卡片：用站点 --surface 底 + 悬停压暗，不用描边 */
+/* 评论卡片：与站点评论区一致，透明底、不用描边，靠悬停压暗区分 */
 main .gsc-comment > div,
 main .gsc-reply > div {
-  background-color: #ffffff !important;
+  background-color: transparent !important;
   border-color: transparent !important;
   transition: background-color 0.22s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 main .gsc-comment > div:hover,
 main .gsc-reply > div:hover {
-  background-color: #e8ecf3 !important;
+  background-color: #ffffff !important;
 }
 
-/* 输入框：白底 + 细描边，聚焦用灰阶描边 */
+/* 输入框：与站点 --bg-soft 一致，细描边，聚焦换成灰阶强调描边 */
 main .gsc-comment-box-textarea,
 main .gsc-reply-box textarea,
 main .gsc-comment-box textarea {
-  background-color: #ffffff !important;
-  border-color: rgba(20, 24, 32, 0.08) !important;
-  color: #16181d !important;
+  background-color: #ededed !important;
+  border-color: rgba(20, 20, 20, 0.08) !important;
+  color: #161616 !important;
   box-shadow: none !important;
 }
 
 main .gsc-comment-box-textarea:focus,
 main .gsc-reply-box textarea:focus,
 main .gsc-comment-box textarea:focus {
-  border-color: var(--color-accent-muted) !important;
+  background-color: #ffffff !important;
+  border-color: #1d1d1d !important;
   outline: none !important;
   box-shadow: none !important;
 }
@@ -164,11 +165,11 @@ main .gsc-reactions-button,
 main .gsc-reaction {
   background-color: #ffffff !important;
   border-color: transparent !important;
-  color: #7a828f !important;
+  color: #7d7d7d !important;
 }
 
 main .gsc-reactions-button:hover,
 main .gsc-reaction:hover {
-  background-color: #e8ecf3 !important;
-  color: #16181d !important;
+  background-color: #e9e9e9 !important;
+  color: #161616 !important;
 }

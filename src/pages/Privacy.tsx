@@ -1,6 +1,7 @@
 import { useT } from '../context/Prefs';
 import { useSiteNav } from '../context/SiteNav';
 import { En, TranslateNote, Zh } from '../components/LangVariant';
+import { Panel } from '../components/Panel';
 
 export default function Privacy() {
   const t = useT();
@@ -13,17 +14,19 @@ export default function Privacy() {
 
   return (
     <main className="post-main container">
-      <article>
-        <header className="post-header">
-          <h1>{t('隐私政策')}</h1>
-          <div className="post-meta">
-            <span className="tags">
-              <span className="tag">{t('隐私政策')}</span>
-            </span>
-          </div>
-        </header>
+      <Panel className="panel-title" label={t('隐私政策')}>
+        <h1>{t('隐私政策')}</h1>
+        <div className="post-meta">
+          <span className="tags">
+            <span className="tag">{t('隐私政策')}</span>
+          </span>
+        </div>
+      </Panel>
 
-        <Zh>
+      <TranslateNote />
+
+      <Panel title={t('隐私说明')} className="panel-article">
+        <Zh className="article-body">
           <p>最后更新：2026-09-26</p>
 
           <h2>一句话版本</h2>
@@ -97,9 +100,7 @@ export default function Privacy() {
           </p>
         </Zh>
 
-        <TranslateNote />
-
-        <En>
+        <En className="article-body">
           <p>Last updated: 2026-09-26</p>
 
           <h2>In one sentence</h2>
@@ -188,7 +189,7 @@ export default function Privacy() {
             .
           </p>
         </En>
-      </article>
+      </Panel>
     </main>
   );
 }

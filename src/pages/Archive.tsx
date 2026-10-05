@@ -1,6 +1,7 @@
 import { useT } from '../context/Prefs';
 import { useSiteNav } from '../context/SiteNav';
 import { En, TranslateNote, Zh } from '../components/LangVariant';
+import { Panel } from '../components/Panel';
 
 export default function Archive() {
   const t = useT();
@@ -13,16 +14,18 @@ export default function Archive() {
 
   return (
     <main className="post-main container">
-      <article>
-        <header className="post-header">
-          <h1>{t('归档')}</h1>
-          <div className="post-meta">
-            <span className="tags">
-              <span className="tag">{t('归档')}</span>
-            </span>
-          </div>
-        </header>
+      <Panel className="panel-title" label={t('归档')}>
+        <h1>{t('归档')}</h1>
+        <div className="post-meta">
+          <span className="tags">
+            <span className="tag">{t('归档')}</span>
+          </span>
+        </div>
+      </Panel>
 
+      <TranslateNote />
+
+      <Panel title={t('全部内容')}>
         <Zh>
           <div className="archive-group">
             <h2>2026</h2>
@@ -37,8 +40,6 @@ export default function Archive() {
           </div>
         </Zh>
 
-        <TranslateNote />
-
         <En>
           <div className="archive-group">
             <h2>2026</h2>
@@ -52,7 +53,7 @@ export default function Archive() {
             </ul>
           </div>
         </En>
-      </article>
+      </Panel>
     </main>
   );
 }

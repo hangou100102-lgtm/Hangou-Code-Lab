@@ -26,8 +26,16 @@ export function PostItem({ post }: { post: Post }) {
     go(post.href);
   };
 
+  /* 整卡可点：内层链接自行 stopPropagation，避免重复跳转 */
+  const navCard = (e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).closest('a')) {
+      return;
+    }
+    go(post.href);
+  };
+
   return (
-    <article className="post-item">
+    <article className="post-item" onClick={navCard}>
       <a
         className="post-thumb-link"
         href={'#' + post.href}
