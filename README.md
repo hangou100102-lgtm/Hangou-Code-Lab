@@ -1,10 +1,10 @@
-# Hangou Code Lab
+# Hangou
 
 Hangou 的个人博客，记录学习、代码与生活。
 
 > 在线访问：**<https://blog.hangou.top>**
 
-一个纯 HTML / CSS / JS 的静态博客站点，无需构建工具、数据库或后端服务，一个静态目录即可部署上线。
+基于 **Vite 5 + React 18 + TypeScript** 的静态博客，使用 HashRouter 做路由，构建产物为纯静态文件，无需数据库或后端服务。
 
 ## 特性
 
@@ -24,83 +24,44 @@ Hangou 的个人博客，记录学习、代码与生活。
 
 ```
 Myblog/
-├── index.html                 # 首页：博客简介、搜索和文章列表
-├── archive/
-│   └── index.html             # 文章归档页
-├── friends/
-│   └── index.html             # 友链页
-├── privacy/
-│   └── index.html             # 隐私政策页
-├── posts/
-│   └── about/
-│       └── index.html         # 关于我文章页
+├── index.html                 # Vite 入口（含主题防闪内联脚本）
+├── src/
+│   ├── main.tsx               # 挂载 React 应用（HashRouter）
+│   ├── App.tsx                # 路由与全局 Provider 组装
+│   ├── pages/                 # 9 个页面组件
+│   ├── components/            # 顶栏、页脚、抽屉、评论、灯箱等
+│   ├── context/               # 主题/语言偏好、导航方向过渡
+│   ├── data/posts.ts          # 文章列表数据
+│   ├── hooks/useSearch.ts     # 搜索（含中文输入法处理）
+│   └── i18n/phrases.ts        # 中英短语映射
 ├── css/
 │   └── style.css              # 全局样式、主题变量和响应式规则
-├── js/
-│   ├── transition.js          # 站内跳转的翻页过渡动画
-│   ├── menu.js                # 移动端导航抽屉与焦点管理
-│   ├── search.js              # 首页文章搜索
-│   ├── theme.js               # 深浅主题切换与偏好持久化
-│   ├── cookie-tip.js          # 居中 Cookie 确认弹窗，确认后不再出现
-│   ├── comments.js            # 文章评论（giscus / GitHub Discussions），跟随站点主题
-│   └── lightbox.js             # 文章图片预览与下载
-├── images/
-│   ├── avatar.png             # 头像和 favicon
-│   ├── Image_1764458904822.jpg # 首页文章配图
-│   └── placeholder.svg         # 预留占位资源
+├── public/
+│   ├── images/                # 头像、配图、占位资源（原样拷贝到产物根）
+│   └── giscus/                # giscus 自定义主题（dark.css / light.css）
+├── .github/workflows/deploy.yml # 推送到 main 后自动构建并发布到 Pages
 ├── CNAME                      # GitHub Pages 自定义域名
 └── README.md
 ```
 
 ## 本地运行
 
-这是一个纯静态站点，可以直接打开，也可以使用本地服务器预览。
-
-**直接打开**
-
-双击 `index.html` 即可浏览。主题切换、搜索和导航等功能可以直接使用；使用本地服务器更接近线上环境。
-
-**使用本地服务器**
-
-任选一种静态服务器：
+需要 Node.js 20 及以上。
 
 ```bash
-# Python
-python -m http.server 8080
-
-# Node.js
-npx serve .
+npm install      # 安装依赖
+npm run dev      # 启动开发服务器，默认 http://localhost:5173
+npm run build    # 类型检查并构建到 dist/
+npm run preview  # 本地预览构建产物
 ```
 
-然后访问 <http://localhost:8080>。
+路由使用 HashRouter，页面地址形如 `http://localhost:5173/#/posts`。
 
 ## 新增文章
 
-1. 在 `posts/` 下新建文章目录，例如 `posts/my-new-post/`；
-2. 在目录中创建 `index.html`，可参考 `posts/about/index.html` 的页面结构；
-3. 根据新文章所在目录调整 CSS、图片和 JavaScript 的相对路径；
-4. 在根目录 `index.html` 的 `.post-list` 中添加文章条目；
-5. 在 `archive/index.html` 中添加对应的归档记录。
-
-首页文章条目示例：
-
-```html
-<article class="post-item">
-  <a class="post-thumb-link" href="posts/my-new-post/" tabindex="-1" aria-hidden="true">
-    <img class="post-thumb" src="images/article-cover.jpg" alt="文章配图" loading="lazy" />
-  </a>
-  <div class="post-body">
-    <h2><a href="posts/my-new-post/">文章标题</a></h2>
-    <div class="post-meta">
-      <span class="date">2026-09-05</span>
-      <span class="tag">标签</span>
-    </div>
-    <p class="post-excerpt">文章摘要。</p>
-  </div>
-</article>
-```
-
-新文章按时间倒序放在首页列表上方，并同步更新归档页。
+1. 在 `src/data/posts.ts` 的文章数组中新增一条记录（标题、日期、标签、摘要、缩略图等）；
+2. 若需要独立正文页，在 `src/pages/` 下新建组件，并在 `src/App.tsx` 中注册路由；
+3. 在归档页 `src/pages/Archive.tsx` 同步补充归档记录。
 
 ## 修改主题颜色
 
@@ -111,28 +72,15 @@ npx serve .
 
 修改 `--accent`、`--bg`、`--surface` 等变量即可调整整体配色。主题偏好保存在浏览器的 `localStorage` 中，键名为 `hcl-theme`，取值为 `dark` / `light` / `system`（`system` 表示跟随系统外观）。
 
-## 修改导航和赞助链接
-
-四个页面都包含统一的桌面导航和移动端抽屉：
-
-- `index.html`
-- `posts/about/index.html`
-- `friends/index.html`
-- `archive/index.html`
-
-修改导航时需要同步更新这四个页面。赞助按钮使用订单链接，顶栏和移动端抽屉中的链接也需要一起更新。
-
 ## 部署
 
-静态站点可以部署到任意静态托管平台。使用 GitHub Pages 时：
+推送到 `main` 分支后，[.github/workflows/deploy.yml](.github/workflows/deploy.yml) 会自动安装依赖、构建并把 `dist/` 发布到 GitHub Pages。
 
-1. 将仓库推送到 GitHub 的 `main` 分支；
-2. 在仓库的 Settings → Pages 中选择分支部署；
-3. 将自定义域名写入根目录的 `CNAME` 文件；
-4. 在 DNS 服务商处将域名解析到对应的 GitHub Pages 地址；
-5. 等待 GitHub Pages 完成部署后访问站点。
+首次启用需要在 GitHub 仓库 **Settings → Pages → Source** 选择 **GitHub Actions**。
 
-当前自定义域名为 `blog.hangou.top`。
+自定义域名写在根目录的 `CNAME` 文件（`blog.hangou.top`），并在 DNS 服务商处解析到 GitHub Pages 地址。
+
+> giscus 评论的主题 CSS（`public/giscus/*.css`）需要线上可访问的完整 URL，因此本地 `npm run dev` 下会回退使用 giscus 内置主题，构建产物才启用站点风格主题。
 
 ## License
 

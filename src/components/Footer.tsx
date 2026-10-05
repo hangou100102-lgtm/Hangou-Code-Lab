@@ -1,0 +1,50 @@
+import { useT } from '../context/Prefs';
+import { IconAifadian, IconBilibili, IconGithub } from './icons';
+
+/* 站点页脚：社交入口 + 版权 */
+export function Footer() {
+  const t = useT();
+  return (
+    <footer className="site-footer">
+      <div className="container">
+        <div className="footer-label">{t('欢迎在这些地方找到我：')}</div>
+        <div className="footer-social">
+          <a
+            className="social-btn"
+            href="https://space.bilibili.com/1937945301"
+            target="_blank"
+            rel="noopener"
+            aria-label={t('B站主页')}
+            title={t('B站主页')}
+          >
+            <IconBilibili />
+            <span>{t('哔哩哔哩')}</span>
+          </a>
+          <a
+            className="social-btn"
+            href="https://github.com/hangou100102-lgtm"
+            target="_blank"
+            rel="noopener"
+            aria-label={t('GitHub主页')}
+            title={t('GitHub主页')}
+          >
+            <IconGithub />
+            <span>GitHub</span>
+          </a>
+          <a
+            className="social-btn"
+            href="https://ifdian.net/a/hangou100102"
+            target="_blank"
+            rel="noopener"
+            aria-label={t('爱发电主页')}
+            title={t('爱发电主页')}
+          >
+            <IconAifadian />
+            <span>{t('爱发电')}</span>
+          </a>
+        </div>
+        <p>{t('© 2026 Hangou · 保留所有权利')}</p>
+      </div>
+    </footer>
+  );
+}

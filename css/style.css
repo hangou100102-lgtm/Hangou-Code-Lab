@@ -35,15 +35,15 @@ img {
   --border: rgba(255, 255, 255, 0.08);
   --border-strong: rgba(255, 255, 255, 0.14);
 
-  /* 强调色：低饱和的蓝紫，避免与底色对比过强 */
-  --accent: #6183b8;
-  --accent-soft: rgba(97, 131, 184, 0.13);
-  --accent-soft-active: rgba(97, 131, 184, 0.2);
-  --accent-glow: rgba(97, 131, 184, 0.18);
-  --accent-line: rgba(97, 131, 184, 0.26);
-  --accent-border: rgba(97, 131, 184, 0.42);
+  /* 强调色：纯灰阶无彩色。深色主题用近白，靠明度差而非色相拉开层次 */
+  --accent: #e8eaee;
+  --accent-soft: rgba(232, 234, 238, 0.1);
+  --accent-soft-active: rgba(232, 234, 238, 0.16);
+  --accent-glow: rgba(232, 234, 238, 0.14);
+  --accent-line: rgba(232, 234, 238, 0.22);
+  --accent-border: rgba(232, 234, 238, 0.38);
 
-  --code-text: #9db4d4;
+  --code-text: #c3c9d4;
   --pre-bg: #101218;
   --pre-text: #d5dae3;
   --header-bg: rgba(13, 14, 17, 0.62);
@@ -93,15 +93,15 @@ img {
   --border: rgba(20, 24, 32, 0.08);
   --border-strong: rgba(20, 24, 32, 0.14);
 
-  /* 强调色：低饱和的蓝紫，避免与底色对比过强 */
-  --accent: #4a78cf;
-  --accent-soft: rgba(74, 120, 207, 0.1);
-  --accent-soft-active: rgba(74, 120, 207, 0.18);
-  --accent-glow: rgba(74, 120, 207, 0.15);
-  --accent-line: rgba(74, 120, 207, 0.24);
-  --accent-border: rgba(74, 120, 207, 0.4);
+  /* 强调色：纯灰阶无彩色。浅色主题用近黑，靠明度差而非色相拉开层次 */
+  --accent: #1c1f26;
+  --accent-soft: rgba(28, 31, 38, 0.07);
+  --accent-soft-active: rgba(28, 31, 38, 0.13);
+  --accent-glow: rgba(28, 31, 38, 0.12);
+  --accent-line: rgba(28, 31, 38, 0.2);
+  --accent-border: rgba(28, 31, 38, 0.36);
 
-  --code-text: #3d63b0;
+  --code-text: #4a4f58;
   --pre-bg: #14161c;
   --pre-text: #d8dde5;
   --header-bg: rgba(244, 246, 250, 0.66);
@@ -583,26 +583,20 @@ a:hover {
   z-index: 10;
 }
 
-/* ============ 顶栏及其下方的渐进模糊 ============ */
-/* 只做一层，从上到下覆盖 0~200px，底色与模糊一起渐隐到 200px 归零。
-   因为整段是同一个图层、同一组 backdrop-filter，模糊采样区域完全连续，
-   不存在两个模糊内核拼接的断层。
+/* ============ 顶栏遮罩模糊 ============ */
+/* 只覆盖导航条自身高度（64px，与 .nav 一致），不做向下渐进。
+   底色与模糊一起截止在导航条底边，形成清晰的一条分隔线。
    必须挂在 html 上，不能放进 .site-header：
    元素一旦有 backdrop-filter，就会成为其后代图层的「背景根」，
    挂在顶栏内部的图层只能采样到顶栏自身的内容，模糊不会生效。
-   注意只能做一层 —— 多叠一层饱和度会连乘（1.8² ≈ 3.24），颜色就对不上了。
-
-   遮罩必须从 0% 就开始缓慢下降，不能写「前面一段恒定不变、之后才开始降」：
-   那样虽然数值连续，但斜率在转折处从 0 突变，人眼仍会读出一条边界。
-   现在 0~20% 的斜率很小（几乎不动），之后逐段加速再收尾，
-   整条曲线没有任何平坦段和硬拐点。 */
+   注意只能做一层 —— 多叠一层饱和度会连乘（1.8² ≈ 3.24），颜色就对不上了。 */
 html::before {
   content: '';
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
-  height: 200px;
+  height: 64px;
   /* 必须显式抬到正文之上：正文带上 transform（翻页动画）后会创建层叠上下文、
      被提升到定位元素那一层，光靠「fixed 比 static 高」已经压不住了 */
   z-index: 5;
@@ -610,28 +604,7 @@ html::before {
   background-color: var(--header-bg);
   backdrop-filter: blur(17px) saturate(1.8);
   -webkit-backdrop-filter: blur(17px) saturate(1.8);
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.992) 20%,
-    rgba(0, 0, 0, 0.975) 32%,
-    rgba(0, 0, 0, 0.87) 45%,
-    rgba(0, 0, 0, 0.68) 58%,
-    rgba(0, 0, 0, 0.42) 72%,
-    rgba(0, 0, 0, 0.19) 85%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.992) 20%,
-    rgba(0, 0, 0, 0.975) 32%,
-    rgba(0, 0, 0, 0.87) 45%,
-    rgba(0, 0, 0, 0.68) 58%,
-    rgba(0, 0, 0, 0.42) 72%,
-    rgba(0, 0, 0, 0.19) 85%,
-    transparent 100%
-  );
+  border-bottom: 1px solid var(--border);
 }
 
 .nav {
@@ -1152,7 +1125,7 @@ body.nav-open {
 
 .tag.tag-pin {
   background: rgba(245, 158, 11, 0.16);
-  border-color: rgba(245, 158, 11, 0.3);
+  border-color: transparent;
   color: #f59e0b;
 }
 
@@ -1708,8 +1681,8 @@ body.nav-open {
   /* 固定深色系配色：浮窗遮罩恒为深色，不随站点主题变化 */
   border: 1px solid transparent;
   border-radius: var(--r-btn);
-  background: rgba(97, 131, 184, 0.2);
-  color: #bccadf;
+  background: rgba(255, 255, 255, 0.16);
+  color: #e4e7ec;
   font-size: 0.92rem;
   font-weight: 600;
   cursor: pointer;
@@ -1717,7 +1690,7 @@ body.nav-open {
 }
 
 .lb-download:hover {
-  background-color: rgba(97, 131, 184, 0.34);
+  background-color: rgba(255, 255, 255, 0.28);
   text-decoration: none;
 }
 

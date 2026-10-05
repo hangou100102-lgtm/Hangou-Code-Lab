@@ -1,0 +1,91 @@
+import type { Post } from '../data/posts';
+import { usePrefs } from '../context/Prefs';
+import { useSiteNav } from '../context/SiteNav';
+import { En, Zh } from './LangVariant';
+
+/* 摘要截断：中文超过 20 字、英文超过 80 个字符时截断并加省略号，
+   完整文本放进 title 便于悬停查看。 */
+function clamp(text: string, limit: number): { text: string; title?: string } {
+  const t = text.trim();
+  if (t.length > limit) {
+    return { text: t.slice(0, limit) + '…', title: t };
+  }
+  return { text: t };
+}
+
+/* 单条文章卡片：中英两份内容靠 data-lang-variant 切换显隐 */
+export function PostItem({ post }: { post: Post }) {
+  const { lang, articleTranslate } = usePrefs();
+  const { go } = useSiteNav();
+  const zh = clamp(post.excerptZh, 20);
+  const en = clamp(post.excerptEn, 80);
+  const showEn = articleTranslate && lang === 'en';
+
+  const nav = (e: React.MouseEvent) => {
+    e.preventDefault();
+    go(post.href);
+  };
+
+  return (
+    <article className="post-item">
+      <a
+        className="post-thumb-link"
+        href={'#' + post.href}
+        tabIndex={-1}
+        aria-hidden="true"
+        onClick={nav}
+      >
+        <img
+          className="post-thumb"
+          src={post.thumb}
+          alt={showEn ? post.altEn : post.altZh}
+          loading="lazy"
+          width={152}
+          height={96}
+        />
+      </a>
+      <div className="post-body">
+        <Zh>
+          <h2>
+            <a href={'#' + post.href} onClick={nav}>
+              {post.titleZh}
+            </a>
+          </h2>
+          <div className="post-meta">
+            <span className="date">{post.date}</span>
+            <span className="tags">
+              {post.tagsZh.map((tag) => (
+                <span key={tag.label} className={`tag${tag.pin ? ' tag-pin' : ''}`}>
+                  {tag.label}
+                </span>
+              ))}
+            </span>
+          </div>
+          <p className="post-excerpt" title={zh.title}>
+            {zh.text}
+          </p>
+        </Zh>
+        <En>
+          <h2>
+            <a href={'#' + post.href} onClick={nav}>
+              {post.titleEn}
+            </a>
+          </h2>
+          <div className="post-meta">
+            <span className="date">{post.date}</span>
+            <span className="tags">
+              {post.tagsEn.map((tag) => (
+                <span key={tag.label} className={`tag${tag.pin ? ' tag-pin' : ''}`}>
+                  {tag.label}
+                </span>
+              ))}
+            </span>
+          </div>
+          <p className="post-excerpt" title={en.title}>
+            {en.text}
+          </p>
+        </En>
+      </div>
+    </article>
+  );
+}
