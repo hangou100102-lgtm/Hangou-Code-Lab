@@ -147,3 +147,23 @@ export function IconGithub() {
     </svg>
   );
 }
+
+/* 置顶标签前的图钉图标 */
+export function IconPin() {
+  return (
+    <svg className="icon-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 17v5" />
+      <path d="M9 3h6l-1 6 3 3v2H7v-2l3-3z" />
+    </svg>
+  );
+}
+
+/* 文章日期前的时间图标 */
+export function IconClockSmall() {
+  return (
+    <svg className="icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </svg>
+  );
+}

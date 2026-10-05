@@ -18,7 +18,7 @@ export default function Privacy() {
         <h1>{t('隐私政策')}</h1>
         <div className="post-meta">
           <span className="tags">
-            <span className="tag">{t('隐私政策')}</span>
+            <span className="tag">{'#'}{t('隐私政策')}</span>
           </span>
         </div>
       </Panel>

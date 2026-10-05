@@ -2,6 +2,7 @@ import { useT } from '../context/Prefs';
 import { En, TranslateNote, Zh } from '../components/LangVariant';
 import { Panel } from '../components/Panel';
 import { Giscus } from '../components/Giscus';
+import { IconClockSmall, IconPin } from '../components/icons';
 
 /* 联系方式：常用邮箱带「常用」标记 */
 const MAILS_ZH = [
@@ -30,10 +31,22 @@ export default function About() {
     <main className="post-main container">
       <Panel className="panel-title" label={t('关于我')}>
         <h1>{t('关于我')}</h1>
-        <div className="post-meta">
+        <div className="post-meta post-meta-dates">
+          <Zh>
+            <span className="date">
+              <IconClockSmall />
+              发布 2026-09-04 · 修改 2026-09-06
+            </span>
+          </Zh>
+          <En>
+            <span className="date">
+              <IconClockSmall />
+              Published 2026-09-04 · Updated 2026-09-06
+            </span>
+          </En>
           <span className="tags">
-            <span className="tag tag-pin">{t('置顶')}</span>
-            <span className="tag">{t('关于')}</span>
+            <span className="tag tag-pin"><IconPin />{t('置顶')}</span>
+            <span className="tag">{'#'}{t('关于')}</span>
           </span>
         </div>
       </Panel>
@@ -150,24 +163,6 @@ export default function About() {
           <p>
             Thank you for taking the time to get to know me. This is where I'll keep noting down what
             I read, what I write, and what I'm still mulling over. See you next time.
-          </p>
-        </En>
-      </Panel>
-
-      <Panel className="panel-article">
-        <Zh>
-          <p className="article-dates">
-            <span>发布 2026-09-04</span>
-            <span aria-hidden="true">·</span>
-            <span>修改 2026-09-06</span>
-          </p>
-        </Zh>
-
-        <En>
-          <p className="article-dates">
-            <span>Published 2026-09-04</span>
-            <span aria-hidden="true">·</span>
-            <span>Updated 2026-09-06</span>
           </p>
         </En>
       </Panel>

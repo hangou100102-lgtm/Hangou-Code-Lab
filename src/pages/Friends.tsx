@@ -60,7 +60,7 @@ export default function Friends() {
         <h1>{t('友情链接')}</h1>
         <div className="post-meta">
           <span className="tags">
-            <span className="tag">{t('友链')}</span>
+            <span className="tag">{'#'}{t('友链')}</span>
           </span>
         </div>
       </Panel>

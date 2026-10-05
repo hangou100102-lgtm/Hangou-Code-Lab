@@ -65,8 +65,8 @@ img {
   /* 圆角为 0 时超椭圆曲线不生效，保留变量仅为兼容旧引用 */
   --corner: round;
 
-  --max-width: 720px;
-  --max-wide: 1080px;
+  --max-width: 1024px;
+  --max-wide: 1024px;
   --font-display: "MiSans", -apple-system, BlinkMacSystemFont, "Segoe UI",
     "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", sans-serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
@@ -111,6 +111,8 @@ img {
 }
 
 html {
+  /* 整体缩放：根字号取默认 16px 的 90%，所有 rem 尺寸等比缩小 10% */
+  font-size: 90%;
   scroll-behavior: smooth;
 }
 
@@ -361,7 +363,7 @@ a:hover {
 .container {
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 32px;
 }
 
 /* ============ 板块（页面内容卡片化） ============ */
@@ -424,7 +426,7 @@ a:hover {
 
 /* 首屏介绍块：欢迎语独立成板块，居中呈现 */
 .home-main {
-  padding-top: 104px;
+  padding-top: calc(6.5rem + 50px);
   padding-bottom: 56px;
 }
 
@@ -433,7 +435,7 @@ a:hover {
   background: transparent;
   border: 0;
   text-align: center;
-  margin-bottom: 28px;
+  margin-bottom: 178px;
 }
 
 .home-hero .panel-body {
@@ -442,7 +444,7 @@ a:hover {
 
 .home-hero h1 {
   font-family: var(--font-display);
-  font-size: 2.1rem;
+  font-size: 2.5rem;
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: -0.5px;
@@ -454,6 +456,30 @@ a:hover {
   font-size: 1rem;
   max-width: 560px;
   margin: 0 auto;
+}
+
+/* 首页问候语下的主按钮：直角矩形，与设置页分段控件的选中态同色
+   （实心 --accent-soft、描边 --accent-border），水平居中。 */
+.hero-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin: 36px auto 0;
+  padding: 13px 32px;
+  border: 1px solid var(--accent-border);
+  border-radius: 0;
+  background: var(--accent-soft);
+  color: var(--text);
+  font: inherit;
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.22s var(--ease), border-color 0.22s var(--ease);
+}
+
+.hero-cta:hover {
+  opacity: 0.85;
 }
 
 /* 首页问候语下的社交入口 */
@@ -478,7 +504,7 @@ a:hover {
 
 /* 内页通用：标题板块 + 内容板块的纵向排布 */
 .page-main {
-  padding-top: 104px;
+  padding-top: 6.5rem;
   padding-bottom: 72px;
 }
 
@@ -512,9 +538,22 @@ a:hover {
   margin-top: 20px;
 }
 
-/* 列表在板块内：无结果提示贴列表顶部 */
-.panel-list-inner .no-result {
-  margin: 12px 0;
+/* 文章列表：桌面端三列并排；辅助提示（无结果/翻译提示）跨满整行 */
+.panel-list-inner {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* 首页直接把卡片列表放进 panel-body：不额外留上边距 */
+.panel-body.panel-list-inner {
+  margin-top: 0;
+}
+
+.panel-list-inner > .no-result,
+.panel-list-inner > .translate-note {
+  grid-column: 1 / -1;
+  margin: 0;
 }
 
 @media (max-width: 640px) {
@@ -523,6 +562,11 @@ a:hover {
     padding-left: 18px;
     padding-right: 18px;
   }
+
+  /* 窄屏：文章列表回退为单列 */
+  .panel-list-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 /* ============ 通用卡片 ============ */
@@ -530,7 +574,7 @@ a:hover {
   background: var(--surface);
   border: 1px solid transparent;
   border-radius: var(--r-lg);
-  padding: 18px 20px;
+  padding: 8px 10px;
   margin-bottom: 18px;
 }
 
@@ -757,7 +801,8 @@ html::before {
   left: 0;
   right: 0;
   top: 0;
-  height: 64px;
+  /* 高度与 .nav 一致，用 rem 随根字号缩放（4rem = 原 64px） */
+  height: 4rem;
   /* 必须显式抬到正文之上：正文带上 transform（翻页动画）后会创建层叠上下文、
      被提升到定位元素那一层，光靠「fixed 比 static 高」已经压不住了 */
   z-index: 5;
@@ -772,12 +817,13 @@ html::before {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
-  /* 顶栏不吃 .container 的 720px 限制：品牌贴最左，按钮贴最右，
-     两边留白相等；正文仍按 720px 居中，互不影响 */
+  /* 用 rem 定义，随根字号等比缩放（4rem = 原 64px） */
+  height: 4rem;
+  /* 不吃 .container 的 1024px 宽度限制：品牌贴最左、按钮贴最右，
+     但左右内边距必须与 .container 一致，才能和正文左右边缘对齐 */
   max-width: none;
-  padding-left: max(20px, 4vw);
-  padding-right: max(20px, 4vw);
+  padding-left: 32px;
+  padding-right: 32px;
   /* 作为 .nav-links 绝对居中的参照盒 */
   position: relative;
 }
@@ -985,7 +1031,7 @@ html::before {
    两者是同一层里的相邻两块，而不是面板浮在顶栏之上。 */
 .nav-drawer-backdrop {
   position: fixed;
-  inset: 64px 0 0 0;
+  inset: 4rem 0 0 0;
   z-index: 40;
   background: rgba(8, 8, 8, 0.42);
   backdrop-filter: blur(8px);
@@ -1002,11 +1048,11 @@ html::before {
 
 .nav-drawer {
   position: fixed;
-  top: 64px;
+  top: 4rem;
   right: 0;
   bottom: 0;
   z-index: 41;
-  width: min(300px, 84vw);
+  width: min(240px, 76vw);
   background: var(--surface);
   border: 1px solid transparent;
   border-radius: var(--r-xl);
@@ -1031,6 +1077,15 @@ body.nav-open {
 
   .menu-toggle {
     display: inline-flex;
+  }
+}
+
+/* 中等屏（641–768px）：文章列表由三列回退为两列。
+   必须带上 min-width 下界，否则会覆盖 640px 断点的单列规则，
+   导致手机端仍是两列、卡片只占半宽。 */
+@media (min-width: 641px) and (max-width: 768px) {
+  .panel-list-inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -1090,7 +1145,7 @@ body.nav-open {
    左右内边距应由 .container 统一提供，这里只设上下，
    避免 padding 简写把左右清成 0，导致正文/标题与下方内容错位贴边 */
 .hero {
-  padding-top: 104px;
+  padding-top: 6.5rem;
   padding-bottom: 48px;
 }
 
@@ -1131,11 +1186,17 @@ body.nav-open {
 .search-input {
   width: 100%;
   height: 48px;
-  padding: 0 20px;
+  padding: 0 20px 0 46px;
   font: inherit;
   font-size: 0.95rem;
   color: var(--text);
-  background: var(--bg-soft);
+  /* 底色贴近面板（浅色下用近白），仅靠描边区分，避免在浅色主题里发灰发暗 */
+  background-color: var(--surface);
+  /* 左侧放大镜图标（内联 SVG，颜色 #8a8a8a 在深浅主题下均清晰） */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a8a8a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M20 20l-3.5-3.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 16px center;
+  background-size: 18px 18px;
   border: 1px solid var(--border);
   border-radius: var(--r-pill);
   outline: none;
@@ -1149,7 +1210,7 @@ body.nav-open {
 }
 
 .search-input:focus {
-  background-color: var(--surface);
+  background-color: var(--surface-hover);
   border-color: var(--accent);
 }
 
@@ -1169,15 +1230,16 @@ body.nav-open {
   padding-bottom: 56px;
 }
 
+/* 桌面端：封面在上、标题信息在下的卡片，多列并排 */
 .post-item {
   display: flex;
-  /* 预览图始终在左侧，内容在右侧，任何宽度都不上下堆叠 */
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
-  align-items: flex-start;
-  gap: 18px;
-  padding: 20px 22px;
-  margin-bottom: 18px;
+  align-items: stretch;
+  gap: 0;
+  position: relative;
+  padding: 0;
+  margin-bottom: 0;
   background: var(--surface);
   border: 1px solid transparent;
   border-radius: var(--r-lg);
@@ -1191,9 +1253,9 @@ body.nav-open {
 
 .post-item h2 {
   font-family: var(--font-display);
-  font-size: 1.24rem;
+  font-size: 1.06rem;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   line-height: 1.35;
   letter-spacing: -0.2px;
 }
@@ -1208,26 +1270,58 @@ body.nav-open {
 }
 
 .post-meta {
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   color: var(--text-secondary);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .post-meta .date {
-  margin-right: 12px;
+  margin-right: 10px;
   font-variant-numeric: tabular-nums;
 }
 
-/* 标签组：作为一个整体排列/换行，避免单个标签被拆散 */
+/* 页头标签容器：横向 flex 排布并垂直居中，避免带图标的置顶标签因基线对齐而与纯文字标签错位 */
 .post-meta .tags {
   display: inline-flex;
   flex-wrap: wrap;
-  gap: 6px;
-  vertical-align: middle;
+  align-items: center;
+  gap: 8px;
 }
 
+.post-meta .tags .tag {
+  margin-right: 0;
+}
+
+/* 标签行：位于标题上方，无卡片样式，纯文字；日期与标签同行靠右 */
+.post-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.post-tags-row .date {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  color: var(--text-secondary);
+  font-size: 0.74rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.post-tags-row .date .icon-clock {
+  width: 12px;
+  height: 12px;
+}
+
+/* 页面页头等处的标签：卡片式背景色块（全站圆角为 0） */
 .tag {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   padding: 3px 12px;
   background: var(--accent-soft);
   border: 1px solid transparent;
@@ -1236,36 +1330,65 @@ body.nav-open {
   font-size: 0.76rem;
   font-weight: 500;
   margin-right: 6px;
+  letter-spacing: 0.2px;
 }
 
-/* 状态标签（最新 / 置顶）：与普通标签同风格，仅更换颜色 */
+/* 置顶标签：琥珀色背景 */
+.tag.tag-pin {
+  background: rgba(245, 158, 11, 0.16);
+  color: #f59e0b;
+}
+
+/* 最新标签：玫红背景 */
 .tag.tag-new {
   background: rgba(244, 63, 94, 0.14);
   border-color: rgba(244, 63, 94, 0.28);
   color: #f43f5e;
 }
 
-.tag.tag-pin {
-  background: rgba(245, 158, 11, 0.16);
-  border-color: transparent;
+.tag .icon-pin {
+  width: 12px;
+  height: 12px;
+  display: block;
+  flex: 0 0 auto;
+}
+
+/* 文章卡片内的标签：无卡片式纯文字，覆盖上面的卡片样式 */
+.post-tags-row .tag {
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  color: var(--text-secondary);
+  font-size: 0.74rem;
+  margin-right: 0;
+}
+
+.post-tags-row .tag.tag-pin {
+  background: none;
   color: #f59e0b;
+}
+
+.post-tags-row .tag.tag-new {
+  background: none;
+  color: #f43f5e;
 }
 
 .post-excerpt {
   color: var(--text-secondary);
-  font-size: 0.96rem;
-  line-height: 1.6;
+  font-size: 0.86rem;
+  line-height: 1.55;
 }
 
-/* ============ 文章卡片左侧预览图 ============ */
+/* ============ 文章卡片预览图 ============ */
+/* 封面占满卡片宽度，固定高度，贴卡片上边缘 */
 .post-thumb-link {
   flex: 0 0 auto;
   display: block;
-  width: 152px;
-  height: 96px;
+  width: 100%;
+  height: 130px;
   overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: var(--r-md);
+  border: 0;
   background: var(--bg-soft);
 }
 
@@ -1280,15 +1403,26 @@ body.nav-open {
   object-fit: cover;
 }
 
+/* 文字区：封面下方，普通流式布局，内边距提供呼吸空间 */
 .post-body {
   flex: 1;
   min-width: 0;
+  padding: 14px 16px 16px;
 }
 
 /* ============ 文章页 ============ */
 .post-main {
-  padding-top: 104px;
+  padding-top: 6.5rem;
   padding-bottom: 72px;
+}
+
+/* 宽屏下加大文章右侧内边距，把正文挤窄，右侧腾出空间放目录。
+   目录宽 200px + 间距 24px = 224px，加在默认 32px 内边距之上。
+   断点与目录显示一致（1024px），避免无目录时正文白白变窄 */
+@media (min-width: 1024px) {
+  .post-main {
+    padding-right: calc(32px + 224px);
+  }
 }
 
 .post-header {
@@ -1369,6 +1503,13 @@ body.nav-open {
 
 .panel .mail-item:hover {
   background: var(--surface-active);
+}
+
+/* 卡片内的卡片：板块里嵌套的文章/邮箱/友链卡片加描边，与板块底色拉开边界 */
+.panel .post-item,
+.panel .mail-item,
+.panel .friend-item {
+  border-color: var(--border);
 }
 
 /* 面板内首个元素不留上边距（邮箱列表、搜索框等） */
@@ -1479,29 +1620,166 @@ body.nav-open {
   word-break: break-all;
 }
 
-/* 关于页：文末发布/修改日期，低调元信息行 */
-.article-dates {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  margin: 36px 0 0;
-  padding-top: 16px;
-  border-top: 1px solid var(--border);
-  color: var(--text-secondary);
-  font-size: 0.85rem;
-  font-variant-numeric: tabular-nums;
-}
-
 /* 关于页：发布/修改日期与右侧标签横向对齐 */
 .post-meta.post-meta-dates {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0 14px;
+  gap: 8px 14px;
 }
 
 .post-meta.post-meta-dates .date {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   margin-right: 0;
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.post-meta.post-meta-dates .date .icon-clock {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 auto;
+}
+
+/* 标签独占一行，换到日期下方 */
+.post-meta.post-meta-dates .tags {
+  flex-basis: 100%;
+}
+
+/* ============ 文章页目录 ============ */
+/* 窄屏：折叠为右下角悬浮按钮，点击从右侧滑出抽屉，带遮罩。
+   宽屏（≥1520px）：常驻右侧卡片，隐藏按钮与遮罩。 */
+
+/* --- 窄屏：目录抽屉 --- */
+.toc {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 60;
+  width: min(280px, 80vw);
+  height: 100vh;
+  padding: 5.5rem 20px 24px;
+  background: var(--surface);
+  box-shadow: var(--shadow-pop);
+  overflow-y: auto;
+  font-size: 0.9rem;
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 0.28s var(--ease), visibility 0.28s var(--ease);
+}
+
+.toc.open {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+/* 展开遮罩 */
+.toc-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 59;
+  background: rgba(0, 0, 0, 0.45);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s var(--ease), visibility 0.28s var(--ease);
+}
+
+.toc-backdrop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 悬浮按钮 */
+.toc-toggle {
+  position: fixed;
+  right: 20px;
+  bottom: 24px;
+  z-index: 58;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-pop);
+  cursor: pointer;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+.toc-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.toc-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+.toc-title {
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.98rem;
+  margin-bottom: 12px;
+  letter-spacing: 0.2px;
+}
+
+.toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 1px solid var(--border);
+}
+
+.toc-list a {
+  display: block;
+  padding: 7px 0 7px 14px;
+  margin-left: -1px;
+  border-left: 2px solid transparent;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+}
+
+.toc-list a:hover {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.toc-list a.active {
+  color: var(--accent);
+  border-left-color: var(--accent);
+}
+
+/* --- 宽屏：目录常驻右侧卡片，隐藏按钮与遮罩 --- */
+@media (min-width: 1024px) {
+  .toc {
+    top: 7rem;
+    /* 容器右边缘 −256px 是内容右边缘；再右移 24px 作为目录左边缘 */
+    left: calc(50% + 512px - 232px);
+    right: auto;
+    width: 200px;
+    height: auto;
+    max-height: calc(100vh - 9rem);
+    padding: 16px 16px;
+    border: 1px solid transparent;
+    border-radius: var(--r-lg);
+    box-shadow: none;
+    transform: none;
+    visibility: visible;
+  }
+
+  .toc-toggle,
+  .toc-backdrop {
+    display: none;
+  }
 }
 
 /* ============ 文章评论（giscus / GitHub Discussions） ============ */
@@ -1705,7 +1983,7 @@ body.nav-open {
   }
 
   .hero {
-    padding: 104px 0 28px;
+    padding: 6.5rem 0 28px;
   }
 
   .hero h1 {
@@ -1713,7 +1991,15 @@ body.nav-open {
   }
 
   .post-item {
-    padding: 18px 20px;
+    padding: 0;
+  }
+
+  .post-body {
+    padding: 16px 18px 18px;
+  }
+
+  .post-thumb-link {
+    height: 150px;
   }
 
   .post-header h1 {
@@ -1721,7 +2007,7 @@ body.nav-open {
   }
 
   .post-main {
-    padding: 104px 0 56px;
+    padding: 6.5rem 0 56px;
   }
 
   .sponsor-box,
@@ -1730,35 +2016,47 @@ body.nav-open {
   }
 
   /* 放在最后，避免被上面各块的 padding 简写覆盖 */
+  .home-main,
   .hero,
   .search-wrap,
   .post-list,
   .post-main,
   .site-footer .container {
-    padding-left: max(22px, 6vw);
-    padding-right: max(22px, 6vw);
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  /* 顶栏左右控件与正文容器对齐 */
+  .nav {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  /* 手机端侧边栏：缩小内边距 */
+  .nav-drawer {
+    padding: 12px;
+  }
+
+  /* 首屏卡片列表：进一步缩小板块内边距，让卡片尽可能铺满、整体居中 */
+  .home-main .panel-body {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .home-main .panel-head {
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
 
-/* ============ 小屏手机：保持“左侧图片 + 右侧内容” ============ */
+/* ============ 小屏手机：与电脑端保持一致（封面在上、文字在下） ============ */
 @media (max-width: 480px) {
-  .post-item {
-    /* 图片始终在左，内容在右，不上下堆叠 */
-    flex-direction: row;
-    gap: 12px;
-    padding: 16px 18px;
-    border-radius: var(--r-md);
-  }
-
   .post-thumb-link {
-    flex: 0 0 auto;
-    width: 100px;
-    height: 75px;
-    border-radius: var(--r-sm);
+    height: 150px;
   }
 
-  .post-thumb {
-    height: 100%;
+  .post-body {
+    padding: 12px 14px 14px;
   }
 
   .post-body h2 {
@@ -1772,11 +2070,9 @@ body.nav-open {
     margin-bottom: 6px;
   }
 
-  /* 小屏下标签更紧凑，避免拥挤 */
+  /* 小屏下标签更紧凑 */
   .post-body .tag {
-    padding: 2px 10px;
-    font-size: 0.72rem;
-    margin-right: 5px;
+    font-size: 0.7rem;
   }
 
   .post-body .post-excerpt {
@@ -1786,8 +2082,10 @@ body.nav-open {
 }
 
 /* ============ 文章图片浮窗预览 ============ */
-/* 正文图片可点击放大（浮窗） */
+/* 正文图片可点击放大（浮窗）；限制最大宽度，避免大图撑破版心 */
 .article-body img {
+  max-width: 100%;
+  height: auto;
   cursor: zoom-in;
 }
 

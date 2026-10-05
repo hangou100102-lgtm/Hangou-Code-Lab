@@ -2,6 +2,7 @@ import type { Post } from '../data/posts';
 import { usePrefs } from '../context/Prefs';
 import { useSiteNav } from '../context/SiteNav';
 import { En, Zh } from './LangVariant';
+import { IconPin, IconClockSmall } from './icons';
 
 /* 摘要截断：中文超过 20 字、英文超过 80 个字符时截断并加省略号，
    完整文本放进 title 便于悬停查看。 */
@@ -48,47 +49,51 @@ export function PostItem({ post }: { post: Post }) {
           src={post.thumb}
           alt={showEn ? post.altEn : post.altZh}
           loading="lazy"
-          width={152}
-          height={96}
+          width={168}
+          height={110}
         />
       </a>
       <div className="post-body">
         <Zh>
+          <div className="post-tags-row">
+            {post.tagsZh.map((tag) => (
+              <span key={tag.label} className={`tag${tag.pin ? ' tag-pin' : ''}`}>
+                {tag.pin ? <IconPin /> : '#'}
+                {tag.label}
+              </span>
+            ))}
+            <span className="date">
+              <IconClockSmall />
+              {post.date}
+            </span>
+          </div>
           <h2>
             <a href={'#' + post.href} onClick={nav}>
               {post.titleZh}
             </a>
           </h2>
-          <div className="post-meta">
-            <span className="date">{post.date}</span>
-            <span className="tags">
-              {post.tagsZh.map((tag) => (
-                <span key={tag.label} className={`tag${tag.pin ? ' tag-pin' : ''}`}>
-                  {tag.label}
-                </span>
-              ))}
-            </span>
-          </div>
           <p className="post-excerpt" title={zh.title}>
             {zh.text}
           </p>
         </Zh>
         <En>
+          <div className="post-tags-row">
+            {post.tagsEn.map((tag) => (
+              <span key={tag.label} className={`tag${tag.pin ? ' tag-pin' : ''}`}>
+                {tag.pin ? <IconPin /> : '#'}
+                {tag.label}
+              </span>
+            ))}
+            <span className="date">
+              <IconClockSmall />
+              {post.date}
+            </span>
+          </div>
           <h2>
             <a href={'#' + post.href} onClick={nav}>
               {post.titleEn}
             </a>
           </h2>
-          <div className="post-meta">
-            <span className="date">{post.date}</span>
-            <span className="tags">
-              {post.tagsEn.map((tag) => (
-                <span key={tag.label} className={`tag${tag.pin ? ' tag-pin' : ''}`}>
-                  {tag.label}
-                </span>
-              ))}
-            </span>
-          </div>
           <p className="post-excerpt" title={en.title}>
             {en.text}
           </p>

@@ -69,7 +69,7 @@ export default function Settings() {
         <h1>{t('设置')}</h1>
         <div className="post-meta">
           <span className="tags">
-            <span className="tag">{t('设置')}</span>
+            <span className="tag">{'#'}{t('设置')}</span>
           </span>
         </div>
       </Panel>

@@ -18,7 +18,7 @@ export default function Archive() {
         <h1>{t('归档')}</h1>
         <div className="post-meta">
           <span className="tags">
-            <span className="tag">{t('归档')}</span>
+            <span className="tag">{'#'}{t('归档')}</span>
           </span>
         </div>
       </Panel>

@@ -9,7 +9,7 @@ export default function Sponsor() {
       <Panel className="panel-title" label={t('支持 Hangou')}>
         <h1>{t('支持 Hangou')}</h1>
         <div className="post-meta">
-          <span className="tag">{t('赞助')}</span>
+          <span className="tag">{'#'}{t('赞助')}</span>
         </div>
       </Panel>
 

@@ -5,6 +5,7 @@ import { NavDrawer } from './NavDrawer';
 import { Footer } from './Footer';
 import { CookieModal } from './CookieModal';
 import { Lightbox } from './Lightbox';
+import { Toc } from './Toc';
 
 /* 全局布局：顶栏 + 抽屉 + 页面内容 + 页脚 + Cookie 弹窗 + 图片浮窗 */
 export function Layout() {
@@ -18,6 +19,7 @@ export function Layout() {
       <Header onOpenMenu={() => setMenuOpen(true)} />
       <NavDrawer open={menuOpen} onClose={() => setMenuOpen(false)} />
       <Outlet />
+      <Toc />
       <Footer showSocial={!isHome} />
       <CookieModal />
       <Lightbox />

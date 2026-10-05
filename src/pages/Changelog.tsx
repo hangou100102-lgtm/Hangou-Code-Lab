@@ -8,6 +8,14 @@ interface Entry {
 }
 
 const ENTRIES_ZH: Entry[] = [
+  { date: '2026-10-05', text: '文章页新增右侧目录卡片：自动提取页面板块标题生成锚点，点击平滑跳转并高亮当前板块；宽屏常驻右侧，窄屏收进右下角悬浮按钮' },
+  { date: '2026-10-05', text: '文章正文图片限制为不超过版心宽度，修复大图撑破排版的问题' },
+  { date: '2026-10-05', text: '关于页日期移至标题下方并加时钟图标，标签居日期下一行' },
+  { date: '2026-10-05', text: '全站整体缩放 10%：根字号调整，并让顶栏高度、内容避让等随字号等比变化' },
+  { date: '2026-10-05', text: '顶栏与正文左右留白对齐，导航两端控件贴合网页边缘；全站左右边距整体加宽' },
+  { date: '2026-10-05', text: '手机端文章卡片修正为单列居中，去掉右侧留空；导航抽屉与目录卡片收窄' },
+  { date: '2026-10-05', text: '首页问候语字号加大，并在其下新增「阅读文章」按钮，与设置页分段控件同色' },
+  { date: '2026-10-05', text: '更新日志改为按月份自动分组，修复十月条目被并入九月板块的问题' },
   { date: '2026-10-05', text: '全站内容板块化：各页面内容拆成独立卡片板块，标题保留在页面背景上' },
   { date: '2026-10-05', text: '首页新增「我的项目 · Ci OS」板块，介绍创游世界伪系统作品的版本与停更历程' },
   { date: '2026-10-05', text: '首页问候语下新增 B站 / GitHub / 爱发电 社交入口，主页页脚不再重复展示' },
@@ -42,6 +50,14 @@ const ENTRIES_ZH: Entry[] = [
 ];
 
 const ENTRIES_EN: Entry[] = [
+  { date: '2026-10-05', text: 'Added a table-of-contents card to post pages: it extracts the panel headings to build anchors, scrolls smoothly on click and highlights the current panel — pinned on the right on wide screens and tucked into a floating button on narrow ones' },
+  { date: '2026-10-05', text: 'Constrained images in post bodies to the content width, fixing large images that broke the layout' },
+  { date: '2026-10-05', text: 'Moved the date on the About page below the title with a clock icon, and placed the tag on the line under the date' },
+  { date: '2026-10-05', text: 'Scaled the whole site down by 10%: the root font size changed, with the header height and content offsets following proportionally' },
+  { date: '2026-10-05', text: 'Aligned the header padding with the content so the nav controls sit flush with the page edges; widened the global left/right margins' },
+  { date: '2026-10-05', text: 'Fixed the mobile post cards to a centred single column without the gap on the right; narrowed the nav drawer and TOC card' },
+  { date: '2026-10-05', text: 'Enlarged the home greeting and added a "Read posts" button below it, coloured to match the selected segmented control on the Settings page' },
+  { date: '2026-10-05', text: 'The changelog now groups entries by month automatically, fixing October entries that were merged into the September section' },
   { date: '2026-10-05', text: 'Site-wide content panels: each page\'s content is split into separate card panels, while page titles stay on the page background' },
   { date: '2026-10-05', text: 'Added a "My project · Ci OS" panel to the home page, covering the versions and discontinuation of the fake-OS project on Chuangyou Shijie' },
   { date: '2026-10-05', text: 'Added Bilibili / GitHub / Afdian social links under the home intro; the home footer no longer repeats them' },
@@ -91,6 +107,37 @@ function Group({ title, entries }: { title: string; entries: Entry[] }) {
   );
 }
 
+/* 按「年-月」把条目分组，保持原有先后顺序（同日多条的相对次序不变） */
+function groupByMonth(entries: Entry[]): { month: string; entries: Entry[] }[] {
+  const groups: { month: string; entries: Entry[] }[] = [];
+  for (const entry of entries) {
+    const month = entry.date.slice(0, 7); // YYYY-MM
+    const last = groups[groups.length - 1];
+    if (last && last.month === month) {
+      last.entries.push(entry);
+    } else {
+      groups.push({ month, entries: [entry] });
+    }
+  }
+  return groups;
+}
+
+/* YYYY-MM → 2026 年 9 月 */
+function formatMonthZh(month: string): string {
+  const [year, m] = month.split('-');
+  return `${year} 年 ${Number(m)} 月`;
+}
+
+/* YYYY-MM → September 2026 */
+function formatMonthEn(month: string): string {
+  const [year, m] = month.split('-');
+  const names = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  return `${names[Number(m) - 1]} ${year}`;
+}
+
 export default function Changelog() {
   const t = useT();
 
@@ -100,7 +147,7 @@ export default function Changelog() {
         <h1>{t('更新日志')}</h1>
         <div className="post-meta">
           <span className="tags">
-            <span className="tag">{t('更新日志')}</span>
+            <span className="tag">{'#'}{t('更新日志')}</span>
           </span>
         </div>
       </Panel>
@@ -109,11 +156,15 @@ export default function Changelog() {
 
       <Panel title={t('更新记录')}>
         <Zh>
-          <Group title="2026 年 9 月" entries={ENTRIES_ZH} />
+          {groupByMonth(ENTRIES_ZH).map((g) => (
+            <Group key={g.month} title={formatMonthZh(g.month)} entries={g.entries} />
+          ))}
         </Zh>
 
         <En>
-          <Group title="September 2026" entries={ENTRIES_EN} />
+          {groupByMonth(ENTRIES_EN).map((g) => (
+            <Group key={g.month} title={formatMonthEn(g.month)} entries={g.entries} />
+          ))}
         </En>
       </Panel>
     </main>

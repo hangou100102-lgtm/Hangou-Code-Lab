@@ -18,6 +18,7 @@ main {
   --color-canvas-default: transparent;
   --color-canvas-overlay: #1a1a1a;
   --color-canvas-inset: #171717;
+  /* 评论区整体落在页面底色上，凡是「浅底」一律用 surface 提起来 */
   --color-canvas-subtle: #1a1a1a;
   --color-border-default: rgba(255, 255, 255, 0.08);
   --color-border-muted: rgba(255, 255, 255, 0.08);
@@ -131,11 +132,12 @@ main .gsc-reply > div:hover {
   background-color: #1a1a1a !important;
 }
 
-/* 输入框：与站点 --bg-soft 一致，细描边，聚焦换成灰阶强调描边 */
+/* 输入框：评论区落在页面底色 --bg 上，输入框改用 --surface 提起来，
+   配 --border 描边，与站内控件观感一致 */
 main .gsc-comment-box-textarea,
 main .gsc-reply-box textarea,
 main .gsc-comment-box textarea {
-  background-color: #171717 !important;
+  background-color: #1a1a1a !important;
   border-color: rgba(255, 255, 255, 0.08) !important;
   color: #ededed !important;
   box-shadow: none !important;
@@ -150,6 +152,16 @@ main .gsc-comment-box textarea:focus {
   box-shadow: none !important;
 }
 
+/* 评论框外壳与工具条：统一到页面底色，不留 giscus 自带的浅底 */
+main .gsc-comment-box,
+main .gsc-comment-box-main,
+main .gsc-comment-box-tabs,
+main .gsc-comment-box-bottom,
+main .gsc-reply-box {
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
 /* 评论区里的链接与站点一致：灰阶强调 + 悬停下划线 */
 main a {
   color: var(--color-accent-fg);
@@ -160,7 +172,7 @@ main a:hover {
   text-underline-offset: 3px;
 }
 
-/* 反应按钮（reactions）与站点 .tag 观感对齐：浅底、无描边、灰阶文字 */
+/* 反应按钮（reactions）与站内 .tag 观感对齐：surface 底、无描边、次要文字 */
 main .gsc-reactions-button,
 main .gsc-reaction {
   background-color: #1a1a1a !important;
@@ -170,6 +182,27 @@ main .gsc-reaction {
 
 main .gsc-reactions-button:hover,
 main .gsc-reaction:hover {
+  background-color: #282828 !important;
+  color: #ededed !important;
+}
+
+/* 工具条图标按钮与次级按钮：surface 底 + 悬停提亮，与站内按钮一致 */
+main .gsc-comment-box-tabs button,
+main .gsc-comment-box-tabs a,
+main .gsc-comment-box-bottom button,
+main button.gsc-comment-box-tab,
+main .gsc-reply-box button {
+  background-color: #1a1a1a !important;
+  border-color: transparent !important;
+  color: #8f8f8f !important;
+}
+
+main .gsc-comment-box-tabs button:hover,
+main .gsc-comment-box-tabs a:hover,
+main .gsc-comment-box-bottom button:hover,
+main button.gsc-comment-box-tab:hover,
+main .gsc-reply-box button:hover,
+main .gsc-comment-box-tabs button[aria-selected='true'] {
   background-color: #282828 !important;
   color: #ededed !important;
 }

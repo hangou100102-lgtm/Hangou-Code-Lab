@@ -17,6 +17,13 @@ export default function Home() {
         <div className="panel-body">
           <h1>{t('你好，这里是 Hangou')}</h1>
           <p>{t('我是憨狗，写代码也做视频，这里放一些零零散散的想法。')}</p>
+          <button
+            type="button"
+            className="hero-cta"
+            onClick={() => go('/posts')}
+          >
+            {t('阅读文章')}
+          </button>
           <div className="hero-social">
             <a
               className="social-btn"
@@ -125,7 +132,7 @@ export default function Home() {
             {t('全部文章')}
           </a>
         </div>
-        <div className="panel-body">
+        <div className="panel-body panel-list-inner">
           <TranslateNote />
           {POSTS.map((post) => (
             <PostItem key={post.href} post={post} />
