@@ -116,13 +116,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* 小屏下整体再缩小 20%，让内容更从容、避免挤满 */
-@media (max-width: 640px) {
-  html {
-    font-size: 73.92%;
-  }
-}
-
 /* 移除移动端默认点击高亮（蓝/灰底），需覆盖到所有元素 */
 * {
   -webkit-tap-highlight-color: transparent;
@@ -572,6 +565,13 @@ html[data-lang="en"] .home-hero p {
 .scroll-hint svg {
   width: 22px;
   height: 22px;
+}
+
+/* 手机端箭头适当上移，避免贴太靠底、与底部内容挤在一起 */
+@media (max-width: 640px) {
+  .scroll-hint {
+    bottom: 44px;
+  }
 }
 
 @keyframes scroll-hint-bob {
