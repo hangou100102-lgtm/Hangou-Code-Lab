@@ -669,13 +669,13 @@ html[data-lang="en"] .home-hero p {
   color: var(--text-secondary);
 }
 
-/* 首页问候语下的社交入口 */
+/* 首页问候语下的社交入口：整行居中排列 */
 .hero-social {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 24px;
+  margin-top: 14px;
 }
 
 .hero-social .social-btn {
@@ -683,21 +683,15 @@ html[data-lang="en"] .home-hero p {
   border-color: var(--border);
 }
 
-/* 哔哩哔哩主入口：独立一行居中，比下方普通按钮略宽，醒目的 B 站粉主题色 */
-.hero-bili {
-  display: flex;
-  justify-content: center;
-  margin-top: 24px;
-}
-
-.hero-bili .social-btn.bili-primary {
+/* 哔哩哔哩主入口：居中放置，比普通按钮略宽，醒目的 B 站粉主题色 */
+.hero-social .social-btn.bili-primary {
   padding: 10px 32px;
   background: rgba(251, 114, 153, 0.16);
   border-color: #fb7299;
   color: #fb7299;
 }
 
-.hero-bili .social-btn.bili-primary:hover {
+.hero-social .social-btn.bili-primary:hover {
   background: rgba(251, 114, 153, 0.24);
   color: #fb7299;
   border-color: #fb7299;
@@ -2118,11 +2112,7 @@ body.nav-open {
   margin-bottom: 14px;
 }
 
-/* 页脚复用首页社交按钮：去掉顶部多余 margin，给版权文字留出间距 */
-.site-footer .hero-bili {
-  margin-top: 0;
-}
-
+/* 页脚复用首页社交按钮：与版权文字之间留出间距 */
 .site-footer .hero-social {
   margin-bottom: 14px;
 }

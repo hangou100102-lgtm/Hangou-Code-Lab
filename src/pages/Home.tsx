@@ -190,19 +190,6 @@ export default function Home() {
       <section className="home-contact" aria-label={t('社交 & 联系')}>
         <h2>{t('社交 & 联系')}</h2>
         <p>{t('欢迎在这些地方找到我：')}</p>
-        <div className="hero-bili">
-          <a
-            className="social-btn bili-primary"
-            href="https://space.bilibili.com/1937945301"
-            target="_blank"
-            rel="noopener"
-            aria-label={t('B站主页')}
-            title={t('B站主页')}
-          >
-            <IconBilibili />
-            <span>{t('哔哩哔哩')}</span>
-          </a>
-        </div>
         <div className="hero-social">
           <a
             className="social-btn"
@@ -214,6 +201,17 @@ export default function Home() {
           >
             <IconGithub />
             <span>GitHub</span>
+          </a>
+          <a
+            className="social-btn bili-primary"
+            href="https://space.bilibili.com/1937945301"
+            target="_blank"
+            rel="noopener"
+            aria-label={t('B站主页')}
+            title={t('B站主页')}
+          >
+            <IconBilibili />
+            <span>{t('哔哩哔哩')}</span>
           </a>
           <a
             className="social-btn"

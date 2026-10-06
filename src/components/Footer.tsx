@@ -10,19 +10,6 @@ export function Footer({ showSocial = true }: { showSocial?: boolean }) {
         {showSocial && (
           <>
             <div className="footer-label">{t('欢迎在这些地方找到我：')}</div>
-            <div className="hero-bili">
-              <a
-                className="social-btn bili-primary"
-                href="https://space.bilibili.com/1937945301"
-                target="_blank"
-                rel="noopener"
-                aria-label={t('B站主页')}
-                title={t('B站主页')}
-              >
-                <IconBilibili />
-                <span>{t('哔哩哔哩')}</span>
-              </a>
-            </div>
             <div className="hero-social">
               <a
                 className="social-btn"
@@ -34,6 +21,17 @@ export function Footer({ showSocial = true }: { showSocial?: boolean }) {
               >
                 <IconGithub />
                 <span>GitHub</span>
+              </a>
+              <a
+                className="social-btn bili-primary"
+                href="https://space.bilibili.com/1937945301"
+                target="_blank"
+                rel="noopener"
+                aria-label={t('B站主页')}
+                title={t('B站主页')}
+              >
+                <IconBilibili />
+                <span>{t('哔哩哔哩')}</span>
               </a>
               <a
                 className="social-btn"

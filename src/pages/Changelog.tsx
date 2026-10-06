@@ -8,6 +8,8 @@ interface Entry {
 }
 
 const ENTRIES_ZH: Entry[] = [
+  { date: '2026-10-06', text: '首页与页脚社交按钮改为整行居中排列，哔哩哔哩按钮并入按钮行并排在第二位' },
+  { date: '2026-10-06', text: '缩小首页与页脚社交按钮之间的上下间距' },
   { date: '2026-10-06', text: '移除导航抽屉底部无样式的关闭按钮；小屏整体缩放进一步调小' },
   { date: '2026-10-06', text: '修复中文输入法在搜索框无法输入文字的问题' },
   { date: '2026-10-06', text: '页脚社交按钮与首页同步（新增 QQ、B 站粉主题按钮）' },
@@ -58,6 +60,8 @@ const ENTRIES_ZH: Entry[] = [
 ];
 
 const ENTRIES_EN: Entry[] = [
+  { date: '2026-10-06', text: 'The social buttons on the home page and footer are now centred in a single row, with the Bilibili button joined into that row in second position' },
+  { date: '2026-10-06', text: 'Reduced the vertical spacing between the social buttons on the home page and footer' },
   { date: '2026-10-06', text: 'Removed the unstyled close button at the bottom of the nav drawer, and further reduced the overall zoom on small screens' },
   { date: '2026-10-06', text: 'Fixed the search box not accepting typed text when using a Chinese input method' },
   { date: '2026-10-06', text: 'Synced the footer social buttons with the home page (added QQ and the pink Bilibili button)' },
