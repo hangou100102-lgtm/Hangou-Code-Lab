@@ -570,7 +570,7 @@ html[data-lang="en"] .home-hero p {
 /* 手机端箭头适当上移，避免贴太靠底、与底部内容挤在一起 */
 @media (max-width: 640px) {
   .scroll-hint {
-    bottom: 44px;
+    bottom: 76px;
   }
 }
 
