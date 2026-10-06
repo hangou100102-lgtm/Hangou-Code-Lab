@@ -116,6 +116,13 @@ html {
   scroll-behavior: smooth;
 }
 
+/* 小屏下整体再缩小 20%，让内容更从容、避免挤满 */
+@media (max-width: 640px) {
+  html {
+    font-size: 73.92%;
+  }
+}
+
 /* 移除移动端默认点击高亮（蓝/灰底），需覆盖到所有元素 */
 * {
   -webkit-tap-highlight-color: transparent;
@@ -426,25 +433,43 @@ a:hover {
 
 /* 首屏介绍块：欢迎语独立成板块，居中呈现 */
 .home-main {
-  padding-top: calc(6.5rem + 50px);
-  padding-bottom: 56px;
+  padding-top: calc(4rem + 24px);
+  padding-bottom: 40px;
 }
 
-/* 首页问候语：不做成板块，直接落在页面背景上 */
+/* 首页问候语：不做成板块，直接落在页面背景上。
+   撑满首屏（视口减去顶栏 4rem 与 .home-main 顶部留白），
+   让首屏只看到标题到「阅读文章」按钮这一段，下面内容需要滚动才出现。 */
 .home-hero {
   background: transparent;
   border: 0;
   text-align: center;
-  margin-bottom: 178px;
+  min-height: calc(100vh - 8rem - 24px);
+  margin-bottom: 0;
+  position: relative;
+  /* 底部为提示箭头预留空间：小视口下内容把 hero 撑得超过 min-height 时，
+     箭头仍落在按钮下方而非与按钮重叠 */
+  padding-bottom: 88px;
 }
 
 .home-hero .panel-body {
   padding: 0;
 }
 
+/* 首页头像：大号直角方形，居中置于标题上方 */
+.home-hero .hero-avatar {
+  display: block;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 14px;
+  border-radius: 0;
+  object-fit: cover;
+  border: 1px solid var(--border-strong);
+}
+
 .home-hero h1 {
   font-family: var(--font-display);
-  font-size: 2.5rem;
+  font-size: 2.2647rem;
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: -0.5px;
@@ -456,23 +481,37 @@ a:hover {
   font-size: 1rem;
   max-width: 560px;
   margin: 0 auto;
+  letter-spacing: 0.1775em;
+}
+
+/* 英文界面：副文本恢复默认字距，避免套用中文的大字距让英文松散难读 */
+html[data-lang="en"] .home-hero p {
+  letter-spacing: 0;
 }
 
 /* 首页问候语下的主按钮：直角矩形，与设置页分段控件的选中态同色
    （实心 --accent-soft、描边 --accent-border），水平居中。 */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 24px auto 0;
+}
+
 .hero-cta {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   width: fit-content;
-  margin: 36px auto 0;
-  padding: 13px 32px;
+  padding: 10px 24px;
   border: 1px solid var(--accent-border);
   border-radius: 0;
   background: var(--accent-soft);
   color: var(--text);
   font: inherit;
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.22s var(--ease), border-color 0.22s var(--ease);
@@ -480,6 +519,154 @@ a:hover {
 
 .hero-cta:hover {
   opacity: 0.85;
+}
+
+/* 与主按钮并排的次要按钮：沿用社交按钮外观，尺寸与主按钮一致 */
+.social-btn.hero-cta-secondary {
+  padding: 10px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* 首页问候语下的站点标签：无卡片，仅图标 + 文字 */
+.hero-tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 18px;
+  margin: 14px 0 0;
+  padding: 0;
+}
+
+.hero-tags li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+}
+
+/* 首屏底部向下滚动提示箭头：居中贴在问候区底边，轻微上下浮动示意下面还有内容 */
+.scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transform: translateX(-50%);
+  animation: scroll-hint-bob 2.2s var(--ease) infinite;
+}
+
+.scroll-hint:hover {
+  color: var(--text);
+}
+
+.scroll-hint svg {
+  width: 22px;
+  height: 22px;
+}
+
+@keyframes scroll-hint-bob {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateX(-50%) translateY(8px);
+    opacity: 1;
+  }
+}
+
+/* 首页联系方式区：不做成板块，直接落在页面背景上，与问候语同风格 */
+.home-contact {
+  background: transparent;
+  border: 0;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.home-contact h2,
+.home-panel-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.home-contact > p {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  margin: 0 auto;
+}
+
+/* 首页板块的居中标题：与「社交 & 联系」同款 */
+.home-panel-title {
+  text-align: center;
+  margin: 0;
+  padding: 28px 0 14px;
+}
+
+/* 标题下方的居中说明小字 */
+.home-panel-sub {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  margin: -4px 0 14px;
+}
+
+/* 「关于我」板块里的「了解更多」链接：与介绍文字拉开一小段距离 */
+.home-about-more {
+  margin-top: 12px;
+}
+
+/* 卡片内部的板块标题（如「我的项目」卡片里的 Ci OS） */
+.panel-inner-title {
+  font-family: var(--font-display);
+  font-size: 1.06rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+  padding: 20px 22px 14px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* 技术栈列表 */
+.stack-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.stack-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+}
+
+.stack-name {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.stack-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
 }
 
 /* 首页问候语下的社交入口 */
@@ -494,6 +681,26 @@ a:hover {
 .hero-social .social-btn {
   background: var(--surface);
   border-color: var(--border);
+}
+
+/* 哔哩哔哩主入口：独立一行居中，比下方普通按钮略宽，醒目的 B 站粉主题色 */
+.hero-bili {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.hero-bili .social-btn.bili-primary {
+  padding: 10px 32px;
+  background: rgba(251, 114, 153, 0.16);
+  border-color: #fb7299;
+  color: #fb7299;
+}
+
+.hero-bili .social-btn.bili-primary:hover {
+  background: rgba(251, 114, 153, 0.24);
+  color: #fb7299;
+  border-color: #fb7299;
 }
 
 @media (max-width: 640px) {
@@ -1138,6 +1345,12 @@ body.nav-open {
 
 :root[data-theme="light"] .theme-toggle .icon-moon {
   display: block;
+}
+
+/* 浅色主题：技术栈卡片底色与搜索框一致（--surface 近白），避免发灰发暗；
+   友链卡片本就用 --surface，无需额外覆盖 */
+:root[data-theme="light"] .stack-item {
+  background-color: var(--surface);
 }
 
 /* ============ 首页 ============ */
@@ -1856,21 +2069,19 @@ body.nav-open {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 23px;
-  border: 1px solid var(--accent);
-  border-radius: var(--r-btn);
-  background: var(--accent);
-  color: var(--bg);
-  font-size: 0.92rem;
+  padding: 10px 24px;
+  border: 1px solid var(--accent-border);
+  border-radius: 0;
+  background: var(--accent-soft);
+  color: var(--text);
+  font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
-  transition: background-color 0.25s var(--ease), opacity 0.25s var(--ease);
+  transition: background-color 0.22s var(--ease), border-color 0.22s var(--ease);
 }
 
 .sponsor-action:hover {
-  background-color: var(--accent);
-  color: var(--bg);
-  opacity: 0.82;
+  opacity: 0.85;
   text-decoration: none;
 }
 
@@ -1904,6 +2115,15 @@ body.nav-open {
   justify-content: center;
   flex-wrap: wrap;
   gap: 12px;
+  margin-bottom: 14px;
+}
+
+/* 页脚复用首页社交按钮：去掉顶部多余 margin，给版权文字留出间距 */
+.site-footer .hero-bili {
+  margin-top: 0;
+}
+
+.site-footer .hero-social {
   margin-bottom: 14px;
 }
 
@@ -2017,6 +2237,7 @@ body.nav-open {
 
   /* 放在最后，避免被上面各块的 padding 简写覆盖 */
   .home-main,
+  .page-main,
   .hero,
   .search-wrap,
   .post-list,
@@ -2037,15 +2258,15 @@ body.nav-open {
     padding: 12px;
   }
 
-  /* 首屏卡片列表：进一步缩小板块内边距，让卡片尽可能铺满、整体居中 */
+  /* 首页板块内边距：与文章内容页保持一致 */
   .home-main .panel-body {
-    padding-left: 8px;
-    padding-right: 8px;
+    padding-left: 18px;
+    padding-right: 18px;
   }
 
   .home-main .panel-head {
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 18px;
+    padding-right: 18px;
   }
 }
 

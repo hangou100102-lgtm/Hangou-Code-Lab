@@ -1,5 +1,5 @@
 import { useT } from '../context/Prefs';
-import { IconAifadian, IconBilibili, IconGithub } from './icons';
+import { IconAifadian, IconBilibili, IconGithub, IconQq } from './icons';
 
 /* 站点页脚：社交入口 + 版权。主页顶部已有社交入口，可用 showSocial={false} 隐藏 */
 export function Footer({ showSocial = true }: { showSocial?: boolean }) {
@@ -10,9 +10,9 @@ export function Footer({ showSocial = true }: { showSocial?: boolean }) {
         {showSocial && (
           <>
             <div className="footer-label">{t('欢迎在这些地方找到我：')}</div>
-            <div className="footer-social">
+            <div className="hero-bili">
               <a
-                className="social-btn"
+                className="social-btn bili-primary"
                 href="https://space.bilibili.com/1937945301"
                 target="_blank"
                 rel="noopener"
@@ -22,6 +22,8 @@ export function Footer({ showSocial = true }: { showSocial?: boolean }) {
                 <IconBilibili />
                 <span>{t('哔哩哔哩')}</span>
               </a>
+            </div>
+            <div className="hero-social">
               <a
                 className="social-btn"
                 href="https://github.com/hangou100102-lgtm"
@@ -43,6 +45,17 @@ export function Footer({ showSocial = true }: { showSocial?: boolean }) {
               >
                 <IconAifadian />
                 <span>{t('爱发电')}</span>
+              </a>
+              <a
+                className="social-btn"
+                href="https://qm.qq.com/q/QmmnhKKnKK"
+                target="_blank"
+                rel="noopener"
+                aria-label="QQ"
+                title="QQ"
+              >
+                <IconQq />
+                <span>QQ</span>
               </a>
             </div>
           </>

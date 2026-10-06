@@ -1,11 +1,27 @@
 import { useT } from '../context/Prefs';
 import { useSiteNav } from '../context/SiteNav';
-import { POSTS } from '../data/posts';
-import { PostItem } from '../components/PostItem';
-import { En, TranslateNote, Zh } from '../components/LangVariant';
-import { IconAifadian, IconBilibili, IconGithub } from '../components/icons';
+import { En, Zh } from '../components/LangVariant';
+import {
+  IconAifadian,
+  IconBilibili,
+  IconBook,
+  IconChevron,
+  IconGithub,
+  IconHome,
+  IconQq,
+  IconSliders,
+} from '../components/icons';
 
 const CIOS_LINK = 'https://s.hortorinteractive.com/K4ZK47';
+
+const STACK = [
+  { name: 'React 18', desc: '界面框架' },
+  { name: 'TypeScript', desc: '类型安全' },
+  { name: 'Vite 5', desc: '构建工具' },
+  { name: 'CSS', desc: '手写样式' },
+  { name: 'GitHub Actions', desc: '自动部署' },
+  { name: 'GitHub Pages', desc: '静态托管' },
+];
 
 export default function Home() {
   const t = useT();
@@ -15,57 +31,60 @@ export default function Home() {
     <main className="home-main container">
       <section className="panel home-hero">
         <div className="panel-body">
-          <h1>{t('你好，这里是 Hangou')}</h1>
-          <p>{t('我是憨狗，写代码也做视频，这里放一些零零散散的想法。')}</p>
-          <button
-            type="button"
-            className="hero-cta"
-            onClick={() => go('/posts')}
-          >
-            {t('阅读文章')}
-          </button>
-          <div className="hero-social">
-            <a
-              className="social-btn"
-              href="https://space.bilibili.com/1937945301"
-              target="_blank"
-              rel="noopener"
-              aria-label={t('B站主页')}
-              title={t('B站主页')}
+          <img
+            className="hero-avatar"
+            src="/images/avatar.png"
+            alt="Hangou"
+            width="120"
+            height="120"
+          />
+          <h1>Hangou</h1>
+          <p>{t('在这里能看到我的想法')}</p>
+          <ul className="hero-tags">
+            <li>
+              <IconHome />
+              {t('个人博客')}
+            </li>
+            <li>
+              <IconBook />
+              {t('技术分享')}
+            </li>
+            <li>
+              <IconSliders />
+              {t('创意作品')}
+            </li>
+          </ul>
+          <div className="hero-actions">
+            <button
+              type="button"
+              className="hero-cta"
+              onClick={() => go('/posts')}
             >
-              <IconBilibili />
-              <span>{t('哔哩哔哩')}</span>
-            </a>
-            <a
-              className="social-btn"
-              href="https://github.com/hangou100102-lgtm"
-              target="_blank"
-              rel="noopener"
-              aria-label={t('GitHub主页')}
-              title={t('GitHub主页')}
-            >
-              <IconGithub />
-              <span>GitHub</span>
-            </a>
-            <a
-              className="social-btn"
-              href="https://ifdian.net/a/hangou100102"
-              target="_blank"
-              rel="noopener"
-              aria-label={t('爱发电主页')}
-              title={t('爱发电主页')}
-            >
-              <IconAifadian />
-              <span>{t('爱发电')}</span>
-            </a>
+              <IconBook />
+              {t('阅读文章')}
+            </button>
+            <span className="social-btn hero-cta-secondary">{t('敬请期待')}</span>
           </div>
         </div>
+        <button
+          type="button"
+          className="scroll-hint"
+          aria-label={t('向下滚动')}
+          title={t('向下滚动')}
+          onClick={() =>
+            document
+              .getElementById('projects')
+              ?.scrollIntoView({ behavior: 'smooth' })
+          }
+        >
+          <IconChevron />
+        </button>
       </section>
 
-      <section className="panel" aria-label={t('我的项目 Ci OS')}>
-        <div className="panel-head">
-          <h2>{t('我的项目 · Ci OS')}</h2>
-        </div>
+      <h2 id="projects" className="home-panel-title">{t('我的项目')}</h2>
+      <p className="home-panel-sub">{t('我做过的一些项目。')}</p>
+      <section className="panel" aria-label={t('我的项目')}>
+        <h3 className="panel-inner-title">Ci OS</h3>
         <div className="panel-body">
           <Zh>
             <p>
@@ -119,24 +138,105 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="panel" aria-label={t('最近文章')}>
-        <div className="panel-head">
-          <h2>{t('最近写的东西')}</h2>
+      <h2 className="home-panel-title">{t('关于我')}</h2>
+      <p className="home-panel-sub">{t('关于我的一些介绍。')}</p>
+      <section className="panel" aria-label={t('关于我')}>
+        <div className="panel-body">
+          <Zh>
+            <p>
+              大家好，我是<strong>憨狗哈</strong>，也可以叫我<strong>憨狗</strong>，或者{' '}
+              <strong>hangou</strong>。
+            </p>
+            <p>一个在方块世界里搭东西、也在屏幕前琢磨动效的普通玩家。</p>
+          </Zh>
+          <En>
+            <p>
+              Hi, I'm <strong>Hangou</strong> (also written <strong>憨狗</strong> in Chinese).
+            </p>
+            <p>
+              An ordinary player who builds things in a blocky world and tinkers with motion design
+              in front of a screen.
+            </p>
+          </En>
+          <p className="home-about-more">
+            <a
+              href="/posts/about"
+              onClick={(e) => {
+                e.preventDefault();
+                go('/posts/about');
+              }}
+            >
+              {t('了解更多')}
+            </a>
+          </p>
+        </div>
+      </section>
+
+      <h2 className="home-panel-title">{t('技术栈')}</h2>
+      <p className="home-panel-sub">{t('这个站点用到的技术。')}</p>
+      <section className="panel" aria-label={t('技术栈')}>
+        <div className="panel-body">
+          <ul className="stack-list">
+            {STACK.map((item) => (
+              <li className="stack-item" key={item.name}>
+                <span className="stack-name">{item.name}</span>
+                <span className="stack-desc">{t(item.desc)}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="home-contact" aria-label={t('社交 & 联系')}>
+        <h2>{t('社交 & 联系')}</h2>
+        <p>{t('欢迎在这些地方找到我：')}</p>
+        <div className="hero-bili">
           <a
-            href="#/posts"
-            onClick={(e) => {
-              e.preventDefault();
-              go('/posts');
-            }}
+            className="social-btn bili-primary"
+            href="https://space.bilibili.com/1937945301"
+            target="_blank"
+            rel="noopener"
+            aria-label={t('B站主页')}
+            title={t('B站主页')}
           >
-            {t('全部文章')}
+            <IconBilibili />
+            <span>{t('哔哩哔哩')}</span>
           </a>
         </div>
-        <div className="panel-body panel-list-inner">
-          <TranslateNote />
-          {POSTS.map((post) => (
-            <PostItem key={post.href} post={post} />
-          ))}
+        <div className="hero-social">
+          <a
+            className="social-btn"
+            href="https://github.com/hangou100102-lgtm"
+            target="_blank"
+            rel="noopener"
+            aria-label={t('GitHub主页')}
+            title={t('GitHub主页')}
+          >
+            <IconGithub />
+            <span>GitHub</span>
+          </a>
+          <a
+            className="social-btn"
+            href="https://ifdian.net/a/hangou100102"
+            target="_blank"
+            rel="noopener"
+            aria-label={t('爱发电主页')}
+            title={t('爱发电主页')}
+          >
+            <IconAifadian />
+            <span>{t('爱发电')}</span>
+          </a>
+          <a
+            className="social-btn"
+            href="https://qm.qq.com/q/QmmnhKKnKK"
+            target="_blank"
+            rel="noopener"
+            aria-label="QQ"
+            title="QQ"
+          >
+            <IconQq />
+            <span>QQ</span>
+          </a>
         </div>
       </section>
     </main>

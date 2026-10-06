@@ -8,6 +8,14 @@ interface Entry {
 }
 
 const ENTRIES_ZH: Entry[] = [
+  { date: '2026-10-06', text: '移除导航抽屉底部无样式的关闭按钮；小屏整体缩放进一步调小' },
+  { date: '2026-10-06', text: '修复中文输入法在搜索框无法输入文字的问题' },
+  { date: '2026-10-06', text: '页脚社交按钮与首页同步（新增 QQ、B 站粉主题按钮）' },
+  { date: '2026-10-06', text: '浅色主题下技术栈与友链卡片底色改为与搜索框一致' },
+  { date: '2026-10-06', text: '赞助页按钮样式与首页「阅读文章」按钮统一' },
+  { date: '2026-10-06', text: '社交入口新增 QQ，哔哩哔哩按钮置顶并改用 B 站粉主题色（粉描边 + 浅粉底 + 粉字）' },
+  { date: '2026-10-06', text: '首页新增「关于我」板块，简要介绍并附「了解更多」链接' },
+  { date: '2026-10-06', text: '首页标题回到「Hangou」并新增直角头像；副标题字距精确对齐标题宽度，首屏底部新增向下滚动提示箭头' },
   { date: '2026-10-05', text: '文章页新增右侧目录卡片：自动提取页面板块标题生成锚点，点击平滑跳转并高亮当前板块；宽屏常驻右侧，窄屏收进右下角悬浮按钮' },
   { date: '2026-10-05', text: '文章正文图片限制为不超过版心宽度，修复大图撑破排版的问题' },
   { date: '2026-10-05', text: '关于页日期移至标题下方并加时钟图标，标签居日期下一行' },
@@ -50,6 +58,14 @@ const ENTRIES_ZH: Entry[] = [
 ];
 
 const ENTRIES_EN: Entry[] = [
+  { date: '2026-10-06', text: 'Removed the unstyled close button at the bottom of the nav drawer, and further reduced the overall zoom on small screens' },
+  { date: '2026-10-06', text: 'Fixed the search box not accepting typed text when using a Chinese input method' },
+  { date: '2026-10-06', text: 'Synced the footer social buttons with the home page (added QQ and the pink Bilibili button)' },
+  { date: '2026-10-06', text: 'In light theme, changed the tech-stack and friend-link card backgrounds to match the search box' },
+  { date: '2026-10-06', text: 'Unified the sponsor-page button style with the home "Read posts" button' },
+  { date: '2026-10-06', text: 'Added QQ to the social links, moved Bilibili to the top and switched it to the Bilibili pink theme (pink border + light pink background + pink text)' },
+  { date: '2026-10-06', text: 'Added an "About me" panel to the home page with a brief intro and a "Learn more" link' },
+  { date: '2026-10-06', text: 'Restored the home title to "Hangou" and added a square avatar; tuned the subtitle letter-spacing to exactly match the title width, and added a downward scroll-hint arrow at the bottom of the first screen' },
   { date: '2026-10-05', text: 'Added a table-of-contents card to post pages: it extracts the panel headings to build anchors, scrolls smoothly on click and highlights the current panel — pinned on the right on wide screens and tucked into a floating button on narrow ones' },
   { date: '2026-10-05', text: 'Constrained images in post bodies to the content width, fixing large images that broke the layout' },
   { date: '2026-10-05', text: 'Moved the date on the About page below the title with a clock icon, and placed the tag on the line under the date' },

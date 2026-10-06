@@ -6,7 +6,6 @@ import {
   IconArchive,
   IconBook,
   IconClock,
-  IconClose,
   IconHome,
   IconLink,
   IconSliders,
@@ -177,9 +176,6 @@ export function NavDrawer({ open, onClose }: DrawerProps) {
             <span>{t('爱发电')}</span>
           </a>
         </div>
-        <button type="button" className="drawer-close" aria-label={t('打开菜单')} onClick={onClose}>
-          <IconClose />
-        </button>
       </aside>
     </>
   );
