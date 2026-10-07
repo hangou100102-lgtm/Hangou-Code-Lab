@@ -8,6 +8,7 @@ interface Entry {
 }
 
 const ENTRIES_ZH: Entry[] = [
+  { date: '2026-10-07', text: '全站文字自适应：根字号改为随视口宽度平滑缩放，窄屏自动收小、宽屏维持原有大小，间距与顶栏高度随之等比联动' },
   { date: '2026-10-07', text: '首页首屏改为整体垂直居中：修正顶栏高度被重复计算导致一屏内容整体偏下的问题' },
   { date: '2026-10-07', text: '修复 giscus 评论登录后跳回站点落到 404 页的问题（评论容器带 id 会被拼进登录回跳地址）' },
   { date: '2026-10-07', text: '修复所有页面共用同一个评论讨论串的问题，改为按页面路由分别建立讨论' },
@@ -63,6 +64,7 @@ const ENTRIES_ZH: Entry[] = [
 ];
 
 const ENTRIES_EN: Entry[] = [
+  { date: '2026-10-07', text: 'Site-wide responsive typography: the root font size now scales smoothly with viewport width — smaller on narrow screens, unchanged on wide ones — with spacing and header height following proportionally' },
   { date: '2026-10-07', text: 'Centred the home first screen vertically: fixed the content sitting too low because the header height was counted twice' },
   { date: '2026-10-07', text: 'Fixed the giscus sign-in redirect landing on the 404 page (the comment container id was being appended to the OAuth redirect URI)' },
   { date: '2026-10-07', text: 'Fixed every page sharing a single comment thread; each route now gets its own discussion' },
