@@ -8,6 +8,11 @@ interface Entry {
 }
 
 const ENTRIES_ZH: Entry[] = [
+  { date: '2026-10-08', text: '修复首页滚动箭头跳转后「我的项目」标题被吸顶导航栏挡住的问题，页内锚点跳转时给顶栏预留高度' },
+  { date: '2026-10-08', text: '设置页分段控件：选中项改为与首页「阅读文章」按钮同款（淡强调底色 + 加粗描边），悬停只保留细描边，加粗与高亮只属于选中项' },
+  { date: '2026-10-08', text: '实心按钮（首页「阅读文章」、赞助按钮、侧栏赞助等）悬停改为加深底色，并同步加粗描边；深浅主题下的悬停对比度一并提高' },
+  { date: '2026-10-08', text: '全站「可高亮」元素的高亮描边统一加粗到 2px 并统一亮度（浅色主题接近黑色），导航、侧边栏、卡片、归档、目录、搜索框、图片预览浮窗按钮全部对齐' },
+  { date: '2026-10-08', text: '高亮方式改版：导航、侧边栏、文章与友链卡片、归档行、目录、搜索框等悬停/选中不再填整块底色，统一改为强调色描边高亮' },
   { date: '2026-10-07', text: '全站文字自适应：根字号改为随视口宽度平滑缩放，窄屏自动收小、宽屏维持原有大小，间距与顶栏高度随之等比联动' },
   { date: '2026-10-07', text: '首页首屏改为整体垂直居中：修正顶栏高度被重复计算导致一屏内容整体偏下的问题' },
   { date: '2026-10-07', text: '修复 giscus 评论登录后跳回站点落到 404 页的问题（评论容器带 id 会被拼进登录回跳地址）' },
@@ -64,6 +69,11 @@ const ENTRIES_ZH: Entry[] = [
 ];
 
 const ENTRIES_EN: Entry[] = [
+  { date: '2026-10-08', text: 'Fixed the "My project" heading being hidden behind the sticky header after tapping the home scroll arrow; in-page anchors now reserve the header height' },
+  { date: '2026-10-08', text: 'Settings segmented control: the selected option now matches the home "Read posts" button (soft accent fill + thick border), while hover keeps only a thin border — the thicker, brighter treatment belongs to the selection alone' },
+  { date: '2026-10-08', text: 'Solid buttons (the home "Read posts" button, sponsor buttons, the sidebar sponsor button) now deepen their background on hover with a matching thicker border, and the hover contrast is higher in both themes' },
+  { date: '2026-10-08', text: 'Unified every highlight border on the site to 2px and to one brightness (near-black in light theme), covering the nav, sidebar, cards, archive, table of contents, search box and the image lightbox buttons' },
+  { date: '2026-10-08', text: 'Reworked highlighting: the nav, sidebar, post and friend cards, archive rows, table of contents and search box no longer fill a background on hover/selection and now highlight with an accent-coloured border instead' },
   { date: '2026-10-07', text: 'Site-wide responsive typography: the root font size now scales smoothly with viewport width — smaller on narrow screens, unchanged on wide ones — with spacing and header height following proportionally' },
   { date: '2026-10-07', text: 'Centred the home first screen vertically: fixed the content sitting too low because the header height was counted twice' },
   { date: '2026-10-07', text: 'Fixed the giscus sign-in redirect landing on the 404 page (the comment container id was being appended to the OAuth redirect URI)' },

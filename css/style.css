@@ -38,10 +38,10 @@ img {
   /* 强调色：纯中性灰，无任何色相。深色主题用近白，靠明度差而非色相拉开层次 */
   --accent: #ededed;
   --accent-soft: rgba(237, 237, 237, 0.1);
-  --accent-soft-active: rgba(237, 237, 237, 0.16);
+  --accent-soft-active: rgba(237, 237, 237, 0.26);
   --accent-glow: rgba(237, 237, 237, 0.14);
   --accent-line: rgba(237, 237, 237, 0.22);
-  --accent-border: rgba(237, 237, 237, 0.38);
+  --accent-border: rgba(237, 237, 237, 0.7);
 
   --code-text: #c6c6c6;
   --pre-bg: #121212;
@@ -96,10 +96,11 @@ img {
   /* 强调色：纯中性灰，无任何色相。浅色主题用近黑，靠明度差而非色相拉开层次 */
   --accent: #1d1d1d;
   --accent-soft: rgba(29, 29, 29, 0.07);
-  --accent-soft-active: rgba(29, 29, 29, 0.13);
+  --accent-soft-active: rgba(29, 29, 29, 0.2);
   --accent-glow: rgba(29, 29, 29, 0.12);
   --accent-line: rgba(29, 29, 29, 0.2);
-  --accent-border: rgba(29, 29, 29, 0.36);
+  /* 浅色主题的描边高亮要接近黑色：细线在浅底上本来就显浅，所以直接拉满明度对比 */
+  --accent-border: rgba(29, 29, 29, 0.92);
 
   --code-text: #4d4d4d;
   --pre-bg: #141414;
@@ -295,7 +296,7 @@ html.cookie-open {
   font-size: 0.9rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s var(--ease), color 0.2s var(--ease);
+  transition: background-color 0.2s var(--ease), border-color 0.2s var(--ease), box-shadow 0.2s var(--ease), color 0.2s var(--ease);
 }
 
 .cookie-tip-cancel {
@@ -304,12 +305,14 @@ html.cookie-open {
 }
 
 .cookie-tip-cancel:hover {
-  background-color: var(--glass-bg-hover);
+  border-color: var(--accent-border);
   color: var(--text);
 }
 
 .cookie-tip-btn:hover {
   background-color: var(--accent-soft-active);
+  border-color: var(--accent-border);
+  box-shadow: 0 0 0 1px var(--accent-border);
   color: var(--accent);
 }
 
@@ -507,8 +510,8 @@ html[data-lang="en"] .home-hero p {
   letter-spacing: 0;
 }
 
-/* 首页问候语下的主按钮：直角矩形，与设置页分段控件的选中态同色
-   （实心 --accent-soft、描边 --accent-border），水平居中。 */
+/* 首页问候语下的主按钮：直角矩形、实心样式（底 --accent-soft、描边 --accent-border），
+   悬停时把底色加深到最实的强调底色，水平居中。 */
 .hero-actions {
   display: flex;
   align-items: center;
@@ -532,11 +535,14 @@ html[data-lang="en"] .home-hero p {
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.22s var(--ease), border-color 0.22s var(--ease);
+  transition: background-color 0.22s var(--ease), border-color 0.22s var(--ease), box-shadow 0.22s var(--ease);
 }
 
+/* 悬停时不再整体降透明度，而是把实心底色加深到最实的强调底色，
+   描边同样按全站规则加粗到 2px */
 .hero-cta:hover {
-  opacity: 0.85;
+  background-color: var(--accent-soft-active);
+  box-shadow: 0 0 0 1px var(--accent-border);
 }
 
 /* 与主按钮并排的次要按钮：沿用社交按钮外观，尺寸与主按钮一致 */
@@ -639,6 +645,13 @@ html[data-lang="en"] .home-hero p {
   padding: 28px 0 14px;
 }
 
+/* 这个标题是页内锚点（首页滚动箭头、/#projects 外链都跳它）。
+   顶栏是 64px 吸顶，跳转时正好让标题盒子的上边缘对齐顶栏底边，
+   标题自身还有 28px 上内边距，这段就是它和顶栏之间的视觉间距。 */
+#projects {
+  scroll-margin-top: 4rem;
+}
+
 /* 标题下方的居中说明小字 */
 .home-panel-sub {
   text-align: center;
@@ -716,10 +729,12 @@ html[data-lang="en"] .home-hero p {
   color: #fb7299;
 }
 
+/* B 站按钮是彩色实心按钮：高亮走「加深底色」，这里再补一圈粉色描边与全站一致 */
 .hero-social .social-btn.bili-primary:hover {
-  background: rgba(251, 114, 153, 0.24);
+  background: rgba(251, 114, 153, 0.3);
   color: #fb7299;
   border-color: #fb7299;
+  box-shadow: 0 0 0 1px #fb7299;
 }
 
 /* 内页通用：标题板块 + 内容板块的纵向排布 */
@@ -818,23 +833,26 @@ html[data-lang="en"] .home-hero p {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 9px 12px;
+  /* 预留 1px 透明描边，悬停时只换描边色、不改变尺寸 */
+  padding: 8px 11px;
+  border: 1px solid transparent;
   border-radius: var(--r-sm);
   color: var(--text-secondary);
   font-size: 0.92rem;
   text-decoration: none;
-  transition: color 0.22s var(--ease), background 0.22s var(--ease);
+  transition: color 0.22s var(--ease), border-color 0.22s var(--ease), box-shadow 0.22s var(--ease);
 }
 
+/* 侧边栏高亮统一用描边（与卡片、顶栏一致） */
 .side-nav a:hover {
   color: var(--accent);
-  background: var(--accent-soft);
+  border-color: var(--accent-border);
   text-decoration: none;
 }
 
 .side-nav a.active {
   color: var(--accent);
-  background: var(--accent-soft);
+  border-color: var(--accent-border);
   font-weight: 600;
 }
 
@@ -858,11 +876,13 @@ html[data-lang="en"] .home-hero p {
   font-size: 0.92rem;
   font-weight: 500;
   text-decoration: none;
-  transition: background-color 0.25s var(--ease);
+  transition: background-color 0.25s var(--ease), border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 
 .side-sponsor:hover {
   background-color: var(--accent-soft-active);
+  border-color: var(--accent-border);
+  box-shadow: 0 0 0 1px var(--accent-border);
   text-decoration: none;
 }
 
@@ -901,11 +921,12 @@ html[data-lang="en"] .home-hero p {
   background: var(--surface);
   color: inherit;
   text-decoration: none;
-  transition: background-color 0.25s var(--ease);
+  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 
+/* 悬停高亮用描边（与文章卡片一致） */
 .friend-item:hover {
-  background-color: var(--surface-active);
+  border-color: var(--accent-border);
   text-decoration: none;
 }
 
@@ -970,14 +991,16 @@ html[data-lang="en"] .home-hero p {
   display: flex;
   align-items: baseline;
   gap: 14px;
-  padding: 12px 14px;
+  /* 预留 1px 透明描边（底边保留分隔线），悬停时只换描边色 */
+  padding: 11px 13px;
+  border: 1px solid transparent;
+  border-bottom-color: var(--border);
   border-radius: var(--r-sm);
-  border-bottom: 1px solid var(--border);
-  transition: background 0.22s var(--ease);
+  transition: border-color 0.22s var(--ease), box-shadow 0.22s var(--ease);
 }
 
 .archive-list li:hover {
-  background: var(--surface-hover);
+  border-color: var(--accent-border);
 }
 
 .archive-list .date {
@@ -1106,18 +1129,19 @@ html::before {
   color: var(--text-secondary);
   font-size: 0.92rem;
   font-weight: 500;
-  transition: background-color 0.22s var(--ease), color 0.22s var(--ease);
+  transition: border-color 0.22s var(--ease), box-shadow 0.22s var(--ease), color 0.22s var(--ease);
 }
 
+/* 顶栏入口的高亮统一用描边，不再填整块底色 */
 .nav-links a:hover {
-  background-color: var(--glass-bg-hover);
+  border-color: var(--accent-border);
   text-decoration: none;
 }
 
 .nav-links a.active {
   font-weight: 600;
   color: var(--accent);
-  background-color: var(--glass-bg-hover);
+  border-color: var(--accent-border);
 }
 
 /* 导航「更多」下拉：把次级入口收起来，顶栏只留常去的几项。
@@ -1139,7 +1163,7 @@ html::before {
   font-weight: 500;
   line-height: 1.4;
   cursor: pointer;
-  transition: background-color 0.22s var(--ease), color 0.22s var(--ease);
+  transition: border-color 0.22s var(--ease), box-shadow 0.22s var(--ease), color 0.22s var(--ease);
 }
 
 .nav-more-toggle svg {
@@ -1150,7 +1174,7 @@ html::before {
 
 .nav-more:hover .nav-more-toggle,
 .nav-more:focus-within .nav-more-toggle {
-  background-color: var(--glass-bg-hover);
+  border-color: var(--accent-border);
   color: var(--text);
 }
 
@@ -1194,14 +1218,17 @@ html::before {
 }
 
 .nav-more-menu a {
-  padding: 8px 12px;
+  /* 预留 1px 透明描边，悬停时只换描边色、不改变尺寸 */
+  padding: 7px 11px;
+  border: 1px solid transparent;
   color: var(--text-soft);
   font-size: 0.9rem;
   font-weight: 500;
+  transition: border-color 0.22s var(--ease), box-shadow 0.22s var(--ease), color 0.22s var(--ease);
 }
 
 .nav-more-menu a:hover {
-  background-color: var(--glass-bg-hover);
+  border-color: var(--accent-border);
   color: var(--text);
   text-decoration: none;
 }
@@ -1219,11 +1246,11 @@ html::before {
   background-color: transparent;
   color: var(--text-secondary);
   cursor: pointer;
-  transition: background-color 0.22s var(--ease);
+  transition: border-color 0.22s var(--ease), box-shadow 0.22s var(--ease);
 }
 
 .menu-toggle:hover {
-  background-color: var(--glass-bg-hover);
+  border-color: var(--accent-border);
 }
 
 .menu-toggle svg {
@@ -1331,7 +1358,7 @@ body.nav-open {
   background-color: transparent;
   color: var(--text-secondary);
   cursor: pointer;
-  transition: background-color 0.22s var(--ease);
+  transition: border-color 0.22s var(--ease), box-shadow 0.22s var(--ease);
 }
 
 .social-link svg,
@@ -1343,7 +1370,7 @@ body.nav-open {
 
 .social-link:hover,
 .theme-toggle:hover {
-  background-color: var(--glass-bg-hover);
+  border-color: var(--accent-border);
   text-decoration: none;
 }
 
@@ -1426,7 +1453,7 @@ body.nav-open {
   border: 1px solid var(--border);
   border-radius: var(--r-pill);
   outline: none;
-  transition: background-color 0.22s var(--ease), border-color 0.22s var(--ease);
+  transition: border-color 0.22s var(--ease), box-shadow 0.22s var(--ease);
   -webkit-appearance: none;
   appearance: none;
 }
@@ -1435,9 +1462,10 @@ body.nav-open {
   color: var(--text-secondary);
 }
 
+/* 聚焦同样走描边高亮：亮度与全站一致，不再改底色、不再用更亮的 --accent */
 .search-input:focus {
-  background-color: var(--surface-hover);
-  border-color: var(--accent);
+  border-color: var(--accent-border);
+  box-shadow: 0 0 0 1px var(--accent-border);
 }
 
 .no-result {
@@ -1470,11 +1498,12 @@ body.nav-open {
   border: 1px solid transparent;
   border-radius: var(--r-lg);
   cursor: pointer;
-  transition: background-color 0.25s var(--ease);
+  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
 
+/* 悬停高亮用描边：卡片底色保持不变，避免整块变亮抢走内容注意力 */
 .post-item:hover {
-  background-color: var(--surface-active);
+  border-color: var(--accent-border);
 }
 
 .post-item h2 {
@@ -1618,10 +1647,6 @@ body.nav-open {
   background: var(--bg-soft);
 }
 
-.post-thumb-link:hover {
-  border-color: var(--accent-border);
-}
-
 .post-thumb {
   display: block;
   width: 100%;
@@ -1727,15 +1752,18 @@ body.nav-open {
   background: var(--bg-soft);
 }
 
-.panel .mail-item:hover {
-  background: var(--surface-active);
-}
-
 /* 卡片内的卡片：板块里嵌套的文章/邮箱/友链卡片加描边，与板块底色拉开边界 */
 .panel .post-item,
 .panel .mail-item,
 .panel .friend-item {
   border-color: var(--border);
+}
+
+/* 嵌套卡片的悬停描边要盖过上面这句默认描边，所以必须排在其后 */
+.panel .post-item:hover,
+.panel .mail-item:hover,
+.panel .friend-item:hover {
+  border-color: var(--accent-border);
 }
 
 /* 面板内首个元素不留上边距（邮箱列表、搜索框等） */
@@ -1830,11 +1858,12 @@ body.nav-open {
   border: 1px solid transparent;
   border-radius: var(--r-md);
   background: var(--surface);
-  transition: background-color 0.22s var(--ease);
+  transition: border-color 0.22s var(--ease), box-shadow 0.22s var(--ease);
 }
 
+/* 悬停高亮用描边（与文章卡片一致） */
 .mail-item:hover {
-  background-color: var(--surface-active);
+  border-color: var(--accent-border);
 }
 
 .mail-item .tag {
@@ -1935,12 +1964,14 @@ body.nav-open {
   color: var(--text);
   box-shadow: var(--shadow-pop);
   cursor: pointer;
-  transition: color 0.2s var(--ease), border-color 0.2s var(--ease);
+  transition: color 0.2s var(--ease), border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
 
+/* 悬浮目录按钮自带浮层阴影，所以描边外的那一圈要跟阴影并列写，不能覆盖掉 */
 .toc-toggle:hover {
   color: var(--accent);
-  border-color: var(--accent);
+  border-color: var(--accent-border);
+  box-shadow: var(--shadow-pop), 0 0 0 1px var(--accent-border);
 }
 
 .toc-toggle svg {
@@ -1976,12 +2007,15 @@ body.nav-open {
 
 .toc-list a:hover {
   color: var(--text);
+  /* 悬停与选中的描边亮度统一，层级靠字重和文字色区分 */
+  border-left-color: var(--accent-border);
   text-decoration: none;
 }
 
 .toc-list a.active {
   color: var(--accent);
-  border-left-color: var(--accent);
+  border-left-color: var(--accent-border);
+  font-weight: 600;
 }
 
 /* --- 宽屏：目录常驻右侧卡片，隐藏按钮与遮罩 --- */
@@ -2090,11 +2124,14 @@ body.nav-open {
   font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
-  transition: background-color 0.22s var(--ease), border-color 0.22s var(--ease);
+  transition: background-color 0.22s var(--ease), border-color 0.22s var(--ease), box-shadow 0.22s var(--ease);
 }
 
+/* 悬停时不再整体降透明度，而是把实心底色加深到最实的强调底色
+   （与首页「阅读文章」按钮一致），描边同样加粗到 2px */
 .sponsor-action:hover {
-  opacity: 0.85;
+  background-color: var(--accent-soft-active);
+  box-shadow: 0 0 0 1px var(--accent-border);
   text-decoration: none;
 }
 
@@ -2146,7 +2183,7 @@ body.nav-open {
   background: var(--surface);
   color: var(--text-secondary);
   font-size: 0.88rem;
-  transition: background-color 0.22s var(--ease);
+  transition: border-color 0.22s var(--ease), box-shadow 0.22s var(--ease);
 }
 
 .social-btn svg {
@@ -2154,8 +2191,9 @@ body.nav-open {
   height: 16px;
 }
 
+/* 悬停高亮用描边（与文章卡片一致） */
 .social-btn:hover {
-  background-color: var(--surface-active);
+  border-color: var(--accent-border);
   text-decoration: none;
 }
 
@@ -2398,11 +2436,12 @@ body.nav-open {
   font-size: 0.92rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.22s var(--ease);
+  transition: border-color 0.22s var(--ease), box-shadow 0.22s var(--ease);
 }
 
+/* 灯箱在固定深色遮罩上：底色恒为半透明白玻璃，高亮同样用描边而不是加亮底色 */
 .lb-download:hover {
-  background-color: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
 }
 
@@ -2419,11 +2458,11 @@ body.nav-open {
   font-size: 1.4rem;
   line-height: 1;
   cursor: pointer;
-  transition: background-color 0.22s var(--ease);
+  transition: border-color 0.22s var(--ease), box-shadow 0.22s var(--ease);
 }
 
 .lb-close:hover {
-  background-color: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.7);
 }
 
 body.lb-lock {
@@ -2498,21 +2537,25 @@ body.lb-lock {
   font-size: 0.92rem;
   padding: 10px 22px;
   cursor: pointer;
-  transition: background 0.18s var(--ease), color 0.18s var(--ease);
+  transition: background-color 0.18s var(--ease), color 0.18s var(--ease), box-shadow 0.18s var(--ease);
 }
 
 .segment:last-child {
   border-right: 0;
 }
 
+/* 分段控件是拼接结构：用 inset 描边（内阴影）做高亮，既不填底色，
+   也不会撑开尺寸、不会盖掉分段之间的分隔线。
+   悬停只给 1px 描边（亮度与全站一样），加粗和高亮只留给选中项；
+   选中项与首页「阅读文章」按钮同款：--accent-soft 底 + --accent-border 描边，只是这里加粗到 2px */
 .segment:hover {
-  background: var(--surface-hover);
   color: var(--text);
+  box-shadow: inset 0 0 0 1px var(--accent-border);
 }
 
 .segment.is-active {
-  background: var(--accent-soft);
   color: var(--text);
+  background: var(--accent-soft);
   box-shadow: inset 0 0 0 1px var(--accent-border);
 }
 
@@ -2551,4 +2594,35 @@ html[data-article-lang='en'] [data-lang-variant='en'] {
   padding: 10px 16px;
   border-left: 2px solid var(--accent);
   background: var(--accent-soft);
+}
+
+/* ============================================================
+   高亮描边统一加粗
+   站内所有「可高亮」元素平时是 1px 透明（或极淡）描边，悬停/选中时换成
+   强调色描边。这里在描边外再叠一圈 1px 同色外描边，视觉上凑成 2px 的
+   加粗描边；box-shadow 不参与排版，所以不会带来任何尺寸跳动。
+   灯箱按钮处在固定深色遮罩上、不随主题变化，单独用白色描边。
+   ============================================================ */
+.post-item:hover,
+.friend-item:hover,
+.mail-item:hover,
+.social-btn:hover,
+.nav-links a:hover,
+.nav-links a.active,
+.nav-more:hover .nav-more-toggle,
+.nav-more:focus-within .nav-more-toggle,
+.nav-more-menu a:hover,
+.menu-toggle:hover,
+.social-link:hover,
+.theme-toggle:hover,
+.side-nav a:hover,
+.side-nav a.active,
+.archive-list li:hover,
+.cookie-tip-cancel:hover {
+  box-shadow: 0 0 0 1px var(--accent-border);
+}
+
+.lb-download:hover,
+.lb-close:hover {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.7);
 }
