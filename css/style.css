@@ -426,7 +426,10 @@ a:hover {
 
 /* 首屏介绍块：欢迎语独立成板块，居中呈现 */
 .home-main {
-  padding-top: calc(4rem + 24px);
+  /* 顶栏是 sticky，本来就在文档流里占掉了 4rem，所以这里只补一点间距即可。
+     原来按「顶栏浮动」算的 calc(4rem + 24px) 等于把顶栏高度算了两遍，
+     会把首屏内容整体压低 4rem，破坏垂直居中。 */
+  padding-top: 24px;
   padding-bottom: 40px;
 }
 
@@ -437,9 +440,16 @@ a:hover {
   background: transparent;
   border: 0;
   text-align: center;
-  min-height: calc(100vh - 8rem - 24px);
+  /* 正好铺满首屏：视口减去顶栏 4rem 与 .home-main 的顶部间距。
+     首屏高度 = 起始位置，所以铺满之后 hero 的中心就落在视口中心，
+     内容在 hero 里居中即等于「第一眼在网页正中间」。 */
+  min-height: calc(100vh - 4rem - 24px);
   margin-bottom: 0;
   position: relative;
+  /* 内容在首屏内垂直居中 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   /* 底部为提示箭头预留空间：小视口下内容把 hero 撑得超过 min-height 时，
      箭头仍落在按钮下方而非与按钮重叠 */
   padding-bottom: 88px;
@@ -695,12 +705,6 @@ html[data-lang="en"] .home-hero p {
   background: rgba(251, 114, 153, 0.24);
   color: #fb7299;
   border-color: #fb7299;
-}
-
-@media (max-width: 640px) {
-  .home-main {
-    padding-top: 96px;
-  }
 }
 
 /* 内页通用：标题板块 + 内容板块的纵向排布 */
@@ -2012,7 +2016,7 @@ body.nav-open {
 }
 
 /* giscus 自己管 iframe 与内部样式，这里只兜住加载前的空白 */
-#giscusHost {
+.giscus {
   min-height: 160px;
 }
 

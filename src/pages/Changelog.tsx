@@ -8,6 +8,9 @@ interface Entry {
 }
 
 const ENTRIES_ZH: Entry[] = [
+  { date: '2026-10-07', text: '首页首屏改为整体垂直居中：修正顶栏高度被重复计算导致一屏内容整体偏下的问题' },
+  { date: '2026-10-07', text: '修复 giscus 评论登录后跳回站点落到 404 页的问题（评论容器带 id 会被拼进登录回跳地址）' },
+  { date: '2026-10-07', text: '修复所有页面共用同一个评论讨论串的问题，改为按页面路由分别建立讨论' },
   { date: '2026-10-06', text: '首页与页脚社交按钮改为整行居中排列，哔哩哔哩按钮并入按钮行并排在第二位' },
   { date: '2026-10-06', text: '缩小首页与页脚社交按钮之间的上下间距' },
   { date: '2026-10-06', text: '移除导航抽屉底部无样式的关闭按钮；小屏整体缩放进一步调小' },
@@ -60,6 +63,9 @@ const ENTRIES_ZH: Entry[] = [
 ];
 
 const ENTRIES_EN: Entry[] = [
+  { date: '2026-10-07', text: 'Centred the home first screen vertically: fixed the content sitting too low because the header height was counted twice' },
+  { date: '2026-10-07', text: 'Fixed the giscus sign-in redirect landing on the 404 page (the comment container id was being appended to the OAuth redirect URI)' },
+  { date: '2026-10-07', text: 'Fixed every page sharing a single comment thread; each route now gets its own discussion' },
   { date: '2026-10-06', text: 'The social buttons on the home page and footer are now centred in a single row, with the Bilibili button joined into that row in second position' },
   { date: '2026-10-06', text: 'Reduced the vertical spacing between the social buttons on the home page and footer' },
   { date: '2026-10-06', text: 'Removed the unstyled close button at the bottom of the nav drawer, and further reduced the overall zoom on small screens' },
