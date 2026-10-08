@@ -21,6 +21,7 @@ const STACK = [
   { name: 'CSS', desc: '手写样式' },
   { name: 'GitHub Actions', desc: '自动部署' },
   { name: 'GitHub Pages', desc: '静态托管' },
+  { name: 'Cloudflare', desc: '域名解析' },
 ];
 
 export default function Home() {

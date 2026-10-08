@@ -1,4 +1,4 @@
-import { usePrefs, useT, type Lang, type ThemeMode } from '../context/Prefs';
+import { usePrefs, useT, type CornerStyle, type Lang, type ThemeMode } from '../context/Prefs';
 import { Panel } from '../components/Panel';
 
 /* 分段控件：与旧站一致，选中项加 is-active 并同步 aria-pressed */
@@ -40,6 +40,8 @@ export default function Settings() {
     setLang,
     themeMode,
     setThemeMode,
+    cornerStyle,
+    setCornerStyle,
     articleTranslate,
     setArticleTranslate,
     cookieSkip,
@@ -114,6 +116,23 @@ export default function Settings() {
             { value: 'dark', label: t('深色') },
             { value: 'light', label: t('浅色') },
             { value: 'system', label: t('跟随系统') }
+          ]}
+        />
+      </Panel>
+
+      <Panel title={t('样式')}>
+        <p className="setting-hint">
+          {t(
+            '选择全站的边角样式：直角风格保持现在的利落感；圆角风格把直角换为小圆角，并让转角曲线更顺滑（曲率连续）。'
+          )}
+        </p>
+        <Segmented<CornerStyle>
+          label={t('样式')}
+          value={cornerStyle}
+          onChange={setCornerStyle}
+          options={[
+            { value: 'right', label: t('直角风格') },
+            { value: 'rounded', label: t('圆角风格') }
           ]}
         />
       </Panel>

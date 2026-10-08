@@ -14,6 +14,7 @@ export const ZH_TO_EN: Record<string, string> = {
   '设置': 'Settings',
   '切换主题': 'Toggle theme',
   '打开菜单': 'Open menu',
+  '回到顶部': 'Back to top',
   /* 抽屉 */
   '移动端菜单': 'Mobile menu',
   'Hangou 头像': 'Hangou avatar',
@@ -58,6 +59,7 @@ export const ZH_TO_EN: Record<string, string> = {
   '手写样式': 'Hand-written styles',
   '自动部署': 'Automated deployment',
   '静态托管': 'Static hosting',
+  '域名解析': 'DNS',
   '最近写的东西': 'Recent writing',
   '全部文章': 'All posts',
   /* 文章列表 */
@@ -103,11 +105,35 @@ export const ZH_TO_EN: Record<string, string> = {
   '深色': 'Dark',
   '浅色': 'Light',
   '跟随系统': 'System',
+  '样式': 'Corners',
+  '选择全站的边角样式：直角风格保持现在的利落感；圆角风格把直角换为小圆角，并让转角曲线更顺滑（曲率连续）。': 'Choose the site-wide corner style: Right angle keeps the current crisp look; Rounded swaps the right angles for small radii and a smoother, curvature-continuous curve.',
+  '直角风格': 'Right angle',
+  '圆角风格': 'Rounded',
   'Cookie 提示': 'Cookie notice',
   '本站不设追踪型 Cookie，只在本机记住你的选择。': 'This site sets no tracking cookies and only remembers your choice on this device.',
   '每次询问': 'Ask every time',
   '不再提示': 'Do not ask again',
-  '设置保存在本机浏览器，不会上传。': 'These settings are stored in this browser and never uploaded.'
+  '设置保存在本机浏览器，不会上传。': 'These settings are stored in this browser and never uploaded.',
+  /* 关于页 */
+  '我是谁': 'Who I am',
+  '我在做什么': 'What I do',
+  '关于 Ci OS': 'About Ci OS',
+  '联系方式': 'Contact',
+  '写在最后': 'Wrapping up',
+  /* 归档 */
+  '全部内容': 'All content',
+  /* 更新日志 */
+  '更新记录': 'Changelog',
+  /* 友链 */
+  '关于友链': 'About friend links',
+  /* 隐私政策 */
+  '隐私说明': 'Privacy notes',
+  /* 目录 */
+  '目录': 'Contents',
+  /* 图片预览浮窗 */
+  '图片预览': 'Image preview',
+  '关闭预览': 'Close preview',
+  '下载图片': 'Download image'
 };
 
 /* 各页面英文标题 */

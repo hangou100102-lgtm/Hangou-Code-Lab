@@ -25,7 +25,7 @@ export default function Privacy() {
 
       <TranslateNote />
 
-      <Panel title={t('隐私说明')} className="panel-article">
+      <Panel title={t('隐私说明')}>
         <Zh className="article-body">
           <p>最后更新：2026-09-26</p>
 

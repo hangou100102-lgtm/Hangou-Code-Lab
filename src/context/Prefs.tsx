@@ -3,9 +3,12 @@ import { TITLE_EN, TITLE_ZH, ZH_TO_EN } from '../i18n/phrases';
 
 export type Lang = 'zh' | 'en';
 export type ThemeMode = 'dark' | 'light' | 'system';
+/* 边角样式：直角（默认，现站样式）与圆角（小圆角 + G2 连续曲率） */
+export type CornerStyle = 'right' | 'rounded';
 
 const LANG_KEY = 'hcl-lang';
 const THEME_KEY = 'hcl-theme';
+const CORNER_KEY = 'hcl-corner';
 const TRANSLATE_KEY = 'hcl-article-translate';
 const COOKIE_KEY = 'hcl-cookie-ok';
 
@@ -14,6 +17,8 @@ export interface Prefs {
   setLang: (lang: Lang) => void;
   themeMode: ThemeMode;
   setThemeMode: (mode: ThemeMode) => void;
+  cornerStyle: CornerStyle;
+  setCornerStyle: (style: CornerStyle) => void;
   articleTranslate: boolean;
   setArticleTranslate: (on: boolean) => void;
   cookieSkip: boolean;
@@ -36,6 +41,14 @@ function readThemeMode(): ThemeMode {
     return v === 'light' || v === 'system' ? v : 'dark';
   } catch {
     return 'dark';
+  }
+}
+
+function readCorner(): CornerStyle {
+  try {
+    return localStorage.getItem(CORNER_KEY) === 'rounded' ? 'rounded' : 'right';
+  } catch {
+    return 'right';
   }
 }
 
@@ -76,6 +89,7 @@ const MODE_ORDER: ThemeMode[] = ['dark', 'light', 'system'];
 export function PrefsProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>(readLang);
   const [themeMode, setThemeModeState] = useState<ThemeMode>(readThemeMode);
+  const [cornerStyle, setCornerStyleState] = useState<CornerStyle>(readCorner);
   const [articleTranslate, setTranslateState] = useState<boolean>(readTranslated);
   const [cookieSkip, setCookieSkipState] = useState<boolean>(readCookieSkip);
 
@@ -132,6 +146,16 @@ export function PrefsProvider({ children }: { children: ReactNode }) {
     return undefined;
   }, [themeMode]);
 
+  /* 边角样式：直角（默认）不加属性，圆角时挂上 html[data-corner="rounded"] */
+  useEffect(() => {
+    const root = document.documentElement;
+    if (cornerStyle === 'rounded') {
+      root.setAttribute('data-corner', 'rounded');
+    } else {
+      root.removeAttribute('data-corner');
+    }
+  }, [cornerStyle]);
+
   /* 全文翻译：切换 html[data-article-lang] */
   useEffect(() => {
     const root = document.documentElement;
@@ -186,6 +210,11 @@ export function PrefsProvider({ children }: { children: ReactNode }) {
     setArticleTranslate: (on) => {
       setTranslateState(on);
       write(TRANSLATE_KEY, on ? '1' : '0');
+    },
+    cornerStyle,
+    setCornerStyle: (next) => {
+      setCornerStyleState(next);
+      write(CORNER_KEY, next);
     },
     cookieSkip,
     setCookieSkip: (skip) => {

@@ -52,7 +52,8 @@ img {
   --scroll-thumb: rgba(255, 255, 255, 0.16);
   --scroll-thumb-hover: rgba(255, 255, 255, 0.26);
 
-  /* 圆角梯度：全部置零，全站直角 */
+  /* 圆角梯度：默认（直角风格）全部置零，全站直角。
+     圆角风格由文末 :root[data-corner="rounded"] 覆写为小圆角 */
   --r-xs: 0;
   --r-sm: 0;
   --r-md: 0;
@@ -62,8 +63,6 @@ img {
   --r-btn: 0;
   --r-btn-lg: 0;
   --r-pill: 0;
-  /* 圆角为 0 时超椭圆曲线不生效，保留变量仅为兼容旧引用 */
-  --corner: round;
 
   --max-width: 1024px;
   --max-wide: 1024px;
@@ -254,6 +253,7 @@ html.cookie-open {
   width: min(440px, 100%);
   padding: 28px 26px 24px;
   border: 1px solid transparent;
+  border-radius: var(--r-lg);
   background-color: var(--header-bg);
   backdrop-filter: blur(17px) saturate(1.8);
   -webkit-backdrop-filter: blur(17px) saturate(1.8);
@@ -290,6 +290,7 @@ html.cookie-open {
   flex: 1;
   padding: 10px 16px;
   border: 1px solid transparent;
+  border-radius: var(--r-btn-sm);
   background-color: var(--glass-bg-hover);
   color: var(--text);
   font-family: inherit;
@@ -387,10 +388,11 @@ a:hover {
 /* ============ 板块（页面内容卡片化） ============ */
 /* 页面内容统一拆成一块块独立卡片：与 .side-card 同材质（--surface 底、无描边），
    但用 .panel-head 提供带底色的标题栏，形成可辨识的「板块」观感。
-   全站圆角为 0，因此这里不设圆角。 */
+   圆角跟随 --r-lg：直角风格为 0，圆角风格为小圆角。 */
 .panel {
   background: var(--surface);
   border: 1px solid transparent;
+  border-radius: var(--r-lg);
   margin-bottom: 20px;
 }
 
@@ -477,13 +479,13 @@ a:hover {
   padding: 0;
 }
 
-/* 首页头像：大号直角方形，居中置于标题上方 */
+/* 首页头像：大号方形，居中置于标题上方（圆角跟随 --r-xl，比常规板块略大） */
 .home-hero .hero-avatar {
   display: block;
   width: 120px;
   height: 120px;
   margin: 0 auto 14px;
-  border-radius: 0;
+  border-radius: var(--r-xl);
   object-fit: cover;
   border: 1px solid var(--border-strong);
 }
@@ -510,7 +512,7 @@ html[data-lang="en"] .home-hero p {
   letter-spacing: 0;
 }
 
-/* 首页问候语下的主按钮：直角矩形、实心样式（底 --accent-soft、描边 --accent-border），
+/* 首页问候语下的主按钮：矩形、实心样式（底 --accent-soft、描边 --accent-border），
    悬停时把底色加深到最实的强调底色，水平居中。 */
 .hero-actions {
   display: flex;
@@ -528,7 +530,7 @@ html[data-lang="en"] .home-hero p {
   width: fit-content;
   padding: 10px 24px;
   border: 1px solid var(--accent-border);
-  border-radius: 0;
+  border-radius: var(--r-btn);
   background: var(--accent-soft);
   color: var(--text);
   font: inherit;
@@ -692,6 +694,7 @@ html[data-lang="en"] .home-hero p {
   gap: 4px;
   padding: 12px 14px;
   border: 1px solid var(--border);
+  border-radius: var(--r-md);
   background: var(--bg-soft);
 }
 
@@ -1090,6 +1093,7 @@ html::before {
   width: 32px;
   height: 32px;
   object-fit: cover;
+  border-radius: var(--r-sm);
   background: var(--bg-soft);
   border: 1px solid var(--border);
 }
@@ -1156,6 +1160,7 @@ html::before {
   gap: 5px;
   padding: 6px 13px;
   border: 1px solid transparent;
+  border-radius: var(--r-btn-sm);
   background-color: transparent;
   color: var(--text-secondary);
   font-family: inherit;
@@ -1194,6 +1199,7 @@ html::before {
   padding: 6px;
   /* 不描边，改用遮罩模糊把下方内容压下去，和顶栏是同一套做法 */
   border: 1px solid transparent;
+  border-radius: var(--r-md);
   background-color: var(--header-bg);
   backdrop-filter: blur(17px) saturate(1.8);
   -webkit-backdrop-filter: blur(17px) saturate(1.8);
@@ -1221,6 +1227,7 @@ html::before {
   /* 预留 1px 透明描边，悬停时只换描边色、不改变尺寸 */
   padding: 7px 11px;
   border: 1px solid transparent;
+  border-radius: var(--r-sm);
   color: var(--text-soft);
   font-size: 0.9rem;
   font-weight: 500;
@@ -1497,6 +1504,8 @@ body.nav-open {
   background: var(--surface);
   border: 1px solid transparent;
   border-radius: var(--r-lg);
+  /* 裁掉封面图的直角，使缩略图贴合卡片的圆角（直角风格下无副作用） */
+  overflow: hidden;
   cursor: pointer;
   transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
@@ -1762,16 +1771,6 @@ body.nav-open {
 /* 标题里的标题与标签：收紧间距 */
 .panel-title .panel-body > :last-child {
   margin-bottom: 0;
-}
-
-/* 尾部日期板块：低调收尾，与正文板块区分 */
-.panel-article {
-  background: transparent;
-  border: 0;
-}
-
-.panel-article .panel-body {
-  padding: 0;
 }
 
 /* 板块内的邮箱卡片：面板底色已是 --surface，卡片改用 --bg-soft 拉开层级 */
@@ -2084,6 +2083,57 @@ html[data-article-lang='en'] .post-meta.post-meta-dates [data-lang-variant='en']
   }
 }
 
+/* ============ 回到顶部 ============ */
+/* 沿用悬浮目录按钮那套「卡片 + 描边 + 浮层阴影」的样式，
+   窄屏时叠在目录按钮正上方，宽屏时目录按钮已隐藏故直接落到底部。 */
+.back-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 82px;
+  z-index: 58;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-pop);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.24s var(--ease), transform 0.24s var(--ease),
+    visibility 0.24s var(--ease), color 0.2s var(--ease),
+    border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  color: var(--accent);
+  border-color: var(--accent-border);
+  box-shadow: var(--shadow-pop), 0 0 0 1px var(--accent-border);
+}
+
+.back-to-top svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (min-width: 1024px) {
+  .back-to-top {
+    bottom: 24px;
+  }
+}
+
 /* ============ 文章评论（giscus / GitHub Discussions） ============ */
 /* 沿用文章末尾日期行那套「细分割线 + 低调文字」的收尾感，
    评论区自己不带卡片底色，和正文同处一个平面。 */
@@ -2160,7 +2210,7 @@ html[data-article-lang='en'] .post-meta.post-meta-dates [data-lang-variant='en']
   justify-content: center;
   padding: 10px 24px;
   border: 1px solid var(--accent-border);
-  border-radius: 0;
+  border-radius: var(--r-btn);
   background: var(--accent-soft);
   color: var(--text);
   font-size: 1rem;
@@ -2396,6 +2446,7 @@ html[data-article-lang='en'] .post-meta.post-meta-dates [data-lang-variant='en']
 .article-body img {
   max-width: 100%;
   height: auto;
+  border-radius: var(--r-md);
   cursor: zoom-in;
 }
 
@@ -2511,38 +2562,61 @@ body.lb-lock {
   overflow: hidden;
 }
 
-/* ============ G2 连续曲率圆角 ============ */
-/* 把圆形圆弧替换为超椭圆曲线，使圆角与直角边在切点处曲率连续。
-   不支持 corner-shape 的浏览器会忽略这些声明，自动回退为普通圆角。
-   当前全站圆角为 0（见 :root 里的 --r-* 变量），所以这一段是不生效的预留实现，
-   要恢复圆角时把变量值改回来即可。 */
-.side-card,
-.side-nav a,
-.side-sponsor,
-.friend-item,
-.friend-avatar,
-.friend-empty,
-.archive-list li,
-.nav-drawer,
-.nav-links a,
-.menu-toggle,
-.social-link,
-.search-input,
-.post-item,
-.post-thumb-link,
-.article-body .article-cover,
-.article-body blockquote,
-.mail-item,
-.article-body code,
-.article-body pre,
-.sponsor-action,
-.sponsor-empty,
-.social-btn,
-.tag,
-.lb-img,
-.lb-download,
-.lb-close {
-  corner-shape: var(--corner);
+/* ============ 边角样式（设置页可切换） ============ */
+/* 直角风格（默认）：--r-* 全为 0（见 :root），全站直角。
+   圆角风格：写回克制的「小圆角」，并用 corner-shape: squircle 把圆弧换成
+   超椭圆曲线，使圆角与直角边在切点处曲率连续（G2）。不支持 corner-shape
+   的浏览器会忽略该声明，自动回退为普通圆角，功能不受影响。 */
+:root[data-corner="rounded"] {
+  --r-xs: 6px;
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 14px;
+  --r-xl: 18px;
+  --r-btn-sm: 8px;
+  --r-btn: 10px;
+  --r-btn-lg: 14px;
+  /* 搜索框、标签、滚动条保持胶囊全圆角 */
+  --r-pill: 999px;
+}
+
+/* 超椭圆（G2）只用在「纯底面 / 静态卡片」上：这些元素没有 2px 描边高亮，
+   转角不会因超椭圆曲线的抗锯齿而发粗。
+   带描边高亮的交互元素（卡片悬停、按钮、导航、分段控件等）保持普通圆角，
+   这样描边四角才是均匀的 —— 超椭圆曲线会让描边在转角处显粗。 */
+:root[data-corner="rounded"] .panel,
+:root[data-corner="rounded"] .side-card,
+:root[data-corner="rounded"] .stack-item,
+:root[data-corner="rounded"] .nav-drawer,
+:root[data-corner="rounded"] .nav-more-menu,
+:root[data-corner="rounded"] .cookie-modal-card,
+:root[data-corner="rounded"] .toc,
+:root[data-corner="rounded"] .lb-img,
+:root[data-corner="rounded"] .article-body .article-cover,
+:root[data-corner="rounded"] .article-body img,
+:root[data-corner="rounded"] .article-body pre,
+:root[data-corner="rounded"] .article-body blockquote,
+:root[data-corner="rounded"] .translate-note,
+:root[data-corner="rounded"] .friend-avatar,
+:root[data-corner="rounded"] .brand-logo,
+:root[data-corner="rounded"] .home-hero .hero-avatar,
+:root[data-corner="rounded"] .friend-empty,
+:root[data-corner="rounded"] .sponsor-empty {
+  corner-shape: squircle;
+}
+
+/* 分段控件：外层与首尾项补上圆角，避免选中项的方角底色溢出；
+   不用 overflow: hidden，以免裁掉键盘聚焦时的外框 */
+:root[data-corner="rounded"] .segmented {
+  border-radius: var(--r-md);
+}
+
+:root[data-corner="rounded"] .segment:first-child {
+  border-radius: var(--r-md) 0 0 var(--r-md);
+}
+
+:root[data-corner="rounded"] .segment:last-child {
+  border-radius: 0 var(--r-md) var(--r-md) 0;
 }
 
 /* 设置页 */
@@ -2627,7 +2701,7 @@ html[data-article-lang='en'] [data-lang-variant='en'] {
   display: block;
 }
 
-/* 英文版本的免责提示 */
+/* 英文版本的免责提示：与正文引用横幅（blockquote）同款 */
 .translate-note {
   color: var(--text-secondary);
   font-size: 0.85rem;
@@ -2635,6 +2709,7 @@ html[data-article-lang='en'] [data-lang-variant='en'] {
   margin: 0 0 26px;
   padding: 10px 16px;
   border-left: 2px solid var(--accent);
+  border-radius: var(--r-md);
   background: var(--accent-soft);
 }
 

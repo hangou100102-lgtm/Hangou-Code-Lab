@@ -5,6 +5,35 @@
 
 ---
 
+## 2026-10-08 13:35 · 变更：CORS 白名单加入自定义域名 blog.hangou.top
+
+### 背景
+
+博客前端启用自定义域名 `https://blog.hangou.top`（GitHub Pages CNAME），后端接口仍在 `https://xitide.top/api/`，属跨域。原白名单不含新域名，浏览数请求被浏览器 CORS 拦截。
+
+### 改动文件
+
+- `api/config.php`：`allow_origins` 由三项追加 `'https://blog.hangou.top'`（现为四项）
+
+### API 变动
+
+无。仅 CORS 头行为变化：带 `Origin: https://blog.hangou.top` 的请求现在回显 `Access-Control-Allow-Origin: https://blog.hangou.top`（已复验）。
+
+### 影响范围
+
+- 博客前端（blog.hangou.top）：浏览数接口可正常跨域
+- PocketAgent、其余白名单域名：零影响
+
+### 回滚方法
+
+把 `api/config.php` 的 `allow_origins` 改回不含 `https://blog.hangou.top` 的三项。
+
+### 关联事项（前端侧，未动服务器）
+
+线上浏览数不显示的主因是构建时 `VITE_VIEWS_API` 未注入（仓库 Actions Variables 未配置），前端不会发起浏览数请求。需在仓库 Settings → Secrets and variables → Actions → Variables 添加 `VITE_VIEWS_API = https://xitide.top/api/views.php`，然后重跑 workflow。
+
+---
+
 ## 2026-10-08 03:10 · 变更：config.php CORS 白名单加入本地开发地址
 
 ### 改动文件

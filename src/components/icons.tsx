@@ -177,6 +177,16 @@ export function IconClockSmall() {
   );
 }
 
+/* 回到顶部按钮的上箭头图标 */
+export function IconArrowUp() {
+  return (
+    <svg className="icon-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 19V5" />
+      <path d="M5 12l7-7 7 7" />
+    </svg>
+  );
+}
+
 /* 浏览数前的眼睛图标 */
 export function IconEye() {
   return (
