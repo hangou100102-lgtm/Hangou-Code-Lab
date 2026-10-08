@@ -8,6 +8,10 @@ interface Entry {
 }
 
 const ENTRIES_ZH: Entry[] = [
+  { date: '2026-10-09', text: '设置页新增「样式」选项：可在直角风格与圆角风格之间切换全站边角，圆角风格为小圆角 + 曲率连续（G2）的超椭圆转角' },
+  { date: '2026-10-09', text: '圆角风格：高亮描边元素改用普通圆角保证四角描边粗细均匀，静态卡片与头像改用超椭圆连续曲率；圆角半径整体加大，主页大头像圆角略大于常规板块' },
+  { date: '2026-10-09', text: '补齐全文翻译缺失的英文词条，覆盖关于我、归档、更新日志、友链、隐私、目录与图片预览浮窗等模块标题' },
+  { date: '2026-10-09', text: '隐私政策页正文改为标准卡片板块，与全站风格统一' },
   { date: '2026-10-08', text: '修复首页滚动箭头跳转后「我的项目」标题被吸顶导航栏挡住的问题，页内锚点跳转时给顶栏预留高度' },
   { date: '2026-10-08', text: '设置页分段控件：选中项改为与首页「阅读文章」按钮同款（淡强调底色 + 加粗描边），悬停只保留细描边，加粗与高亮只属于选中项' },
   { date: '2026-10-08', text: '实心按钮（首页「阅读文章」、赞助按钮、侧栏赞助等）悬停改为加深底色，并同步加粗描边；深浅主题下的悬停对比度一并提高' },
@@ -69,6 +73,10 @@ const ENTRIES_ZH: Entry[] = [
 ];
 
 const ENTRIES_EN: Entry[] = [
+  { date: '2026-10-09', text: 'Added a "Corners" option to Settings: switch the site-wide corner style between right-angle and rounded, where rounded uses a small radius with a curvature-continuous (G2) squircle' },
+  { date: '2026-10-09', text: 'Rounded style: stroke-highlighted elements now use plain circular corners so the 2px highlight stays uniform, while static cards and avatars use a continuous-curvature squircle; overall radii were enlarged and the home avatar is slightly rounder than regular panels' },
+  { date: '2026-10-09', text: 'Filled in the missing English phrases for full-text translation, covering headings on About, Archive, Changelog, Friends, Privacy, the table of contents and the image lightbox' },
+  { date: '2026-10-09', text: 'The Privacy Policy body now uses a standard card panel to match the site-wide style' },
   { date: '2026-10-08', text: 'Fixed the "My project" heading being hidden behind the sticky header after tapping the home scroll arrow; in-page anchors now reserve the header height' },
   { date: '2026-10-08', text: 'Settings segmented control: the selected option now matches the home "Read posts" button (soft accent fill + thick border), while hover keeps only a thin border — the thicker, brighter treatment belongs to the selection alone' },
   { date: '2026-10-08', text: 'Solid buttons (the home "Read posts" button, sponsor buttons, the sidebar sponsor button) now deepen their background on hover with a matching thicker border, and the hover contrast is higher in both themes' },
