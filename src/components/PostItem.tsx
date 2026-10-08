@@ -1,8 +1,8 @@
 import type { Post } from '../data/posts';
-import { usePrefs } from '../context/Prefs';
+import { usePrefs, useT } from '../context/Prefs';
 import { useSiteNav } from '../context/SiteNav';
 import { En, Zh } from './LangVariant';
-import { IconPin, IconClockSmall } from './icons';
+import { IconPin, IconClockSmall, IconEye } from './icons';
 
 /* 摘要截断：中文超过 20 字、英文超过 80 个字符时截断并加省略号，
    完整文本放进 title 便于悬停查看。 */
@@ -14,13 +14,27 @@ function clamp(text: string, limit: number): { text: string; title?: string } {
   return { text: t };
 }
 
-/* 单条文章卡片：中英两份内容靠 data-lang-variant 切换显隐 */
-export function PostItem({ post }: { post: Post }) {
+/* 单条文章卡片：中英两份内容靠 data-lang-variant 切换显隐。
+   views 由列表页统一取回后传入，未取到（或未接入接口）时不显示。 */
+export function PostItem({ post, views }: { post: Post; views?: number }) {
   const { lang, articleTranslate } = usePrefs();
+  const t = useT();
   const { go } = useSiteNav();
   const zh = clamp(post.excerptZh, 20);
   const en = clamp(post.excerptEn, 80);
   const showEn = articleTranslate && lang === 'en';
+
+  /* 浏览数始终渲染：数据未取到时用 “-” 占位，避免取回后插入 DOM 造成行内跳动。
+     文案跟随卡片的中英变体（data-lang-variant + CSS 切换）。 */
+  const viewsEl = (
+    <span className="post-views" aria-label={`${views ?? 0} ${t('浏览')}`}>
+      <IconEye />
+      <span data-lang-variant="zh">{views ?? '-'} 次浏览</span>
+      <span data-lang-variant="en" lang="en">
+        {views ?? '-'} {views === 1 ? 'view' : 'views'}
+      </span>
+    </span>
+  );
 
   const nav = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -66,6 +80,7 @@ export function PostItem({ post }: { post: Post }) {
               <IconClockSmall />
               {post.date}
             </span>
+            {viewsEl}
           </div>
           <h2>
             <a href={'#' + post.href} onClick={nav}>
@@ -88,6 +103,7 @@ export function PostItem({ post }: { post: Post }) {
               <IconClockSmall />
               {post.date}
             </span>
+            {viewsEl}
           </div>
           <h2>
             <a href={'#' + post.href} onClick={nav}>

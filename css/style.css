@@ -1572,6 +1572,33 @@ body.nav-open {
   height: 12px;
 }
 
+/* 浏览数：与日期同一视觉层级的低调计数 */
+.post-views {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-secondary);
+  font-size: 0.74rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.post-views .icon-eye {
+  width: 12px;
+  height: 12px;
+  flex: 0 0 auto;
+}
+
+/* 文章页页头：跟随 .post-meta 的字号，与日期对齐 */
+.post-meta .post-views {
+  font-size: 0.78rem;
+}
+
+.post-meta .post-views .icon-eye {
+  width: 13px;
+  height: 13px;
+}
+
 /* 页面页头等处的标签：卡片式背景色块（全站圆角为 0） */
 .tag {
   display: inline-flex;
@@ -1901,6 +1928,21 @@ body.nav-open {
 /* 标签独占一行，换到日期下方 */
 .post-meta.post-meta-dates .tags {
   flex-basis: 100%;
+}
+
+/* 内页元数据行对齐修正：双语变体 div 不产生盒，日期与浏览数
+   作为同一层 flex item 精确居中（否则 div 行盒基线摆位会造成 ~1px 错位）。
+   英文模式下各自的显隐规则保持与全局一致。 */
+.post-meta.post-meta-dates [data-lang-variant='zh'] {
+  display: contents;
+}
+
+html[data-article-lang='en'] .post-meta.post-meta-dates [data-lang-variant='zh'] {
+  display: none;
+}
+
+html[data-article-lang='en'] .post-meta.post-meta-dates [data-lang-variant='en'] {
+  display: contents;
 }
 
 /* ============ 文章页目录 ============ */

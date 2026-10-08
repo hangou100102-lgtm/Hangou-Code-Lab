@@ -3,11 +3,16 @@ import { POSTS, postSearchText } from '../data/posts';
 import { PostItem } from '../components/PostItem';
 import { TranslateNote } from '../components/LangVariant';
 import { useSearch } from '../hooks/useSearch';
+import { useViews } from '../hooks/useViews';
+
+/* 站内全部文章路径，用于一次性批量取回浏览数 */
+const POST_PATHS = POSTS.map((post) => post.href);
 
 export default function Posts() {
   const t = useT();
   const { lang } = usePrefs();
   const search = useSearch(POSTS, postSearchText);
+  const views = useViews(POST_PATHS);
 
   return (
     <main className="page-main container">
@@ -48,7 +53,7 @@ export default function Posts() {
             </p>
             <TranslateNote />
             {search.results.map((post) => (
-              <PostItem key={post.href} post={post} />
+              <PostItem key={post.href} post={post} views={views?.[post.href]} />
             ))}
           </div>
         </div>

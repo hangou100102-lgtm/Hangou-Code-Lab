@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>后台登录 · Hangou</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <main class="admin-card">
+    <h1 class="admin-title">Hangou 后台</h1>
+
+    <!-- 登录表单 -->
+    <form id="login-form" class="admin-form" autocomplete="off">
+      <label class="field">
+        <span class="field-label">用户名</span>
+        <input type="text" id="username" name="username" required maxlength="64" autocomplete="username">
+      </label>
+      <label class="field">
+        <span class="field-label">密码</span>
+        <input type="password" id="password" name="password" required maxlength="128" autocomplete="current-password">
+      </label>
+      <p id="login-error" class="admin-error" hidden></p>
+      <button type="submit" class="admin-btn">登 录</button>
+    </form>
+
+    <!-- 登录后的状态面板（后续后台功能在这里扩展） -->
+    <div id="admin-panel" class="admin-panel" hidden>
+      <p class="admin-greet">已登录：<strong id="admin-name"></strong></p>
+      <button type="button" id="logout-btn" class="admin-btn admin-btn--ghost">退出登录</button>
+    </div>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>

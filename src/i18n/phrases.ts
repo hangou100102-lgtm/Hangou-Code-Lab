@@ -67,6 +67,8 @@ export const ZH_TO_EN: Record<string, string> = {
   '没有找到相关文章，换个关键词试试？': 'No matching posts. Try another keyword.',
   '文章列表': 'Articles',
   '最近文章': 'Recent posts',
+  /* 浏览数 */
+  '浏览': 'views',
   /* 标签 */
   '置顶': 'Pinned',
   '关于': 'About',

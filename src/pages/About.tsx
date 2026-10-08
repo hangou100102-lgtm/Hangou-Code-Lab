@@ -2,7 +2,8 @@ import { useT } from '../context/Prefs';
 import { En, TranslateNote, Zh } from '../components/LangVariant';
 import { Panel } from '../components/Panel';
 import { Giscus } from '../components/Giscus';
-import { IconClockSmall, IconPin } from '../components/icons';
+import { IconClockSmall, IconEye, IconPin } from '../components/icons';
+import { useViewCount } from '../hooks/useViews';
 
 /* 联系方式：常用邮箱带「常用」标记 */
 const MAILS_ZH = [
@@ -13,6 +14,8 @@ const MAILS_ZH = [
 
 export default function About() {
   const t = useT();
+  /* 进入文章时记一次浏览，返回展示用的最新值 */
+  const views = useViewCount('/posts/about');
   const projectLink = 'https://s.hortorinteractive.com/K4ZK47';
   const cover = import.meta.env.BASE_URL + 'images/Image_1764458904822.jpg';
 
@@ -44,6 +47,13 @@ export default function About() {
               Published 2026-09-04 · Updated 2026-09-06
             </span>
           </En>
+          <span className="post-views" aria-label={`${views ?? 0} ${t('浏览')}`}>
+            <IconEye />
+            <span data-lang-variant="zh">{views ?? '-'} 次浏览</span>
+            <span data-lang-variant="en" lang="en">
+              {views ?? '-'} {views === 1 ? 'view' : 'views'}
+            </span>
+          </span>
           <span className="tags">
             <span className="tag tag-pin"><IconPin />{t('置顶')}</span>
             <span className="tag">{'#'}{t('关于')}</span>

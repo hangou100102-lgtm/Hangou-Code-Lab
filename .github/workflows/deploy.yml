@@ -33,6 +33,11 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          # 浏览数接口地址（后端见 api/views.php）。
+          # 在仓库 Settings → Secrets and variables → Actions → Variables 中配置 VITE_VIEWS_API；
+          # 未配置时值为空，页面不显示浏览数。
+          VITE_VIEWS_API: ${{ vars.VITE_VIEWS_API }}
 
       # Vite 的 base 为 './'，产物里已是相对路径，无需额外处理子路径
       - name: Upload artifact

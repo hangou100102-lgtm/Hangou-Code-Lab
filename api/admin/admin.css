@@ -1,0 +1,122 @@
+/* 后台登录页样式：与站点约定一致（直角、灰阶、2px 描边高亮） */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --panel-bg: #ffffff;
+  --page-bg: #f4f4f4;
+  --text: #1d1d1d;
+  --text-secondary: #7d7d7d;
+  --border: #d9d9d9;
+  --accent-soft: rgba(29, 29, 29, 0.07);
+  --accent-border: rgba(29, 29, 29, 0.92);
+  --error: #b3261e;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --panel-bg: #1c1c1e;
+    --page-bg: #0f0f10;
+    --text: #f2f2f2;
+    --text-secondary: #a0a0a0;
+    --border: #3a3a3c;
+    --accent-soft: rgba(237, 237, 237, 0.1);
+    --accent-border: rgba(237, 237, 237, 0.7);
+    --error: #f2b8b5;
+  }
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Microsoft YaHei", sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.admin-card {
+  width: 100%;
+  max-width: 360px;
+  background: var(--panel-bg);
+  border: 1px solid var(--border);
+  padding: 32px 28px;
+}
+
+.admin-title {
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 24px;
+  letter-spacing: 0.05em;
+}
+
+.field { display: block; margin-bottom: 16px; }
+
+.field-label {
+  display: block;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.field input {
+  width: 100%;
+  padding: 10px 12px;
+  font: inherit;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 0; /* 直角，与站点一致 */
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.field input:focus {
+  border-color: var(--accent-border);
+  box-shadow: 0 0 0 1px var(--accent-border);
+}
+
+.admin-btn {
+  width: 100%;
+  padding: 10px 16px;
+  margin-top: 8px;
+  font: inherit;
+  cursor: pointer;
+  color: var(--text);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-border);
+  border-radius: 0;
+  transition: background-color 0.15s, box-shadow 0.15s;
+}
+
+.admin-btn:hover {
+  background: var(--accent-soft);
+  box-shadow: 0 0 0 1px var(--accent-border);
+}
+
+.admin-btn:active {
+  background: var(--accent-soft);
+  box-shadow: 0 0 0 2px var(--accent-border);
+}
+
+.admin-btn[disabled] { opacity: 0.55; cursor: not-allowed; }
+
+.admin-btn--ghost { background: transparent; }
+
+.admin-error {
+  color: var(--error);
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.admin-panel { text-align: center; }
+
+.admin-greet { margin-bottom: 8px; color: var(--text-secondary); }
+
+.admin-greet strong { color: var(--text); }
