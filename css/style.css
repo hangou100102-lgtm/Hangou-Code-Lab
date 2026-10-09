@@ -49,6 +49,8 @@ img {
   --header-bg: rgba(14, 14, 14, 0.62);
   /* 浮层阴影：只给顶栏下拉这类真正浮起来的元素用 */
   --shadow-pop: 0 10px 28px rgba(0, 0, 0, 0.42);
+  /* 浮层毛玻璃：深色主题把身后的内容压暗 */
+  --glass-filter: blur(17px) saturate(1.8) brightness(0.8);
   --scroll-thumb: rgba(255, 255, 255, 0.16);
   --scroll-thumb-hover: rgba(255, 255, 255, 0.26);
 
@@ -106,6 +108,8 @@ img {
   --pre-text: #d9d9d9;
   --header-bg: rgba(245, 245, 245, 0.66);
   --shadow-pop: 0 8px 22px rgba(20, 20, 20, 0.14);
+  /* 浮层毛玻璃：浅色主题把身后的内容提亮 */
+  --glass-filter: blur(17px) saturate(1.8) brightness(1.18);
   --scroll-thumb: rgba(20, 20, 20, 0.18);
   --scroll-thumb-hover: rgba(20, 20, 20, 0.3);
 }
@@ -552,6 +556,8 @@ html[data-lang="en"] .home-hero p {
   padding: 10px 24px;
   font-size: 1rem;
   font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
 }
 
 /* 首页问候语下的站点标签：无卡片，仅图标 + 文字 */
@@ -2562,6 +2568,67 @@ body.lb-lock {
   overflow: hidden;
 }
 
+/* ============ 提示条（Toast） ============ */
+/* 多条提示条自上而下堆叠在右上角、整体右侧贴紧页面边缘；新的一条追加到最下方。
+   每条从视口右外侧偏下斜向往左上滑入，纵向 0.35s 先到位、横向 0.55s 再滑到靠边位置，
+   停稳 3 秒后向右滑出，也可用指针向右拖动划出；堆叠重排同样 0.55s。
+   全部用同一套缓出曲线。外观与全文翻译提示条（.translate-note）同款。 */
+.toast-stack {
+  --toast-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  position: fixed;
+  top: calc(4rem + 18px);
+  right: 0;
+  z-index: 46;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.toast-slot {
+  transition: transform 0.55s var(--toast-ease);
+}
+
+.toast-card {
+  pointer-events: auto;
+  max-width: min(320px, calc(100vw - 32px));
+  padding: 10px 16px;
+  border: 0;
+  border-left: 2px solid var(--accent);
+  border-radius: var(--r-md);
+  background: var(--accent-soft);
+  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--glass-filter);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  cursor: grab;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  transform: translateX(0);
+  translate: 0 0;
+  opacity: 1;
+  transition: transform 0.55s var(--toast-ease), translate 0.35s var(--toast-ease),
+    opacity 0.55s var(--toast-ease);
+  will-change: transform;
+}
+
+.toast-card:active {
+  cursor: grabbing;
+}
+
+.toast-card.toast-in {
+  transform: translateX(100%);
+  translate: 0 calc(100% + 160px);
+  opacity: 0;
+}
+
+.toast-card.toast-out {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
 /* ============ 边角样式（设置页可切换） ============ */
 /* 直角风格（默认）：--r-* 全为 0（见 :root），全站直角。
    圆角风格：写回克制的「小圆角」，并用 corner-shape: squircle 把圆弧换成
@@ -2590,6 +2657,7 @@ body.lb-lock {
 :root[data-corner="rounded"] .nav-drawer,
 :root[data-corner="rounded"] .nav-more-menu,
 :root[data-corner="rounded"] .cookie-modal-card,
+:root[data-corner="rounded"] .toast-card,
 :root[data-corner="rounded"] .toc,
 :root[data-corner="rounded"] .lb-img,
 :root[data-corner="rounded"] .article-body .article-cover,

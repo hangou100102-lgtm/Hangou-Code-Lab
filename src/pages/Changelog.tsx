@@ -8,6 +8,8 @@ interface Entry {
 }
 
 const ENTRIES_ZH: Entry[] = [
+  { date: '2026-10-10', text: '首页「敬请期待」按钮改为可点击，点击后从右上角滑出提示条；提示条支持多条同时显示并向下堆叠到接近网页底部，停稳 3 秒后自动消失，也可用指针向右拖动划出' },
+  { date: '2026-10-10', text: '提示条动画：从视口右外侧偏下斜向往左上滑入，纵向先到位再水平滑入，进出场与堆叠重排统一为 0.55 秒缓出曲线；材质沿用站内浮层的半透明底 + 遮罩模糊' },
   { date: '2026-10-09', text: '设置页新增「样式」选项：可在直角风格与圆角风格之间切换全站边角，圆角风格为小圆角 + 曲率连续（G2）的超椭圆转角' },
   { date: '2026-10-09', text: '圆角风格：高亮描边元素改用普通圆角保证四角描边粗细均匀，静态卡片与头像改用超椭圆连续曲率；圆角半径整体加大，主页大头像圆角略大于常规板块' },
   { date: '2026-10-09', text: '补齐全文翻译缺失的英文词条，覆盖关于我、归档、更新日志、友链、隐私、目录与图片预览浮窗等模块标题' },
@@ -73,6 +75,8 @@ const ENTRIES_ZH: Entry[] = [
 ];
 
 const ENTRIES_EN: Entry[] = [
+  { date: '2026-10-10', text: 'The home "Coming soon" button is now clickable and slides a toast in from the top-right corner; toasts can be shown together and stack downwards until they almost reach the bottom of the page, dismiss themselves after 3 seconds, and can also be dragged away to the right with the pointer' },
+  { date: '2026-10-10', text: 'Toast motion: they enter diagonally from below the right edge of the viewport, settling vertically first and then sliding in horizontally, with the enter, exit and stack-reflow animations all on one 0.55s ease-out curve; the material reuses the site overlay look of a translucent fill plus backdrop blur' },
   { date: '2026-10-09', text: 'Added a "Corners" option to Settings: switch the site-wide corner style between right-angle and rounded, where rounded uses a small radius with a curvature-continuous (G2) squircle' },
   { date: '2026-10-09', text: 'Rounded style: stroke-highlighted elements now use plain circular corners so the 2px highlight stays uniform, while static cards and avatars use a continuous-curvature squircle; overall radii were enlarged and the home avatar is slightly rounder than regular panels' },
   { date: '2026-10-09', text: 'Filled in the missing English phrases for full-text translation, covering headings on About, Archive, Changelog, Friends, Privacy, the table of contents and the image lightbox' },

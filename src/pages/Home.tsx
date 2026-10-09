@@ -1,6 +1,8 @@
+import { useRef, useState } from 'react';
 import { useT } from '../context/Prefs';
 import { useSiteNav } from '../context/SiteNav';
 import { En, Zh } from '../components/LangVariant';
+import { ToastStack, type ToastItem } from '../components/Toast';
 import {
   IconAifadian,
   IconBilibili,
@@ -24,12 +26,44 @@ const STACK = [
   { name: 'Cloudflare', desc: '域名解析' },
 ];
 
+const STACK_GAP_PX = 8;
+const STACK_BOTTOM_MARGIN_PX = 18;
+
 export default function Home() {
   const t = useT();
   const { go } = useSiteNav();
+  const [toasts, setToasts] = useState<ToastItem[]>([]);
+  const stackRef = useRef<HTMLDivElement>(null);
+  const nextIdRef = useRef(0);
+  const countRef = useRef(0);
+
+  const dismissToast = (id: number) => {
+    countRef.current = Math.max(0, countRef.current - 1);
+    setToasts((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const showToast = () => {
+    const stack = stackRef.current;
+    const cardHeight = stack?.firstElementChild?.getBoundingClientRect().height ?? 0;
+    if (stack && cardHeight > 0) {
+      const available =
+        window.innerHeight - stack.getBoundingClientRect().top - STACK_BOTTOM_MARGIN_PX;
+      const needed = (countRef.current + 1) * cardHeight + countRef.current * STACK_GAP_PX;
+      if (needed > available) {
+        return;
+      }
+    }
+    countRef.current += 1;
+    nextIdRef.current += 1;
+    setToasts((prev) => [
+      ...prev,
+      { id: nextIdRef.current, message: t('功能正在开发中，敬请期待～') },
+    ]);
+  };
 
   return (
     <main className="home-main container">
+      <ToastStack items={toasts} onDismiss={dismissToast} stackRef={stackRef} />
       <section className="panel home-hero">
         <div className="panel-body">
           <img
@@ -64,7 +98,9 @@ export default function Home() {
               <IconBook />
               {t('阅读文章')}
             </button>
-            <span className="social-btn hero-cta-secondary">{t('敬请期待')}</span>
+            <button type="button" className="social-btn hero-cta-secondary" onClick={showToast}>
+              {t('敬请期待')}
+            </button>
           </div>
         </div>
         <button

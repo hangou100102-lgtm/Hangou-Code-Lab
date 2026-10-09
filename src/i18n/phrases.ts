@@ -44,6 +44,7 @@ export const ZH_TO_EN: Record<string, string> = {
   '创意作品': 'Creative works',
   '阅读文章': 'Read posts',
   '敬请期待': 'Stay tuned',
+  '功能正在开发中，敬请期待～': 'This feature is still in development. Stay tuned!',
   '向下滚动': 'Scroll down',
   '找到我': 'Find me',
   '社交 & 联系': 'Social & Contact',
